@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SERVICE_CATEGORIES } from "@/lib/data";
 import {
   Carousel,
@@ -26,6 +27,13 @@ export function PopularServices() {
             <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl md:text-5xl">Популярные услуги</h2>
             <p className="text-slate-500">То, что наши клиенты выбирают чаще всего.</p>
           </div>
+          <Link
+            href="/prices"
+            className="group inline-flex items-center font-medium text-orange-500 transition-all duration-300 hover:text-orange-600"
+          >
+            Все услуги и цены
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
 
         <div className="relative px-0 md:px-12">
@@ -38,8 +46,8 @@ export function PopularServices() {
           >
             <CarouselContent className="-ml-4">
               {popularServices.map((service, index) => (
-                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
+                <CarouselItem key={index} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="px-1 pb-1 pt-3">
                     <Card className="group flex h-[400px] flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                       <CardContent className="flex h-full flex-col p-6 md:p-8">
                         <div className="flex-1">
