@@ -10,15 +10,24 @@ type ScrollRevealProps = {
 
 export function ScrollReveal({ children, delayMs = 0, className = "" }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const node = ref.current;
     if (!node) return;
 
-    if (window.matchMedia("(max-width: 767px)").matches || !("IntersectionObserver" in window)) {
-      const frameId = window.requestAnimationFrame(() => setVisible(true));
-      return () => window.cancelAnimationFrame(frameId);
+    const isMobileMatch = window.matchMedia("(max-width: 767px)").matches;
+
+    if (isMobileMatch || !("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
     }
 
     let revealed = false;
@@ -47,18 +56,24 @@ export function ScrollReveal({ children, delayMs = 0, className = "" }: ScrollRe
       observer.disconnect();
       window.clearTimeout(timeoutId);
     };
-  }, []);
+  }, [mounted]);
+
+  // Show content immediately on mount for better UX
+  const initialOpacity = mounted ? (visible ? 1 : 0) : 1;
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
+        opacity: initialOpacity,
         transform: visible ? "translate3d(0,0,0)" : "translate3d(0,28px,0)",
-        transition: `opacity 700ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1)`,
+        transitionProperty: visible ? "none" : "opacity, transform",
+        transitionDuration: visible ? "0ms" : "700ms, 900ms",
+        transitionTimingFunction: "ease, cubic-bezier(0.22, 1, 0.36, 1)",
         transitionDelay: `${delayMs}ms`,
-        willChange: "opacity, transform",
+        pointerEvents: "auto",
+        touchAction: "auto",
       }}
     >
       {children}
