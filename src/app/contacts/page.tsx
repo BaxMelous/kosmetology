@@ -32,24 +32,28 @@ export default function ContactsPage() {
           <div className="space-y-10 md:space-y-16">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8">
               <div className="space-y-2">
-                <div className="mb-2 flex items-start gap-3 text-primary">
-                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <MapPin className="w-5 h-5" />
-                   </div>
-                   <span className="font-bold uppercase text-xs tracking-widest">Адрес</span>
+                <div className="grid grid-cols-[40px_1fr] items-start gap-x-3 gap-y-2">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <span className="pt-2 font-bold uppercase text-xs tracking-widest text-primary">Адрес</span>
+                  <div className="col-start-2">
+                    <p className="text-base font-medium leading-snug text-slate-800 md:text-lg">{CONTACTS.address}</p>
+                  </div>
                 </div>
-                <p className="text-base font-medium leading-snug text-slate-800 md:text-lg">{CONTACTS.address}</p>
               </div>
 
               <div className="space-y-2">
-                <div className="mb-2 flex items-start gap-3 text-primary">
-                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Phone className="w-5 h-5" />
-                   </div>
-                   <span className="font-bold uppercase text-xs tracking-widest">Телефон</span>
+                <div className="grid grid-cols-[40px_1fr] items-start gap-x-3 gap-y-2">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <span className="pt-2 font-bold uppercase text-xs tracking-widest text-primary">Телефон</span>
+                  <div className="col-start-2">
+                    <p className="text-base font-medium text-slate-800 md:text-lg">{CONTACTS.phone}</p>
+                    <p className="mt-2 text-sm text-slate-500">Ежедневно: 08:00–20:00</p>
+                  </div>
                 </div>
-                <p className="text-base font-medium text-slate-800 md:text-lg">{CONTACTS.phone}</p>
-                <p className="text-sm text-slate-500">Ежедневно: 08:00–20:00</p>
               </div>
             </div>
 

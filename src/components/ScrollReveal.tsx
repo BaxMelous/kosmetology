@@ -16,18 +16,37 @@ export function ScrollReveal({ children, delayMs = 0, className = "" }: ScrollRe
     const node = ref.current;
     if (!node) return;
 
+    if (window.matchMedia("(max-width: 767px)").matches || !("IntersectionObserver" in window)) {
+      const frameId = window.requestAnimationFrame(() => setVisible(true));
+      return () => window.cancelAnimationFrame(frameId);
+    }
+
+    let revealed = false;
+
+    const reveal = () => {
+      if (revealed) return;
+      revealed = true;
+      setVisible(true);
+      observer.disconnect();
+      window.clearTimeout(timeoutId);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
+          reveal();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" }
     );
 
+    const timeoutId = window.setTimeout(reveal, 500);
+
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timeoutId);
+    };
   }, []);
 
   return (

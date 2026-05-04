@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,14 @@ const NAV_ITEMS = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-slate-50/90 backdrop-blur-md">
@@ -79,36 +87,42 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 top-20 z-50 flex flex-col animate-in slide-in-from-top bg-white px-6 py-8 md:hidden">
-          <nav className="flex flex-1 flex-col space-y-2">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={cn(
-                  "flex min-h-11 items-center rounded-2xl px-4 py-3 text-2xl font-medium transition-all duration-300 hover:bg-slate-100 hover:text-orange-500",
-                  pathname === item.href ? "text-orange-500" : "text-slate-700"
-                )}
-                onClick={() => setIsMenuOpen(false)}
+        <div
+          className="fixed inset-0 top-20 z-50 bg-slate-950/20 backdrop-blur-sm md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div
+            className="absolute inset-x-4 top-4 overflow-hidden rounded-[2rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <nav className="flex flex-col space-y-2">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={cn(
+                    "flex min-h-11 items-center rounded-2xl px-4 py-3 text-2xl font-medium transition-all duration-300 hover:bg-slate-100 hover:text-orange-500",
+                    pathname === item.href ? "bg-slate-100 text-orange-500" : "text-slate-700"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-6 space-y-4 border-t border-slate-100 pt-6">
+              <a
+                href="tel:+79276845454"
+                className="flex min-h-11 items-center px-2 text-lg font-medium text-slate-700"
               >
-                {item.label}
+                <Phone className="mr-2 h-5 w-5" />
+                +7 (927) 684-54-54
+              </a>
+              <Link href="/contacts">
+                <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                  Записаться
+                </Button>
               </Link>
-            ))}
-          </nav>
-          <div className="space-y-4 border-t border-slate-100 pt-6">
-            <a
-              href="tel:+79276845454"
-              className="flex min-h-11 items-center px-2 text-lg font-medium text-slate-700"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              +7 (927) 684-54-54
-            </a>
-            <Link href="/contacts" onClick={() => setIsMenuOpen(false)}>
-              <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
-                Записаться
-              </Button>
-            </Link>
+            </div>
           </div>
         </div>
       )}

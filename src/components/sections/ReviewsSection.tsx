@@ -32,8 +32,8 @@ export function ReviewsSection() {
             <CarouselContent className="-ml-4">
               {REVIEWS.map((review) => (
                 <CarouselItem key={review.id} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className="flex h-full flex-col rounded-3xl border border-slate-100 bg-white shadow-sm">
+                  <div className="flex h-full p-1">
+                    <Card className="flex h-full min-h-[380px] w-full flex-col rounded-3xl border border-slate-100 bg-white shadow-sm">
                       <CardContent className="flex h-full flex-col justify-between p-6 md:p-10">
                         <div className="space-y-6">
                           <div className="flex gap-1">
@@ -41,7 +41,7 @@ export function ReviewsSection() {
                               <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
                             ))}
                           </div>
-                          <p className="text-base font-normal italic leading-relaxed text-slate-500 md:text-lg">
+                          <p className="line-clamp-6 text-base font-normal italic leading-relaxed text-slate-500 md:text-lg">
                             &laquo;{review.text}&raquo;
                           </p>
                         </div>
