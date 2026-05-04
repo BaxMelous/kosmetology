@@ -5,7 +5,11 @@ export interface Doctor {
   experience?: string;
   specialties: string[];
   description?: string;
-  image: string;
+  image: string | null;
+  isChief?: boolean;
+  directions?: string[];
+  education?: string[];
+  workExperience?: string[];
 }
 
 export interface Service {
@@ -37,7 +41,7 @@ export const DOCTORS: Doctor[] = [
     name: "Бахтина Марина Александровна",
     role: "Врач-дерматовенеролог, врач-косметолог",
     specialties: ["Инъекционная косметология", "Аппаратные методики", "Коллагеностимуляция"],
-    image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=400&h=500&auto=format&fit=crop",
+    image: null,
   },
   {
     id: "gordeeva",
@@ -45,21 +49,21 @@ export const DOCTORS: Doctor[] = [
     role: "Врач-дерматовенеролог, врач-косметолог",
     experience: "Опыт более 20 лет",
     specialties: ["Эстетическая косметология", "Химические пилинги", "Чистка лица"],
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400&h=500&auto=format&fit=crop",
+    image: null,
   },
   {
     id: "domracheva",
     name: "Домрачева Надежда Юрьевна",
     role: "Врач-дерматовенеролог, трихолог, врач-косметолог",
     specialties: ["Трихология", "Лазерное лечение", "Инъекционная косметология"],
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&h=500&auto=format&fit=crop",
+    image: null,
   },
   {
     id: "smirnova",
     name: "Смирнова Олеся Сергеевна",
     role: "Врач-дерматовенеролог, косметолог",
     specialties: ["Лечение кожных заболеваний", "Детский прием", "Удаление новообразований"],
-    image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=400&h=500&auto=format&fit=crop",
+    image: null,
   },
 ];
 

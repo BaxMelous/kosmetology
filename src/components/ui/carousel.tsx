@@ -95,7 +95,8 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
+    const syncSelection = () => onSelect(api)
+    queueMicrotask(syncSelection)
     api.on("reInit", onSelect)
     api.on("select", onSelect)
 

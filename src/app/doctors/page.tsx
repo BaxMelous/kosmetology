@@ -1,9 +1,11 @@
-import { DOCTORS } from "@/lib/data";
+import { getCosmetologyDoctors } from "@/lib/api/doctors";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-export default function DoctorsPage() {
+export default async function DoctorsPage() {
+  const doctors = await getCosmetologyDoctors();
+
   return (
     <div className="bg-slate-50 pt-8 md:pt-14">
       <ScrollReveal>
@@ -16,8 +18,8 @@ export default function DoctorsPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {DOCTORS.map((doctor, index) => (
-              <DoctorCard key={doctor.id} doctor={doctor} isChief={index === 0} />
+            {doctors.map((doctor) => (
+              <DoctorCard key={doctor.id} doctor={doctor} isChief={doctor.isChief} />
             ))}
           </div>
         </section>

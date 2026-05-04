@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-slate-50">
-      <div className="container mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-4 py-10 md:px-8 md:py-12">
+      <div className="container mx-auto flex max-w-7xl items-center px-4 py-6 sm:py-8 md:min-h-[calc(100vh-80px)] md:px-8 md:py-12">
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 space-y-6 text-left lg:text-left">
@@ -34,7 +34,7 @@ export function HeroSection() {
           </div>
 
           {/* Image */}
-          <div className="relative flex flex-1 justify-center">
+          <div className="relative hidden flex-1 justify-center lg:flex">
             <div className="relative z-10 w-full max-w-[520px] overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-500 lg:rotate-3 lg:hover:rotate-0">
               <Image
                 src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=75&w=720&h=900&auto=format&fit=crop"
@@ -42,9 +42,8 @@ export function HeroSection() {
                 width={720}
                 height={900}
                 quality={75}
-                fetchPriority="high"
+                unoptimized
                 className="h-[400px] w-full object-cover md:h-auto"
-                priority
               />
             </div>
             {/* Decorative elements */}

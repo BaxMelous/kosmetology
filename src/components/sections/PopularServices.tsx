@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SERVICE_CATEGORIES } from "@/lib/data";
 import {
   Carousel,
   CarouselContent,
@@ -13,11 +12,18 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { Service } from "@/lib/data";
 
-export function PopularServices() {
-  const popularServices = SERVICE_CATEGORIES.flatMap(cat => 
-    cat.services.filter(s => s.isPopular).map(s => ({ ...s, category: cat.title }))
-  );
+type PopularService = Service & {
+  category: string;
+};
+
+type PopularServicesProps = {
+  services: PopularService[];
+};
+
+export function PopularServices({ services }: PopularServicesProps) {
+  const popularServices = services;
 
   return (
     <section className="overflow-hidden bg-slate-50 py-10 md:py-28">
