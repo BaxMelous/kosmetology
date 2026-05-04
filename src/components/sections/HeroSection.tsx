@@ -6,27 +6,27 @@ import { Button } from "@/components/ui/button";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-slate-50">
-      <div className="container mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-4 py-12 md:px-8">
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+      <div className="container mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-4 py-10 md:px-8 md:py-12">
+        <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20">
           {/* Text Content */}
-          <div className="flex-1 space-y-8 text-center lg:text-left">
-            <h1 className="text-4xl font-semibold leading-tight text-slate-800 md:text-6xl">
+          <div className="flex-1 space-y-6 text-left lg:text-left">
+            <h1 className="text-3xl font-semibold leading-tight text-slate-800 sm:text-4xl md:text-6xl">
               Косметология <br />
               <span className="text-primary">экспертного уровня</span> <br />
               в СитиМед Эстетика
             </h1>
-            <p className="mx-auto max-w-2xl text-lg font-normal leading-relaxed text-slate-500 md:text-xl lg:mx-0">
+            <p className="max-w-2xl text-base font-normal leading-relaxed text-slate-500 md:text-xl lg:mx-0">
               Безопасность, передовые технологии и команда признанных экспертов для вашей красоты и здоровья. 
               Мы создаем результаты, которыми вы будете гордиться.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 lg:justify-start">
               <Link href="/contacts">
-                <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600 sm:w-auto">
                   Записаться на прием
                 </Button>
               </Link>
               <Link href="/prices">
-                <Button variant="outline" className="h-11 rounded-xl border border-slate-200 bg-white px-6 font-medium text-slate-800 transition-all duration-300 hover:bg-slate-100">
+                <Button variant="outline" className="h-11 w-full rounded-xl border border-slate-200 bg-white px-6 font-medium text-slate-800 transition-all duration-300 hover:bg-slate-100 sm:w-auto">
                   Посмотреть услуги
                 </Button>
               </Link>
@@ -43,7 +43,7 @@ export function HeroSection() {
                 height={900}
                 quality={75}
                 fetchPriority="high"
-                className="h-auto w-full object-cover"
+                className="h-[400px] w-full object-cover md:h-auto"
                 priority
               />
             </div>

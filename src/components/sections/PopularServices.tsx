@@ -19,16 +19,16 @@ export function PopularServices() {
   );
 
   return (
-    <section className="overflow-hidden bg-slate-50 py-28">
+    <section className="overflow-hidden bg-slate-50 py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end md:gap-6">
           <div className="space-y-4">
-            <h2 className="text-3xl font-semibold text-slate-800 md:text-5xl">Популярные услуги</h2>
+            <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl md:text-5xl">Популярные услуги</h2>
             <p className="text-slate-500">То, что наши клиенты выбирают чаще всего.</p>
           </div>
         </div>
 
-        <div className="px-12 relative">
+        <div className="relative px-0 md:px-12">
           <Carousel
             opts={{
               align: "start",
@@ -38,10 +38,10 @@ export function PopularServices() {
           >
             <CarouselContent className="-ml-4">
               {popularServices.map((service, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
                     <Card className="group flex h-[400px] flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      <CardContent className="flex h-full flex-col p-8">
+                      <CardContent className="flex h-full flex-col p-6 md:p-8">
                         <div className="flex-1">
                           <span className="mb-4 inline-block rounded-full bg-lime-200 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-slate-800">
                             {service.category}
@@ -67,8 +67,8 @@ export function PopularServices() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-6 top-1/2 h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white" />
-            <CarouselNext className="absolute -right-6 top-1/2 h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white" />
+            <CarouselPrevious className="absolute -left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
+            <CarouselNext className="absolute -right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
           </Carousel>
         </div>
       </div>

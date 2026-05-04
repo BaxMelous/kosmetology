@@ -9,9 +9,9 @@ type DoctorCardProps = {
 
 export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
   return (
-    <article className="flex h-full min-w-0 flex-col rounded-3xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
+    <article className="flex h-full min-w-0 flex-col rounded-3xl border border-slate-100 bg-white p-5 text-center shadow-sm sm:p-6 lg:p-7 lg:text-left">
       <div className="relative mb-8">
-        <div className="absolute left-0 top-0 z-10 flex flex-col gap-2">
+        <div className="absolute left-0 top-0 z-10 flex flex-col gap-2 lg:left-0">
           {isChief && (
             <span className="max-w-full rounded-full bg-lime-200 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-900 sm:px-4 sm:text-xs">
               Главный врач

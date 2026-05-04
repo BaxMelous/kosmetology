@@ -68,9 +68,10 @@ export function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2"
+          className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-800 transition-colors hover:bg-slate-100 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -78,14 +79,14 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute left-0 top-20 w-full animate-in slide-in-from-top space-y-4 border-b border-slate-100 bg-slate-50 px-4 py-6 shadow-sm duration-300 md:hidden">
-          <nav className="flex flex-col space-y-4">
+        <div className="fixed inset-0 top-20 z-50 flex flex-col animate-in slide-in-from-top bg-white px-6 py-8 md:hidden">
+          <nav className="flex flex-1 flex-col space-y-2">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "text-lg font-medium transition-all duration-300 hover:text-orange-500",
+                  "flex min-h-11 items-center rounded-2xl px-4 py-3 text-2xl font-medium transition-all duration-300 hover:bg-slate-100 hover:text-orange-500",
                   pathname === item.href ? "text-orange-500" : "text-slate-700"
                 )}
                 onClick={() => setIsMenuOpen(false)}
@@ -94,10 +95,11 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <div className="pt-4 border-t space-y-4">
+          <div className="space-y-4 border-t border-slate-100 pt-6">
             <a
               href="tel:+79276845454"
-              className="flex items-center text-lg font-medium text-slate-700"
+              className="flex min-h-11 items-center px-2 text-lg font-medium text-slate-700"
+              onClick={() => setIsMenuOpen(false)}
             >
               <Phone className="mr-2 h-5 w-5" />
               +7 (927) 684-54-54

@@ -16,11 +16,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
 
 export function CategoriesSection() {
   return (
-    <section id="services" className="bg-slate-50 py-28">
+    <section id="services" className="bg-slate-50 py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end md:gap-6">
           <div className="space-y-4">
-            <h2 className="text-3xl font-semibold text-slate-800 md:text-5xl">Наши услуги</h2>
+            <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl md:text-5xl">Наши услуги</h2>
             <p className="text-slate-500 max-w-xl">
               Передовые методики для вашей красоты. Мы используем только сертифицированные препараты и оборудование.
             </p>
@@ -31,20 +31,20 @@ export function CategoriesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-3">
           {SERVICE_CATEGORIES.map((category) => {
             const Icon = ICON_MAP[category.icon] || Sparkles;
             return (
               <Card key={category.id} className="group overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <CardHeader className="p-8 pb-4">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-lime-200 transition-transform duration-500 group-hover:scale-105">
+                <CardHeader className="p-6 pb-4 md:p-8 md:pb-4">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-lime-200 transition-transform duration-500 group-hover:scale-105 md:mb-6 md:h-16 md:w-16">
                     <Icon className="w-8 h-8 text-slate-900" />
                   </div>
-                  <CardTitle className="mb-2 text-2xl font-semibold text-slate-800">
+                  <CardTitle className="mb-2 text-xl font-semibold text-slate-800 md:text-2xl">
                     {category.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 pt-0">
+                <CardContent className="p-6 pt-0 md:p-8 md:pt-0">
                   <p className="text-slate-500 text-sm leading-relaxed mb-6">
                     {category.description}
                   </p>
