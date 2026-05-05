@@ -54,7 +54,7 @@ export function buildFileUrl(fileId: string | null | undefined) {
     return null;
   }
 
-  return `/api/doctor-images/${encodeURIComponent(fileId)}`;
+  return buildRemoteFileUrl(fileId);
 }
 
 export function buildRemoteFileUrl(fileId: string) {

@@ -81,7 +81,7 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
                       <div className="flex items-center justify-between gap-4 md:shrink-0">
                         <span className="text-xl font-semibold text-slate-800">{service.price}</span>
                         <Link href={`/contacts?service=${service.id}`}>
-                          <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                          <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
                             Записаться
                           </Button>
                         </Link>

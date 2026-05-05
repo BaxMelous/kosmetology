@@ -3,8 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
-import { getDoctorById } from "@/lib/api/doctors";
+import { getCosmetologyDoctors, getDoctorById } from "@/lib/api/doctors";
 import { CONTACTS } from "@/lib/data";
+
+export async function generateStaticParams() {
+  const doctors = await getCosmetologyDoctors();
+
+  return doctors.map((doctor) => ({
+    id: doctor.id,
+  }));
+}
 
 type DoctorPageProps = {
   params: Promise<{

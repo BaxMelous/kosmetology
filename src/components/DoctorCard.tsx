@@ -11,7 +11,7 @@ type DoctorCardProps = {
 
 export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
   return (
-    <Link href={`/doctors/${doctor.id}`} className="block h-full">
+    <Link href={`/doctors/${doctor.id}`} className="block h-full active:scale-[0.98] active:opacity-80 transition-all duration-200">
       <article className="flex h-full min-w-0 flex-col rounded-3xl border border-slate-100 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 lg:p-7 lg:text-left">
         <div className="relative mb-8">
           <div className="absolute left-0 top-0 z-10 flex flex-col gap-2 lg:left-0">

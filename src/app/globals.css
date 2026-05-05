@@ -110,3 +110,11 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent; /* Убирает синий квадрат при клике на iOS */
+    touch-action: manipulation; /* Убирает 300ms задержку клика */
+  }
+}
+
