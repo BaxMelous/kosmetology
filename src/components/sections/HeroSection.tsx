@@ -11,18 +11,18 @@ export function HeroSection() {
           {/* Text Content */}
           <div className="flex-1 space-y-6 text-left lg:text-left">
             <h1 className="text-3xl font-semibold leading-tight text-slate-800 sm:text-4xl md:text-6xl">
-              Косметология <br />
-              <span className="text-primary">экспертного уровня</span> <br />
+              Профессиональная <br />
+              <span className="text-primary">косметология</span> <br />
               в СитиМед Эстетика
             </h1>
             <p className="max-w-2xl text-base font-normal leading-relaxed text-slate-500 md:text-xl lg:mx-0">
-              Безопасность, передовые технологии и команда признанных экспертов для вашей красоты и здоровья. 
-              Мы создаем результаты, которыми вы будете гордиться.
+              Современные методики омоложения и ухода за кожей с использованием сертифицированных препаратов. 
+              Индивидуальный подход и видимый результат уже после первой процедуры.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 lg:justify-start">
               <Link href="/contacts">
                 <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600 sm:w-auto">
-                  Записаться на прием
+                  Записаться
                 </Button>
               </Link>
               <Link href="/prices">

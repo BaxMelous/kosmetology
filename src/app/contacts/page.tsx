@@ -5,6 +5,7 @@ import { CONTACTS } from "@/lib/data";
 import { MapPin, Phone, Bus, Send, Car, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
   Accordion,
@@ -62,7 +63,7 @@ export default function ContactsPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
               <div className="relative z-10 space-y-8">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold text-slate-800 md:text-3xl">Оставить заявку</h3>
+                  <h3 className="text-2xl font-semibold text-slate-800 md:text-3xl">Остались вопросы? Напишите нам</h3>
                   <p className="text-slate-500">Напишите нам, и мы свяжемся с вами в течение 15 минут.</p>
                 </div>
 
@@ -74,6 +75,10 @@ export default function ContactsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest text-slate-400">Телефон</Label>
                     <Input id="phone" placeholder="+7 (___) ___-__-__" className="h-14 rounded-2xl border-none bg-white pl-4 shadow-sm focus-visible:ring-primary" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-xs font-medium uppercase tracking-widest text-slate-400">Сообщение</Label>
+                    <Textarea id="message" placeholder="Ваш вопрос или пожелание..." className="min-h-[120px] rounded-2xl border-none bg-white pl-4 pt-4 shadow-sm focus-visible:ring-primary" />
                   </div>
                   <Button type="submit" className="h-12 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
                     Отправить заявку
@@ -144,7 +149,7 @@ export default function ContactsPage() {
 
         {/* Directions */}
         <div className="mx-auto max-w-4xl space-y-6 md:space-y-12">
-          <h2 className="text-center text-2xl font-semibold text-slate-800 md:text-4xl">Как добраться?</h2>
+          <h2 className="text-center text-2xl font-semibold text-slate-800 md:text-4xl">Как нас найти?</h2>
           <Accordion className="space-y-4">
             <AccordionItem value="car" className="overflow-hidden rounded-3xl border-none bg-slate-50 px-4 md:rounded-[2.5rem] md:px-8">
               <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-8">

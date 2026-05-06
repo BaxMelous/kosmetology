@@ -110,7 +110,7 @@ export default async function DoctorDetailPage({ params }: DoctorPageProps) {
                 href={`/contacts?doctor=${doctor.id}`}
                 className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-6 py-3 font-medium text-white transition-colors hover:bg-orange-600"
               >
-                Записаться на прием
+                Записаться
               </Link>
             </div>
           </div>

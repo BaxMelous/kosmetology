@@ -31,7 +31,7 @@ export function PopularServices({ services }: PopularServicesProps) {
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end md:gap-6">
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl md:text-5xl">Популярные услуги</h2>
-            <p className="text-slate-500">То, что наши клиенты выбирают чаще всего.</p>
+            <p className="text-slate-500">Что выбирают наши клиенты?</p>
           </div>
           <Link
             href="/prices"

@@ -19,7 +19,7 @@ export function DoctorsSection({ doctors, limit }: DoctorsSectionProps) {
           <div className="space-y-3 md:space-y-4">
             <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl md:text-5xl">Наши специалисты</h2>
             <p className="mx-auto max-w-2xl text-slate-500 md:mx-0">
-              Доверьте свою красоту и здоровье профессионалам. Все врачи клиники имеют высшее медицинское образование.
+              Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет.
             </p>
           </div>
           <Link

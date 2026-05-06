@@ -17,15 +17,14 @@ export function CtaConsultation() {
               <MessageSquare className="w-8 h-8 text-primary" />
             </div>
             <h2 className="text-3xl font-semibold leading-tight text-slate-800 md:text-5xl">
-              Не знаете, с чего начать?
+              Запишитесь на первичную консультацию косметолога
             </h2>
             <p className="text-lg font-normal leading-relaxed text-slate-500 md:text-xl">
-              Запишитесь на первичную консультацию косметолога с аппаратной диагностикой кожи. 
-              Мы подберем индивидуальный план преображения.
+              На консультации врач-косметолог проведет диагностику кожи, выслушает ваши пожелания и составит индивидуальный план преображения. Подберем оптимальные процедуры с учетом вашего типа кожи, возраста и бюджета.
             </p>
             <Link href="/contacts">
               <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
-                Записаться на консультацию
+                Записаться
               </Button>
             </Link>
           </div>
