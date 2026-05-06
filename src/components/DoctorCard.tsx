@@ -12,8 +12,8 @@ type DoctorCardProps = {
 export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
   return (
     <Link href={`/doctors/${doctor.id}`} className="block h-full active:scale-[0.98] active:opacity-80 transition-all duration-200">
-      <article className="flex h-full min-w-0 flex-col rounded-3xl border border-slate-100 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 lg:p-7 lg:text-left">
-        <div className="relative mb-8">
+      <article className="flex h-full min-w-0 flex-col rounded-3xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 lg:p-7 lg:text-left">
+        <div className="relative mb-5 md:mb-8">
           <div className="absolute left-0 top-0 z-10 flex flex-col gap-2 lg:left-0">
             {isChief && (
               <span className="max-w-full rounded-full bg-lime-200 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-900 sm:px-4 sm:text-xs">
@@ -24,7 +24,7 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
               {doctor.experience ?? "Опыт 10 лет"}
             </span>
           </div>
-          <div className="relative mx-auto mt-6 h-36 w-36 overflow-hidden rounded-full bg-slate-100 sm:h-40 sm:w-40 lg:h-44 lg:w-44">
+          <div className="relative mx-auto mt-6 h-28 w-28 overflow-hidden rounded-full bg-slate-100 sm:h-36 sm:w-36 md:h-40 md:w-40 lg:h-44 lg:w-44">
             <DoctorAvatar
               src={doctor.image}
               alt={doctor.name}
@@ -33,10 +33,10 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
           </div>
         </div>
 
-        <h3 className="mb-2 break-words text-xl font-semibold leading-snug text-slate-800 sm:text-2xl">
+        <h3 className="mb-2 break-words text-lg font-semibold leading-snug text-slate-800 sm:text-xl md:text-2xl">
           {doctor.name}
         </h3>
-        <p className="mb-6 break-words text-sm font-normal text-slate-500">
+        <p className="mb-4 md:mb-6 break-words text-sm font-normal text-slate-500">
           {doctor.role}
         </p>
 

@@ -30,7 +30,7 @@ export default function RootLayout({
     >
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>
         <Header />
-        <main className="flex-grow pb-24 md:pb-0">
+        <main className="flex-grow pb-24 lg:pb-0">
           {children}
         </main>
         <Footer />

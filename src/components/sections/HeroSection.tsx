@@ -10,12 +10,12 @@ export function HeroSection() {
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 space-y-6 text-left lg:text-left">
-            <h1 className="text-3xl font-semibold leading-tight text-slate-800 sm:text-4xl md:text-6xl">
+            <h1 className="text-2xl font-semibold leading-tight text-slate-800 sm:text-4xl md:text-6xl">
               Профессиональная <br />
               <span className="text-primary">косметология</span> <br />
               в СитиМед Эстетика
             </h1>
-            <p className="max-w-2xl text-base font-normal leading-relaxed text-slate-500 md:text-xl lg:mx-0">
+            <p className="max-w-2xl text-sm font-normal leading-relaxed text-slate-500 sm:text-base md:text-xl lg:mx-0">
               Современные методики омоложения и ухода за кожей с использованием сертифицированных препаратов. 
               Индивидуальный подход и видимый результат уже после первой процедуры.
             </p>

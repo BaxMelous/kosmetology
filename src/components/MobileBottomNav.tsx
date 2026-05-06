@@ -25,7 +25,7 @@ export function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:hidden">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] lg:hidden">
       <nav
         aria-label="Основная навигация"
         className="pointer-events-auto w-full max-w-md rounded-full border border-white/60 bg-white/70 px-2 py-2 shadow-[0_20px_60px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/55"

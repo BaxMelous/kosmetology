@@ -35,23 +35,23 @@ export function ReviewsSection() {
               {REVIEWS.map((review) => (
                 <CarouselItem key={review.id} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="flex h-full p-1">
-                    <Card className="flex h-full min-h-[420px] w-full flex-col rounded-3xl border border-slate-100 bg-white shadow-sm">
-                      <CardContent className="flex h-full flex-col justify-between p-6 md:p-10">
-                        <div className="space-y-6">
+                    <Card className="flex h-full min-h-[320px] md:min-h-[420px] w-full flex-col rounded-3xl border border-slate-100 bg-white shadow-sm">
+                      <CardContent className="flex h-full flex-col justify-between p-5 md:p-10">
+                        <div className="space-y-4 md:space-y-6">
                           <div className="flex gap-1">
                             {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
+                              <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-secondary text-secondary" />
                             ))}
                           </div>
-                          <h3 className="text-xl font-semibold leading-snug text-slate-800">
+                          <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-800">
                             &laquo;{review.title}&raquo;
                           </h3>
-                          <p className="text-base font-normal leading-relaxed text-slate-500 md:text-lg">
+                          <p className="text-sm md:text-lg font-normal leading-relaxed text-slate-500">
                             {review.text}
                           </p>
                         </div>
-                        <div className="mt-8 space-y-4 border-t border-slate-100 pt-8">
-                          <span className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                        <div className="mt-5 md:mt-8 space-y-3 md:space-y-4 border-t border-slate-100 pt-5 md:pt-8">
+                          <span className="inline-block rounded-full bg-slate-100 px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-medium text-slate-600">
                             {review.services}
                           </span>
                           <div className="flex items-center gap-4">

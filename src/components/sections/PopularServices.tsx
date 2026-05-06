@@ -54,21 +54,21 @@ export function PopularServices({ services }: PopularServicesProps) {
               {popularServices.map((service, index) => (
                 <CarouselItem key={index} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="px-1 pb-1 pt-3">
-                    <Card className="group flex h-[400px] flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      <CardContent className="flex h-full flex-col p-6 md:p-8">
-                        <div className="flex-1">
-                          <span className="mb-4 inline-block rounded-full bg-lime-200 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-slate-800">
+                    <Card className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                      <CardContent className="flex h-full flex-col p-5 md:p-8">
+                        <div>
+                          <span className="mb-3 md:mb-4 inline-block rounded-full bg-lime-200 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-slate-800">
                             {service.category}
                           </span>
-                          <h3 className="mb-4 text-2xl font-semibold text-slate-800 transition-colors group-hover:text-orange-500">
+                          <h3 className="mb-3 md:mb-4 text-xl md:text-2xl font-semibold text-slate-800 transition-colors group-hover:text-orange-500">
                             {service.name}
                           </h3>
-                          <p className="line-clamp-3 font-normal leading-relaxed text-slate-500">
+                          <p className="line-clamp-3 text-sm md:text-base font-normal leading-relaxed text-slate-500">
                             {service.description}
                           </p>
                         </div>
-                        <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-8">
-                          <span className="text-2xl font-semibold text-slate-800">{service.price}</span>
+                        <div className="mt-5 md:mt-8 flex items-center justify-between border-t border-slate-100 pt-5 md:pt-8">
+                          <span className="text-xl md:text-2xl font-semibold text-slate-800">{service.price}</span>
                           <Link href={`/contacts?service=${service.id}`}>
                             <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
                               Записаться

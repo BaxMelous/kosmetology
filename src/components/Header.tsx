@@ -28,16 +28,16 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-slate-50/90 backdrop-blur-md">
-      <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8">
+      <div className="container mx-auto flex h-16 lg:h-20 max-w-7xl items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-semibold tracking-tight text-slate-800 md:text-2xl">
+          <span className="text-lg lg:text-2xl font-semibold tracking-tight text-slate-800">
             СитиМед <span className="text-foreground">Эстетика</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center space-x-8">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -59,7 +59,7 @@ export function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-4">
           <a
             href="tel:+79276845454"
             className="flex items-center text-sm font-medium text-slate-700 transition-all duration-300 hover:text-orange-500"
@@ -76,7 +76,7 @@ export function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-800 transition-colors hover:bg-slate-100 md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-800 transition-colors hover:bg-slate-100 lg:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
@@ -88,7 +88,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 top-20 z-50 bg-slate-950/20 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 top-16 lg:top-20 z-50 bg-slate-950/20 backdrop-blur-sm lg:hidden"
           onClick={() => setIsMenuOpen(false)}
         >
           <div
