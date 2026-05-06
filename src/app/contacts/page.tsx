@@ -89,16 +89,36 @@ export default function ContactsPage() {
 
           {/* Right Column: Map & Photos */}
           <div className="space-y-6 md:space-y-8">
-            {/* Map Placeholder */}
-            <div className="relative flex h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-[2rem] border-4 border-white bg-lime-200 shadow-md md:h-[450px] md:rounded-[3rem] md:border-8">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-              <div className="relative z-10 flex flex-col items-center animate-bounce">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
-                  <MapPin className="w-8 h-8 text-white fill-white" />
+            {/* Map */}
+            <a
+              href="https://yandex.com/maps/-/CPWKaAzz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/map relative flex h-[300px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-4 border-white shadow-md transition-all duration-300 hover:shadow-xl md:h-[450px] md:rounded-[3rem] md:border-8"
+            >
+              <div
+                className="absolute -inset-2 bg-slate-300"
+                style={{
+                  backgroundImage: `url('https://static-maps.yandex.ru/1.x/?ll=47.8784,56.6319&z=16&size=650,450&l=map&pt=47.8784,56.6319,pm2rdl&lang=ru_RU')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  filter: "blur(4px)",
+                }}
+              />
+              <div className="absolute inset-0 bg-black/5" />
+              <div className="relative z-10 flex flex-col items-center gap-4 transition-transform duration-300 group-hover/map:scale-105">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-primary shadow-2xl">
+                  <MapPin className="h-8 w-8 fill-white text-white" />
                 </div>
-                <div className="mt-4 bg-white px-6 py-2 rounded-2xl shadow-xl font-bold text-slate-900 text-sm">СитиМед Эстетика</div>
+                <div className="rounded-2xl bg-white px-6 py-2 text-sm font-bold text-slate-900 shadow-xl">
+                  СитиМед Эстетика
+                </div>
+                <span className="inline-flex items-center gap-2 rounded-xl border border-white/60 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover/map:bg-white group-hover/map:shadow-md">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  Открыть в Яндекс Картах
+                </span>
               </div>
-            </div>
+            </a>
 
             {/* Photos Grid */}
             <div className="grid grid-cols-3 gap-3 md:gap-6">

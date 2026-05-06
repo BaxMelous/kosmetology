@@ -63,11 +63,30 @@ export function ContactsSection() {
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="h-[300px] bg-slate-100 rounded-[2.5rem] flex items-center justify-center border-2 border-dashed border-slate-200 relative overflow-hidden grayscale group hover:grayscale-0 transition-all duration-700">
-               <MapPin className="w-12 h-12 text-slate-300 group-hover:text-primary transition-colors" />
-               <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors" />
-            </div>
+            {/* Map */}
+            <a
+              href="https://yandex.com/maps/-/CPWKaAzz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/map relative flex h-[300px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-[2.5rem] shadow-sm transition-all duration-300 hover:shadow-lg"
+            >
+              <div
+                className="absolute -inset-2 bg-slate-300"
+                style={{
+                  backgroundImage: `url('https://static-maps.yandex.ru/1.x/?ll=47.8784,56.6319&z=16&size=650,450&l=map&pt=47.8784,56.6319,pm2rdl&lang=ru_RU')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  filter: "blur(4px)",
+                }}
+              />
+              <div className="absolute inset-0 bg-black/10 transition-colors group-hover/map:bg-black/5" />
+              <div className="relative z-10 flex flex-col items-center gap-4 transition-transform duration-300 group-hover/map:scale-105">
+                <MapPin className="h-12 w-12 text-white drop-shadow-lg transition-colors group-hover/map:text-primary" />
+                <span className="rounded-xl bg-white/80 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover/map:bg-white group-hover/map:shadow-md">
+                  Открыть в Яндекс Картах
+                </span>
+              </div>
+            </a>
           </div>
 
           {/* Contact Form */}

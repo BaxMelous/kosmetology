@@ -59,38 +59,55 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
               value={category.id}
               className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
             >
-              <AccordionTrigger className="min-h-11 py-5 text-left text-xl font-semibold text-slate-800 hover:no-underline md:py-6 md:text-2xl">
-                <h2>{category.title}</h2>
+              <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
+                <span className="flex items-baseline gap-3">
+                  <h2 className="text-lg font-semibold tracking-tight text-slate-800 md:text-xl">
+                    {category.title}
+                  </h2>
+                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium tabular-nums text-slate-400">
+                    {category.services.length}
+                  </span>
+                </span>
               </AccordionTrigger>
-              <AccordionContent className="pb-4">
-                <div className="space-y-3">
-                  {category.services.map((service) => (
-                    <article
-                      key={service.id}
-                      className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:flex-row md:items-center md:justify-between md:p-6"
-                    >
-                      <div>
-                        <div className="mb-1 flex flex-wrap items-center gap-2">
-                          <h3 className="text-lg font-semibold text-slate-800">{service.name}</h3>
-                          {service.isPopular && (
-                            <span className="rounded-full bg-lime-200 px-3 py-1 text-xs font-medium text-slate-800">Популярно</span>
+                <AccordionContent className="pb-4">
+                  <div className="space-y-3">
+                    {category.services.map((service) => (
+                      <article
+                        key={service.id}
+                        className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:flex-row md:items-center md:justify-between md:p-6"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="mb-1 flex flex-wrap items-center gap-2">
+                            <h3 className="text-base font-semibold tracking-tight text-slate-800 md:text-lg">
+                              {service.name}
+                            </h3>
+                            {service.isPopular && (
+                              <span className="rounded-full bg-lime-100 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-lime-700">
+                                Популярно
+                              </span>
+                            )}
+                          </div>
+                          {service.description && (
+                            <p className="text-sm leading-relaxed text-slate-500">
+                              {service.description}
+                            </p>
                           )}
                         </div>
-                        {service.description && <p className="text-sm text-slate-500">{service.description}</p>}
-                      </div>
-                      <div className="flex items-center justify-between gap-4 md:shrink-0">
-                        <span className="text-xl font-semibold text-slate-800">{service.price}</span>
-                        <Link href={`/contacts?service=${service.id}`}>
-                          <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
-                            Записаться
-                          </Button>
-                        </Link>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
+                        <div className="flex items-center justify-between gap-4 md:shrink-0">
+                          <span className="text-lg font-semibold tabular-nums tracking-tight text-slate-800 md:text-xl">
+                            {service.price}
+                          </span>
+                          <Link href={`/contacts?service=${service.id}`}>
+                            <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
+                              Записаться
+                            </Button>
+                          </Link>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
           ))}
         </Accordion>
 

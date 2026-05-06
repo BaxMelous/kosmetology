@@ -70,7 +70,7 @@ export const DOCTORS: Doctor[] = [
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: "injection",
-    title: "ИНЪЕКЦИОННАЯ КОСМЕТОЛОГИЯ",
+    title: "Инъекционная косметология",
     description: "Инъекционные методики для молодости и красоты. Забудьте о морщинах, сухости и «поплывшем» овале...",
     icon: "Syringe",
     services: [
@@ -82,7 +82,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: "hardware",
-    title: "АППАРАТНАЯ КОСМЕТОЛОГИЯ",
+    title: "Аппаратная косметология",
     description: "Технологии будущего для вашей кожи. SMAS-лифтинг, лазерное лечение...",
     icon: "Zap",
     services: [
@@ -93,7 +93,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: "thread",
-    title: "НИТЕВОЙ ЛИФТИНГ",
+    title: "Нитевой лифтинг",
     description: "Безоперационная подтяжка лица нитями Aptos...",
     icon: "Layers",
     services: [
@@ -103,7 +103,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: "peeling",
-    title: "ХИМИЧЕСКИЕ ПИЛИНГИ",
+    title: "Химические пилинги",
     description: "Обновление и сияние вашей кожи...",
     icon: "Sparkles",
     services: [
@@ -114,7 +114,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: "care",
-    title: "УХОДОВЫЕ ПРОЦЕДУРЫ И МАССАЖИ",
+    title: "Уходовые процедуры и массажи",
     description: "Комплексный уход за кожей лица и тела...",
     icon: "Flower2",
     services: [
