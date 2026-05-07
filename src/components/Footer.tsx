@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { CONTACTS } from "@/lib/data";
 
 export function Footer() {
@@ -9,8 +9,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <Link href="/" className="text-2xl font-semibold text-slate-800">
-              СитиМед <span className="text-slate-800">Эстетика</span>
+            <Link href="/" className="inline-block">
+              <img src="/kosmologo.svg" alt="СитиМед Эстетика" className="h-12 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed text-slate-500">
               Профессиональная косметология в Йошкар-Оле. 

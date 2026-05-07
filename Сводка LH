@@ -1,0 +1,352 @@
+
+First Contentful Paint
+1.4 s
+Largest Contentful Paint
+1.6 s
+Total Blocking Time
+0 ms
+Cumulative Layout Shift
+0
+Speed Index
+1.5 s
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+Insights
+Render-blocking requests Est savings of 990 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.FCPLCPUnscored
+URL
+Transfer Size
+Duration
+mccitymed.ru 1st party
+13.7 KiB	180 ms
+…chunks/16g1idfav5pss.css(test.kosmetology.mccitymed.ru)
+13.7 KiB
+180 ms
+adguard.org
+896.7 KiB	1,720 ms
+/?ts=177…&name=AdGuard%20Extra&type=user-script(local.adguard.org)
+547.7 KiB
+960 ms
+/?ts=…(local.adguard.org)
+349.0 KiB
+760 ms
+Use efficient cache lifetimes Est savings of 717 KiB
+A long cache lifetime can speed up repeat visits to your page. Learn more about caching.FCPLCPUnscored
+Request
+Cache TTL
+Transfer Size
+adguard.org
+897 KiB
+/?ts=177…&name=AdGuard%20Extra&type=user-script(local.adguard.org)
+1h
+548 KiB
+/?ts=…(local.adguard.org)
+1h
+349 KiB
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 1,165 ms
+Initial Navigation
+http://test.kosmetology.mccitymed.ru - 525 ms, 140.78 KiB
+…chunks/16g1idfav5pss.css(test.kosmetology.mccitymed.ru) - 899 ms, 13.74 KiB
+…media/1bffadaabf893a1e.16ipb6fqu393i.woff2(test.kosmetology.mccitymed.ru) - 1,165 ms, 83.59 KiB
+/?ts=177…&name=AdGuard%20Extra&type=user-script(local.adguard.org) - 581 ms, 547.74 KiB
+/?ts=…(local.adguard.org) - 569 ms, 349.00 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 94 KiB
+Your first network request is the most important. Reduce its latency by avoiding redirects, ensuring a fast server response, and enabling text compression.FCPLCPUnscored
+Avoids redirects
+Server responds quickly (observed 486 ms)
+No compression applied
+Modern HTTP
+HTTP/2 and HTTP/3 offer many benefits over HTTP/1.1, such as multiplexing. Learn more about using modern HTTP.FCPLCPUnscored
+URL
+Protocol
+mccitymed.ru 1st party
+http://test.kosmetology.mccitymed.ru
+http/1.1
+…media/83afe278b6a6bb3c.p.0q-301v4kxxnr.woff2(test.kosmetology.mccitymed.ru)
+http/1.1
+…media/9c72aa0f40e4eef8.p.0m6w47a4e5dy9.woff2(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/16g1idfav5pss.css(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/01w8rk5._5lhd.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0pqt~8bl3ukh4.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0rfosr10jsx4e.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/10~x95jhs6ns3.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/turbopack-0e8syaz~1q0s7.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0u9ypf7r.ubl4.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0d3shmwh5_nmn.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0-nho5v_ztsin.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0x4set8pxrbsa.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…chunks/0f.s.t8txruwk.js(test.kosmetology.mccitymed.ru)
+http/1.1
+…media/1bffadaabf893a1e.16ipb6fqu393i.woff2(test.kosmetology.mccitymed.ru)
+http/1.1
+/contacts/(test.kosmetology.mccitymed.ru)
+http/1.1
+/reviews/(test.kosmetology.mccitymed.ru)
+http/1.1
+/doctors/(test.kosmetology.mccitymed.ru)
+http/1.1
+/prices/(test.kosmetology.mccitymed.ru)
+http/1.1
+/favicon.ico?favicon.0x3dzn~oxb6tn.ico(test.kosmetology.mccitymed.ru)
+http/1.1
+/__next._head.txt?_rsc=1pn8p(test.kosmetology.mccitymed.ru)
+http/1.1
+/__next._index.txt?_rsc=nn07o(test.kosmetology.mccitymed.ru)
+http/1.1
+/__next.__PAGE__.txt?_rsc=ivliq(test.kosmetology.mccitymed.ru)
+http/1.1
+Legacy JavaScript Est savings of 13 KiB
+Polyfills and transforms enable older browsers to use new JavaScript features. However, many aren't necessary for modern browsers. Consider modifying your JavaScript build process to not transpile Baseline features, unless you know you must support older browsers. Learn why most sites can deploy ES6+ code without transpilingFCPLCPUnscored
+URL
+Wasted bytes
+mccitymed.ru 1st party
+13.4 KiB
+…chunks/10~x95jhs6ns3.js(test.kosmetology.mccitymed.ru)
+13.4 KiB
+10~x95jhs6ns3.js:1
+Array.prototype.at
+10~x95jhs6ns3.js:1
+Array.prototype.flat
+10~x95jhs6ns3.js:1
+Array.prototype.flatMap
+10~x95jhs6ns3.js:1
+Object.fromEntries
+10~x95jhs6ns3.js:1
+Object.hasOwn
+10~x95jhs6ns3.js:1
+String.prototype.trimEnd
+10~x95jhs6ns3.js:1
+String.prototype.trimStart
+LCP breakdown
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce unused JavaScript Est savings of 378 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.FCPLCPUnscored
+URL
+Transfer Size
+Est Savings
+adguard.org
+895.0 KiB	352.9 KiB
+/?ts=177…&name=AdGuard%20Extra&type=user-script(local.adguard.org)
+546.2 KiB
+289.7 KiB
+/?ts=…(local.adguard.org)
+348.7 KiB
+63.2 KiB
+mccitymed.ru 1st party
+69.2 KiB	25.0 KiB
+…chunks/10~x95jhs6ns3.js(test.kosmetology.mccitymed.ru)
+69.2 KiB
+25.0 KiB
+Minify CSS Est savings of 3 KiB
+Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.FCPLCPUnscored
+URL
+Transfer Size
+Est Savings
+.ad_content_mask, .ad-slot-234-60, #advert-container-top, .publisher_ad, .banner-ad-inner, .ad-tran…
+49.5 KiB
+3.1 KiB
+Reduce unused CSS Est savings of 49 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.FCPLCPUnscored
+URL
+Transfer Size
+Est Savings
+.ad_content_mask, .ad-slot-234-60, #advert-container-top, .publisher_ad, .banner-ad-inner, .ad-tran…
+49.5 KiB
+49.5 KiB
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+Passed audits (18)
+Show
+95
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast.
+Failing Elements
+span.text-primary
+section.relative.overflow-hidden.bg-slate-50
+button.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.w-full.rounded-xl.bg-orange-500.px-6.font-medium.text-white.transition-all.duration-300.hover:bg-orange-600.sm:w-auto
+a.group.inline-flex.items-center.font-medium.text-orange-500.transition-all.duration-300.hover:text-orange-600
+section.overflow-hidden.bg-slate-50.py-10.md:py-28
+a.group.inline-flex.items-center.justify-center.font-medium.text-orange-500.transition-all.duration-300.hover:text-orange-600.md:justify-start
+section#doctors.bg-white.py-10.md:py-28
+span.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.transition-all.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.w-full.rounded-xl.bg-orange-500.px-6.font-medium.text-white.hover:bg-orange-600.pointer-events-none
+span.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.transition-all.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.w-full.rounded-xl.bg-orange-500.px-6.font-medium.text-white.hover:bg-orange-600.pointer-events-none
+span.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.transition-all.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.w-full.rounded-xl.bg-orange-500.px-6.font-medium.text-white.hover:bg-orange-600.pointer-events-none
+span.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.transition-all.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.w-full.rounded-xl.bg-orange-500.px-6.font-medium.text-white.hover:bg-orange-600.pointer-events-none
+button.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.rounded-xl.bg-orange-500.px-6.font-medium.text-white.transition-all.duration-300.hover:bg-orange-600
+a.text-sm.font-semibold.text-[#00A8E1].transition-colors.hover:underline
+section#reviews.overflow-hidden.bg-slate-50.py-10.md:py-28
+a.text-sm.font-semibold.text-[#FFCC00].transition-colors.hover:underline
+section#reviews.overflow-hidden.bg-slate-50.py-10.md:py-28
+a.text-sm.font-semibold.text-[#6ABC25].transition-colors.hover:underline
+section#reviews.overflow-hidden.bg-slate-50.py-10.md:py-28
+button.group/button.inline-flex.shrink-0.items-center.justify-center.border.border-transparent.bg-clip-padding.text-sm.whitespace-nowrap.outline-none.select-none.focus-visible:border-ring.focus-visible:ring-3.focus-visible:ring-ring/50.active:not-aria-[haspopup]:translate-y-px.disabled:pointer-events-none.disabled:opacity-50.aria-invalid:border-destructive.aria-invalid:ring-3.aria-invalid:ring-destructive/20.dark:aria-invalid:border-destructive/50.dark:aria-invalid:ring-destructive/40.[&_svg]:pointer-events-none.[&_svg]:shrink-0.[&_svg:not([class*='size-'])]:size-4.[a]:hover:bg-primary/80.gap-1.5.has-data-[icon=inline-end]:pr-2.has-data-[icon=inline-start]:pl-2.h-11.rounded-xl.bg-orange-500.px-6.font-medium.text-white.transition-all.duration-300.hover:bg-orange-600
+p.text-sm.leading-relaxed.text-slate-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+a.transition-all.duration-300.hover:text-orange-500
+footer.bg-slate-100.py-16.text-slate-500
+p
+footer.bg-slate-100.py-16.text-slate-500
+p.pt-4.text-xs.text-slate-500
+footer.bg-slate-100.py-16.text-slate-500
+span
+a.flex.min-h-14.flex-col.items-center.justify-center.gap-1.rounded-full.px-2.text-[10px].font-medium.tracking-wide.transition-all.duration-300.bg-white.text-orange-500.shadow-sm
+These are opportunities to improve the legibility of your content.
+Navigation
+Heading elements are not in a sequentially-descending order
+Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. Learn more about heading order.
+Failing Elements
+h4.mb-6.font-semibold.text-slate-800
+These are opportunities to improve keyboard navigation in your application.
+Best practices
+Identical links have the same purpose.
+These items highlight common accessibility best practices.
+Additional items to manually check (10)
+Show
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+Passed audits (23)
+Show
+Not applicable (34)
+Show
+74
+Best Practices
+Trust and Safety
+Does not use HTTPS 29 insecure requests found
+All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding mixed content, where some resources are loaded over HTTP despite the initial request being served over HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. Learn more about HTTPS.
+Insecure URL
+Request Resolution
+mccitymed.ru 1st party
+http://test.kosmetology.mccitymed.ru
+Allowed
+…media/83afe278b6a6bb3c.p.0q-301v4kxxnr.woff2(test.kosmetology.mccitymed.ru)
+Allowed
+…media/9c72aa0f40e4eef8.p.0m6w47a4e5dy9.woff2(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/16g1idfav5pss.css(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/01w8rk5._5lhd.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0pqt~8bl3ukh4.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0rfosr10jsx4e.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/10~x95jhs6ns3.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/turbopack-0e8syaz~1q0s7.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0u9ypf7r.ubl4.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0d3shmwh5_nmn.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0-nho5v_ztsin.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0x4set8pxrbsa.js(test.kosmetology.mccitymed.ru)
+Allowed
+…chunks/0f.s.t8txruwk.js(test.kosmetology.mccitymed.ru)
+Allowed
+…media/1bffadaabf893a1e.16ipb6fqu393i.woff2(test.kosmetology.mccitymed.ru)
+Allowed
+/contacts(test.kosmetology.mccitymed.ru)
+Allowed
+/reviews(test.kosmetology.mccitymed.ru)
+Allowed
+/doctors(test.kosmetology.mccitymed.ru)
+Allowed
+/prices(test.kosmetology.mccitymed.ru)
+Allowed
+/favicon.ico?favicon.0x3dzn~oxb6tn.ico(test.kosmetology.mccitymed.ru)
+Allowed
+/reviews/(test.kosmetology.mccitymed.ru)
+Allowed
+/doctors/(test.kosmetology.mccitymed.ru)
+Allowed
+/contacts/(test.kosmetology.mccitymed.ru)
+Allowed
+/prices/(test.kosmetology.mccitymed.ru)
+Allowed
+/__next._head.txt?_rsc=1pn8p(test.kosmetology.mccitymed.ru)
+Allowed
+/__next._index.txt?_rsc=nn07o(test.kosmetology.mccitymed.ru)
+Allowed
+/__next.__PAGE__.txt?_rsc=ivliq(test.kosmetology.mccitymed.ru)
+Allowed
+adguard.org
+/?ts=…(local.adguard.org)
+Allowed
+/?ts=177…&name=AdGuard%20Extra&type=user-script(local.adguard.org)
+Allowed
+Does not redirect HTTP traffic to HTTPS
+Make sure that you redirect all HTTP traffic to HTTPS in order to enable secure web features for all your users. Learn more.
+Ensure CSP is effective against XSS attacks
+Use a strong HSTS policy
+Ensure proper origin isolation with COOP
+Mitigate clickjacking with XFO or CSP
+Mitigate DOM-based XSS with Trusted Types
+General
+Browser errors were logged to the console
+Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns. Learn more about this errors in console diagnostic audit
+Source
+Description
+mccitymed.ru 1st party
+/prices/:1
+Failed to load resource: the server responded with a status of 403 (Forbidden)
+/doctors/:1
+Failed to load resource: the server responded with a status of 403 (Forbidden)
+/contacts/:1
+Failed to load resource: the server responded with a status of 403 (Forbidden)
+/reviews/:1
+Failed to load resource: the server responded with a status of 403 (Forbidden)
+Passed audits (11)
+Show
+Not applicable (1)
+Show
+100
+SEO

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { Search } from "lucide-react";
 import type { ServiceCategory } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -42,12 +42,12 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
       </p>
 
       <div className="relative mt-8">
-        <Search className="pointer-events-none absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+        <Search className="pointer-events-none absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
         <Input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Поиск услуги..."
-          className="h-14 rounded-full border-none bg-white pl-14 text-base text-slate-900 shadow-sm placeholder:text-slate-400"
+          className="h-14 rounded-full border-none bg-white pl-14 text-base text-slate-900 shadow-sm placeholder:text-slate-500"
         />
       </div>
 
@@ -64,7 +64,7 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
                   <h2 className="text-lg font-semibold tracking-tight text-slate-800 md:text-xl">
                     {category.title}
                   </h2>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium tabular-nums text-slate-400">
+                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium tabular-nums text-slate-500">
                     {category.services.length}
                   </span>
                 </span>

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
@@ -37,12 +37,14 @@ export function HeroSection() {
           <div className="relative hidden flex-1 justify-center lg:flex">
             <div className="relative z-10 w-full max-w-[520px] overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-500 lg:rotate-3 lg:hover:rotate-0">
               <Image
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=75&w=720&h=900&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=520&h=650&auto=format&fit=crop"
                 alt="Врач-косметолог за работой"
-                width={720}
-                height={900}
-                quality={75}
+                width={520}
+                height={650}
+                quality={85}
                 unoptimized
+                priority
+                fetchPriority="high"
                 className="h-[400px] w-full object-cover md:h-auto"
               />
             </div>

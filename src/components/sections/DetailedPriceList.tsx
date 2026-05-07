@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { SERVICE_CATEGORIES } from "@/lib/data";
 import {
   Accordion,

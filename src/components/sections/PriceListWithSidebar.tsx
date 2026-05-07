@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { SERVICE_CATEGORIES } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
@@ -39,7 +39,7 @@ export function PriceListWithSidebar() {
             <div className="p-6 bg-slate-50 rounded-3xl space-y-4">
               <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Поиск услуги</h4>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                 <Input placeholder="Найти..." className="pl-10 rounded-xl bg-white border-none shadow-sm" />
               </div>
             </div>

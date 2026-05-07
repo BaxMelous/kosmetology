@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { ArrowRight } from "lucide-react";
 import type { Doctor } from "@/lib/data";
 import { DoctorCard } from "@/components/DoctorCard";

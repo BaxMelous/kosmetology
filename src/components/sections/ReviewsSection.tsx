@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 
 export function ReviewsSection() {

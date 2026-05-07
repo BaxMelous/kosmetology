@@ -114,7 +114,7 @@ export function ContactsSection() {
                   Отправить заявку
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
-                <p className="text-[10px] text-slate-400 text-center">
+                <p className="text-[10px] text-slate-500 text-center">
                   Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
                 </p>
               </form>

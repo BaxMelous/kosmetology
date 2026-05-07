@@ -2,7 +2,7 @@ import { getCosmetologyDoctors } from "@/lib/api/doctors";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 
 export default async function DoctorsPage() {

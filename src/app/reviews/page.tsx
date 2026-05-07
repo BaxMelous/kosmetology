@@ -27,7 +27,7 @@ export default function ReviewsPage() {
               className="group flex cursor-pointer items-center justify-between rounded-3xl border border-slate-100 bg-white p-5 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-slate-800">{item.platform}</h3>
+                <p className="mb-1 text-lg font-semibold text-slate-800">{item.platform}</p>
                 <p className="text-slate-500 text-sm">{item.reviews} отзывов</p>
               </div>
               <div className="text-right">
@@ -59,7 +59,7 @@ export default function ReviewsPage() {
                   {review.text}
                 </p>
               </div>
-              <div className="mt-5 md:mt-8 space-y-3 md:space-y-4 border-t border-slate-100 pt-5 md:pt-8">
+              <div className="relative z-10 mt-5 md:mt-8 space-y-3 md:space-y-4 border-t border-slate-100 pt-5 md:pt-8">
                 <span className="inline-block rounded-full bg-slate-100 px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-medium text-slate-600">
                   {review.services}
                 </span>
@@ -69,7 +69,7 @@ export default function ReviewsPage() {
                   </div>
                   <div>
                     <p className="mb-1 leading-none font-medium text-slate-800">{review.author}</p>
-                    <p className="text-[10px] uppercase tracking-widest text-slate-400">Проверено</p>
+                    <p className="text-[10px] uppercase tracking-widest text-slate-500">Проверено</p>
                   </div>
                 </div>
               </div>

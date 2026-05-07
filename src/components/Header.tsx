@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
@@ -30,10 +30,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-slate-50/90 backdrop-blur-md">
       <div className="container mx-auto flex h-16 lg:h-20 max-w-7xl items-center justify-between px-4 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-lg lg:text-2xl font-semibold tracking-tight text-slate-800">
-            СитиМед <span className="text-foreground">Эстетика</span>
-          </span>
+        <Link href="/" className="flex items-center">
+          <img src="/kosmologo.svg" alt="СитиМед Эстетика" className="h-10 w-auto lg:h-14" />
         </Link>
 
         {/* Desktop Nav */}

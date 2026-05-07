@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getCosmetologyDoctors, getDoctorById } from "@/lib/api/doctors";

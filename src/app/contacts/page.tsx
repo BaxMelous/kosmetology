@@ -69,22 +69,22 @@ export default function ContactsPage() {
 
                 <form action="/contacts" method="get" className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-xs font-medium uppercase tracking-widest text-slate-400">Ваше имя</Label>
+                    <Label htmlFor="name" className="text-xs font-medium uppercase tracking-widest text-slate-500">Ваше имя</Label>
                     <Input id="name" placeholder="Введите имя" className="h-14 rounded-2xl border-none bg-white pl-4 shadow-sm focus-visible:ring-primary" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest text-slate-400">Телефон</Label>
+                    <Label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон</Label>
                     <Input id="phone" placeholder="+7 (___) ___-__-__" className="h-14 rounded-2xl border-none bg-white pl-4 shadow-sm focus-visible:ring-primary" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-xs font-medium uppercase tracking-widest text-slate-400">Сообщение</Label>
+                    <Label htmlFor="message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Сообщение</Label>
                     <Textarea id="message" placeholder="Ваш вопрос или пожелание..." className="min-h-[120px] rounded-2xl border-none bg-white pl-4 pt-4 shadow-sm focus-visible:ring-primary" />
                   </div>
                   <Button type="submit" className="h-12 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
                     Отправить заявку
                     <Send className="ml-2 w-5 h-5" />
                   </Button>
-                  <p className="text-[10px] text-slate-400 text-center leading-relaxed">
+                  <p className="text-[10px] text-slate-500 text-center leading-relaxed">
                     Нажимая кнопку, вы соглашаетесь с <br /> <span className="underline cursor-pointer">политикой конфиденциальности</span>.
                   </p>
                 </form>
@@ -149,7 +149,7 @@ export default function ContactsPage() {
 
         {/* Directions */}
         <div className="mx-auto max-w-4xl space-y-6 md:space-y-12">
-          <h2 className="text-center text-2xl font-semibold text-slate-800 md:text-4xl">Как нас найти?</h2>
+          <h2 className="text-center text-2xl font-semibold text-slate-800 md:text-4xl">Как добраться?</h2>
           <Accordion className="space-y-4">
             <AccordionItem value="car" className="overflow-hidden rounded-3xl border-none bg-slate-50 px-4 md:rounded-[2.5rem] md:px-8">
               <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-8">
@@ -161,8 +161,7 @@ export default function ContactsPage() {
                 </div>
               </AccordionTrigger>
               <AccordionContent className="pb-6 pl-0 text-base leading-relaxed text-slate-600 md:pb-10 md:pl-16 md:text-lg">
-                Для наших пациентов есть бесплатная парковка. Въезд через шлагбаум со стороны ул. Лобачевского. 
-                Пожалуйста, сообщите администратору номер вашего автомобиля при записи или по телефону.
+                Для пациентов предусмотрена бесплатная парковка.
               </AccordionContent>
             </AccordionItem>
 
@@ -185,6 +184,27 @@ export default function ContactsPage() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </div>
+
+        {/* Social Media */}
+        <div className="mx-auto mt-14 max-w-4xl text-center md:mt-20">
+          <div className="rounded-3xl bg-slate-50 px-6 py-10 md:px-12 md:py-14">
+            <p className="text-lg font-semibold text-slate-800 md:text-xl">Мы в социальных сетях:</p>
+            <div className="mt-6 flex items-center justify-center gap-6">
+              <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0077FF] text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="ВКонтакте">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C3.724 0 0 3.724 0 8.316v7.368C0 20.276 3.724 24 8.316 24h7.368C20.276 24 24 20.276 24 15.684V8.316C24 3.724 20.276 0 15.684 0zm3.692 17.123h-1.95c-.723 0-1.1-.514-1.1-.514s-.245-.595-.84-.595c-.66 0-.877.636-.877.636s-.085.473-.796.473H12.95c-2.837 0-5.338-1.836-6.08-5.236-.04-.152-.12-.593.008-.593h1.97c.13 0 .18.087.18.087s.234.594.595.594c.318 0 .452-.28.452-.28s.114-2.28 1.478-2.654c.107-.03.187-.04.187-.04h2.06s.19.01.19.157v1.64s-.018.254.202.254c.312 0 .603-.28 1.17-1.1.567-.82.975-1.74.975-1.74s.088-.212.256-.212h2.167s.283-.026.283.19c0 .34-.418 1.012-.826 1.636-.408.624-1.17 1.496-1.17 1.496s-.174.192-.143.33c.03.138.223.33.483.568.26.237 1.3 1.29 1.66 1.96.36.67.18 1.197-.18 1.197z"/></svg>
+              </a>
+              <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#26A5E4] text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="Telegram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.2l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.12l-6.87 4.326-2.96-.924c-.64-.2-.652-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.938z"/></svg>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#8B5CF6] text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="MAX">
+                <span className="text-lg font-bold">M</span>
+              </a>
+            </div>
+            <p className="mt-6 text-sm text-slate-500">
+              Подписывайтесь — публикуем акции, советы косметолога и отзывы пациентов
+            </p>
+          </div>
         </div>
       </div>
       {selectedPhoto && (

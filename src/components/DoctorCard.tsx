@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

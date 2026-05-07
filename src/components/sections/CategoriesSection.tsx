@@ -2,7 +2,7 @@ import React from "react";
 import { SERVICE_CATEGORIES } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Syringe, Zap, Layers, Sparkles, Flower2, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 
 import type { LucideIcon } from "lucide-react";
 

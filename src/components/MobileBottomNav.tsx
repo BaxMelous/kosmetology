@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/components/Link";
 import { usePathname } from "next/navigation";
 import { Home, BriefcaseMedical, Users, MessageCircle, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
