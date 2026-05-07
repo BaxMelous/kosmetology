@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { AccessibilityProvider } from "@/components/AccessibilityProvider";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -33,12 +34,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://static-maps.yandex.ru" />
       </head>
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>
-        <Header />
-        <main className="flex-grow pb-24 lg:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileBottomNav />
+        <AccessibilityProvider>
+          <Header />
+          <main className="flex-grow pb-24 lg:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <MobileBottomNav />
+        </AccessibilityProvider>
       </body>
     </html>
   );

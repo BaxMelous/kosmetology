@@ -118,3 +118,73 @@
   }
 }
 
+/* Режим для слабовидящих */
+html.accessibility-mode {
+  font-size: 125%;
+}
+
+html.accessibility-mode body {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.accessibility-mode * {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: none !important;
+}
+
+html.accessibility-mode img,
+html.accessibility-mode svg:not(.accessibility-preserve) {
+  filter: grayscale(1) contrast(1.2);
+  opacity: 1;
+}
+
+html.accessibility-mode .bg-primary,
+html.accessibility-mode .bg-orange-500,
+html.accessibility-mode [class*="bg-orange"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.accessibility-mode a,
+html.accessibility-mode button[class*="text-primary"],
+html.accessibility-mode [class*="text-orange"] {
+  color: #000000 !important;
+  text-decoration: underline;
+}
+
+html.accessibility-mode .backdrop-blur-md,
+html.accessibility-mode [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.accessibility-mode .bg-slate-50,
+html.accessibility-mode .bg-slate-100,
+html.accessibility-mode [class*="bg-slate-"] {
+  background-color: #ffffff !important;
+}
+
+html.accessibility-mode .text-slate-400,
+html.accessibility-mode .text-slate-500,
+html.accessibility-mode .text-slate-600 {
+  color: #333333 !important;
+}
+
+html.accessibility-mode .shadow-sm,
+html.accessibility-mode .shadow-md,
+html.accessibility-mode .shadow-xl,
+html.accessibility-mode .shadow-2xl {
+  box-shadow: 0 0 0 2px #000000 !important;
+}
+
+html.accessibility-mode [class*="rounded-"] {
+  border-radius: 0 !important;
+}
+

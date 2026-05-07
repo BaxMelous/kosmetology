@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "@/components/Link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAccessibility } from "@/components/AccessibilityProvider";
 
 const NAV_ITEMS = [
   { label: "Услуги и цены", href: "/prices" },
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { enabled: a11yEnabled, toggle: toggleA11y } = useAccessibility();
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -58,6 +60,14 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center space-x-4">
+          <button
+            onClick={toggleA11y}
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 transition-all duration-300 hover:bg-slate-100 hover:text-slate-800"
+            aria-label="Версия для слабовидящих"
+            title="Версия для слабовидящих"
+          >
+            <Eye className={`h-5 w-5 ${a11yEnabled ? "text-primary" : ""}`} />
+          </button>
           <a
             href="tel:+79276845454"
             className="flex items-center text-sm font-medium text-slate-700 transition-all duration-300 hover:text-orange-500"

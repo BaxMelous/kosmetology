@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Link } from "@/components/Link";
 
 export function ContactsSection() {
   return (
@@ -114,8 +115,11 @@ export function ContactsSection() {
                   Отправить заявку
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
-                <p className="text-[10px] text-slate-500 text-center">
-                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                <p className="text-xs text-slate-400 text-center leading-relaxed">
+                  Нажимая &laquo;Отправить&raquo;, вы даете{" "}
+                  <Link href="/legal" className="underline hover:text-slate-600">согласие</Link>{" "}
+                  на обработку персональных данных и соглашаетесь с{" "}
+                  <Link href="/legal" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
                 </p>
               </form>
             </div>

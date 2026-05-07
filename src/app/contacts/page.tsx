@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CONTACTS } from "@/lib/data";
 import { MapPin, Phone, Bus, Send, Car, X } from "lucide-react";
+import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -84,8 +85,11 @@ export default function ContactsPage() {
                     Отправить заявку
                     <Send className="ml-2 w-5 h-5" />
                   </Button>
-                  <p className="text-[10px] text-slate-500 text-center leading-relaxed">
-                    Нажимая кнопку, вы соглашаетесь с <br /> <span className="underline cursor-pointer">политикой конфиденциальности</span>.
+                  <p className="text-xs text-slate-400 text-center leading-relaxed">
+                    Нажимая &laquo;Отправить&raquo;, вы даете{" "}
+                    <Link href="/legal" className="underline hover:text-slate-600">согласие</Link>{" "}
+                    на обработку персональных данных и соглашаетесь с{" "}
+                    <Link href="/legal" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
                   </p>
                 </form>
               </div>
