@@ -43,7 +43,6 @@ export function HeroSection() {
                 alt="Врач-косметолог за работой"
                 width={520}
                 height={650}
-                quality={85}
                 unoptimized
                 priority
                 fetchPriority="high"
