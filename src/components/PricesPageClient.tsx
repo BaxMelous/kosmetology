@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Link } from "@/components/Link";
 import { Search } from "lucide-react";
 import type { ServiceCategory } from "@/lib/data";
 import { Button } from "@/components/ui/button";
+import { useConsultationModal } from "@/components/ConsultationModal";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -14,6 +14,7 @@ type PricesPageClientProps = {
 
 export function PricesPageClient({ categories }: PricesPageClientProps) {
   const [search, setSearch] = useState("");
+  const { openModal } = useConsultationModal();
 
   const filteredCategories = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -97,11 +98,9 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
                           <span className="text-lg font-semibold tabular-nums tracking-tight text-slate-800 md:text-xl">
                             {service.price}
                           </span>
-                          <Link href={`/contacts?service=${service.id}`}>
-                            <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
+                          <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
                               Записаться
                             </Button>
-                          </Link>
                         </div>
                       </article>
                     ))}

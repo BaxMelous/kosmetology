@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAccessibility } from "@/components/AccessibilityProvider";
+import { useConsultationModal } from "@/components/ConsultationModal";
 
 const NAV_ITEMS = [
   { label: "Главная", href: "/" },
@@ -20,6 +21,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { enabled: a11yEnabled, toggle: toggleA11y } = useAccessibility();
+  const { openModal } = useConsultationModal();
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -76,12 +78,10 @@ export function Header() {
             <Phone className="mr-2 h-4 w-4" />
             +7 (927) 684-54-54
           </a>
-          <Link href="/contacts">
-            <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+          <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
               Записаться
             </Button>
-          </Link>
-        </div>
+          </div>
 
         {/* Mobile Toggle */}
         <button
@@ -126,11 +126,9 @@ export function Header() {
                 <Phone className="mr-2 h-5 w-5" />
                 +7 (927) 684-54-54
               </a>
-              <Link href="/contacts">
-                <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+              <Button onClick={openModal} className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
                   Записаться
                 </Button>
-              </Link>
             </div>
           </div>
         </div>

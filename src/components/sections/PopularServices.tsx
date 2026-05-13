@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useConsultationModal } from "@/components/ConsultationModal";
 import type { Service } from "@/lib/data";
 
 type PopularService = Service & {
@@ -23,6 +24,7 @@ type PopularServicesProps = {
 };
 
 export function PopularServices({ services }: PopularServicesProps) {
+  const { openModal } = useConsultationModal();
   const popularServices = services;
 
   return (
@@ -69,11 +71,9 @@ export function PopularServices({ services }: PopularServicesProps) {
                         </div>
                         <div className="mt-5 md:mt-8 flex items-center justify-between border-t border-slate-100 pt-5 md:pt-8">
                           <span className="text-xl md:text-2xl font-semibold text-slate-800">{service.price}</span>
-                          <Link href={`/contacts?service=${service.id}`}>
-                            <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                          <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
                               Записаться
                             </Button>
-                          </Link>
                         </div>
                       </CardContent>
                     </Card>

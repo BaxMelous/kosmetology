@@ -1,9 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
+import { useConsultationModal } from "@/components/ConsultationModal";
 
 export function HeroSection() {
+  const { openModal } = useConsultationModal();
   return (
     <section className="relative overflow-hidden bg-slate-50">
       <div className="container mx-auto flex max-w-7xl items-center px-4 py-6 sm:py-8 md:min-h-[calc(100vh-80px)] md:px-8 md:py-12">
@@ -20,11 +24,9 @@ export function HeroSection() {
               Индивидуальный подход и видимый результат уже после первой процедуры.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 lg:justify-start">
-              <Link href="/contacts">
-                <Button className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600 sm:w-auto">
-                  Записаться
-                </Button>
-              </Link>
+              <Button onClick={openModal} className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600 sm:w-auto">
+                Записаться
+              </Button>
               <Link href="/prices">
                 <Button variant="outline" className="h-11 w-full rounded-xl border border-slate-200 bg-white px-6 font-medium text-slate-800 transition-all duration-300 hover:bg-slate-100 sm:w-auto">
                   Посмотреть услуги

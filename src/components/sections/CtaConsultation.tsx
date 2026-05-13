@@ -1,14 +1,16 @@
+"use client";
+
 import React from "react";
-import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
+import { useConsultationModal } from "@/components/ConsultationModal";
 
 export function CtaConsultation() {
+  const { openModal } = useConsultationModal();
   return (
     <section className="py-14 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 p-6 md:p-20 text-center">
-          {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary rounded-full blur-[100px] opacity-10 translate-y-1/2 -translate-x-1/2" />
           
@@ -22,11 +24,9 @@ export function CtaConsultation() {
             <p className="text-base md:text-xl font-normal leading-relaxed text-slate-500">
               На консультации врач-косметолог проведет диагностику кожи, выслушает ваши пожелания и составит индивидуальный план преображения. Подберем оптимальные процедуры с учетом вашего типа кожи, возраста и бюджета.
             </p>
-            <Link href="/contacts">
-              <Button className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
-                Записаться
-              </Button>
-            </Link>
+            <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+              Записаться
+            </Button>
           </div>
         </div>
       </div>

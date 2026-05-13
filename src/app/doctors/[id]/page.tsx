@@ -5,6 +5,7 @@ import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
 import { use } from "react";
 import { DOCTORS, CONTACTS } from "@/lib/data";
+import { OpenModalButton } from "@/components/OpenModalButton";
 
 export function generateStaticParams() {
   return DOCTORS.map((doctor) => ({
@@ -104,12 +105,7 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
                   </div>
                 )}
               </div>
-              <Link
-                href={`/contacts?doctor=${doctor.id}`}
-                className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-6 py-3 font-medium text-white transition-colors hover:bg-orange-600"
-              >
-                Записаться
-              </Link>
+              <OpenModalButton className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-6 py-3 font-medium text-white transition-colors hover:bg-orange-600" />
             </div>
           </div>
 
