@@ -30,7 +30,6 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://static-maps.yandex.ru" />
       </head>
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>

@@ -37,7 +37,7 @@ export function HeroSection() {
           <div className="relative hidden flex-1 justify-center lg:flex">
             <div className="relative z-10 w-full max-w-[520px] overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-500 lg:rotate-3 lg:hover:rotate-0">
               <Image
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=520&h=650&auto=format&fit=crop"
+                src="/hero.webp"
                 alt="Врач-косметолог за работой"
                 width={520}
                 height={650}
