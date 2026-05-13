@@ -3,13 +3,11 @@ import Image from "next/image";
 import { Link } from "@/components/Link";
 import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
-import { getCosmetologyDoctors, getDoctorById } from "@/lib/api/doctors";
-import { CONTACTS } from "@/lib/data";
+import { use } from "react";
+import { DOCTORS, CONTACTS } from "@/lib/data";
 
-export async function generateStaticParams() {
-  const doctors = await getCosmetologyDoctors();
-
-  return doctors.map((doctor) => ({
+export function generateStaticParams() {
+  return DOCTORS.map((doctor) => ({
     id: doctor.id,
   }));
 }
@@ -53,7 +51,7 @@ function DetailSection({ title, items }: { title: string; items: string[] }) {
 
 export async function generateMetadata({ params }: DoctorPageProps): Promise<Metadata> {
   const { id } = await params;
-  const doctor = await getDoctorById(id);
+  const doctor = DOCTORS.find((d) => d.id === id);
 
   if (!doctor) {
     return {
@@ -68,9 +66,9 @@ export async function generateMetadata({ params }: DoctorPageProps): Promise<Met
   };
 }
 
-export default async function DoctorDetailPage({ params }: DoctorPageProps) {
-  const { id } = await params;
-  const doctor = await getDoctorById(id);
+export default function DoctorDetailPage({ params }: DoctorPageProps) {
+  const { id } = use(params);
+  const doctor = DOCTORS.find((d) => d.id === id);
 
   if (!doctor) {
     notFound();

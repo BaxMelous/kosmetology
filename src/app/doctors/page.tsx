@@ -1,13 +1,11 @@
-import { getCosmetologyDoctors } from "@/lib/api/doctors";
+import { DOCTORS } from "@/lib/data";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 
-export default async function DoctorsPage() {
-  const doctors = await getCosmetologyDoctors();
-
+export default function DoctorsPage() {
   return (
     <div className="bg-slate-50 pt-8 md:pt-14">
       <ScrollReveal>
@@ -20,7 +18,7 @@ export default async function DoctorsPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {doctors.map((doctor) => (
+            {DOCTORS.map((doctor) => (
               <DoctorCard key={doctor.id} doctor={doctor} isChief={doctor.isChief} />
             ))}
           </div>

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useAccessibility } from "@/components/AccessibilityProvider";
 
 const NAV_ITEMS = [
+  { label: "Главная", href: "/" },
   { label: "Услуги и цены", href: "/prices" },
   { label: "Врачи", href: "/doctors" },
   { label: "Отзывы", href: "/reviews" },
@@ -39,7 +40,7 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center space-x-8">
           {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.label}
@@ -110,7 +111,7 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "flex min-h-11 items-center rounded-2xl px-4 py-3 text-2xl font-medium transition-all duration-300 hover:bg-slate-100 hover:text-orange-500",
-                    pathname === item.href ? "bg-slate-100 text-orange-500" : "text-slate-700"
+                    (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)) ? "bg-slate-100 text-orange-500" : "text-slate-700"
                   )}
                 >
                   {item.label}
