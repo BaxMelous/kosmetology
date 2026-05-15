@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { ChiefDoctorSection } from "@/components/sections/ChiefDoctorSection";
 import { PopularServices } from "@/components/sections/PopularServices";
 import { DoctorsSection } from "@/components/sections/DoctorsSection";
 import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
@@ -29,6 +30,7 @@ export default function Home() {
           <DoctorsSection doctors={DOCTORS} limit={4} />
         </div>
       </ScrollReveal>
+      <ChiefDoctorSection />
       <ScrollReveal delayMs={140}>
         <BeforeAfterSection />
       </ScrollReveal>
