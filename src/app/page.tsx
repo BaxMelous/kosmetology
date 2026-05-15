@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { PopularServices } from "@/components/sections/PopularServices";
 import { DoctorsSection } from "@/components/sections/DoctorsSection";
+import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -27,6 +28,9 @@ export default function Home() {
         <div className="bg-white">
           <DoctorsSection doctors={DOCTORS} limit={4} />
         </div>
+      </ScrollReveal>
+      <ScrollReveal delayMs={140}>
+        <BeforeAfterSection />
       </ScrollReveal>
       <ScrollReveal delayMs={160}>
         <ReviewsSection />

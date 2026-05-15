@@ -85,6 +85,24 @@ export function BeforeAfterSlider({
     };
   }, [isDragging, updatePosition]);
 
+  // Intercept pointer/touch events in capture phase before Embla Carousel sees them
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const blockEvent = (e: Event) => {
+      e.stopPropagation();
+    };
+
+    el.addEventListener("pointerdown", blockEvent, true);
+    el.addEventListener("touchstart", blockEvent, true);
+
+    return () => {
+      el.removeEventListener("pointerdown", blockEvent, true);
+      el.removeEventListener("touchstart", blockEvent, true);
+    };
+  }, []);
+
   return (
     <div
       ref={containerRef}
