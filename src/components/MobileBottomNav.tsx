@@ -2,12 +2,13 @@
 
 import { Link } from "@/components/Link";
 import { usePathname } from "next/navigation";
-import { Home, BriefcaseMedical, Users, MessageCircle, Phone } from "lucide-react";
+import { Home, BriefcaseMedical, Images, Users, MessageCircle, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { label: "Главная", href: "/", icon: Home },
   { label: "Услуги", href: "/prices", icon: BriefcaseMedical },
+  { label: "До/После", href: "/before-after", icon: Images },
   { label: "Врачи", href: "/doctors", icon: Users },
   { label: "Отзывы", href: "/reviews", icon: MessageCircle },
   { label: "Контакты", href: "/contacts", icon: Phone },
@@ -30,7 +31,7 @@ export function MobileBottomNav() {
         aria-label="Основная навигация"
         className="pointer-events-auto w-full max-w-md rounded-full border border-white/60 bg-white/70 px-2 py-2 shadow-[0_20px_60px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/55"
       >
-        <ul className="grid grid-cols-5 gap-1">
+        <ul className="grid grid-cols-6 gap-0.5">
           {NAV_ITEMS.map((item) => {
             const isActive = isItemActive(pathname, item.href);
             const Icon = item.icon;

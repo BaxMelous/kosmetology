@@ -12,6 +12,7 @@ import { useConsultationModal } from "@/components/ConsultationModal";
 const NAV_ITEMS = [
   { label: "Главная", href: "/" },
   { label: "Услуги и цены", href: "/prices" },
+  { label: "До/После", href: "/before-after" },
   { label: "Врачи", href: "/doctors" },
   { label: "Отзывы", href: "/reviews" },
   { label: "Контакты", href: "/contacts" },

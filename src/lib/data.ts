@@ -249,3 +249,79 @@ export const CONTACTS = {
   stops: "«Якова Эшпая» и «Ленинский проспект»",
   routes: "24П, 21К, 18К, 20К, М8, М2, 3П",
 };
+
+export interface BeforeAfterCase {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  beforeImage: string;
+  afterImage: string;
+}
+
+export const BEFORE_AFTER_CASES: BeforeAfterCase[] = [
+  {
+    id: "ba-1",
+    title: "Ботулинотерапия — коррекция межбровных морщин",
+    category: "Инъекционная косметология",
+    description: "Результат через 14 дней после процедуры. Полное разглаживание межбровной зоны с сохранением естественной мимики.",
+    beforeImage: "/before-after/botox-before.png",
+    afterImage: "/before-after/botox-after.png",
+  },
+  {
+    id: "ba-2",
+    title: "Контурная пластика губ",
+    category: "Инъекционная косметология",
+    description: "Деликатное увеличение и коррекция формы губ. Естественный результат без гиперкоррекции.",
+    beforeImage: "/before-after/lips-before.png",
+    afterImage: "/before-after/lips-after.png",
+  },
+  {
+    id: "ba-3",
+    title: "SMAS-лифтинг лица",
+    category: "Аппаратная косметология",
+    description: "Безоперационная подтяжка овала лица. Устранение брылей, повышение упругости кожи.",
+    beforeImage: "/before-after/smas-before.png",
+    afterImage: "/before-after/smas-after.png",
+  },
+  {
+    id: "ba-4",
+    title: "Фототерапия IPL/M22 — лечение пигментации",
+    category: "Аппаратная косметология",
+    description: "Курс из 4 процедур. Значительное осветление пигментных пятен, выравнивание тона кожи.",
+    beforeImage: "/before-after/ipl-before.png",
+    afterImage: "/before-after/ipl-after.png",
+  },
+  {
+    id: "ba-5",
+    title: "PRX-T33 — биоревитализация без инъекций",
+    category: "Пилинги и обновление кожи",
+    description: "Выраженное сияние и упругость кожи после курса процедур. Без шелушения и периода реабилитации.",
+    beforeImage: "/before-after/prx-before.png",
+    afterImage: "/before-after/prx-after.png",
+  },
+  {
+    id: "ba-6",
+    title: "Нитевой лифтинг Aptos — подтяжка средней трети лица",
+    category: "Нитевой лифтинг",
+    description: "Установка 4 нитей Aptos Excellence. Чёткий лифтинг-эффект, улучшение контура скул и овала лица.",
+    beforeImage: "/before-after/aptos-before.png",
+    afterImage: "/before-after/aptos-after.png",
+  },
+  {
+    id: "ba-7",
+    title: "Чистка лица + альгинатная маска",
+    category: "Уходовые процедуры",
+    description: "Комбинированная чистка с последующим увлажнением. Чистые поры, ровный тон, здоровое сияние.",
+    beforeImage: "/before-after/cleaning-before.png",
+    afterImage: "/before-after/cleaning-after.png",
+  },
+  {
+    id: "ba-8",
+    title: "Биоревитализация — глубокое увлажнение кожи",
+    category: "Инъекционная косметология",
+    description: "Восстановление гидробаланса кожи после курса биоревитализации. Исчезновение мелких морщин, повышение тургора.",
+    beforeImage: "/before-after/biorev-before.png",
+    afterImage: "/before-after/biorev-after.png",
+  },
+];
