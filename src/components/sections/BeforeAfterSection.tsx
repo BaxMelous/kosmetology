@@ -77,8 +77,8 @@ export function BeforeAfterSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
-            <CarouselNext className="absolute -right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
+            <CarouselPrevious className="absolute -left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:-left-6 md:h-12 md:w-12" />
+            <CarouselNext className="absolute -right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:-right-6 md:h-12 md:w-12" />
           </Carousel>
         </div>
       </div>

@@ -51,63 +51,40 @@ export function BeforeAfterSlider({
     setSliderPosition(percentage);
   }, []);
 
-  const handleMouseDown = useCallback(() => {
-    setIsDragging(true);
-  }, []);
-
-  const handleTouchStart = useCallback(() => {
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
     setIsDragging(true);
   }, []);
 
   useEffect(() => {
     if (!isDragging) return;
 
-    const handleMove = (e: MouseEvent | TouchEvent) => {
-      if (e.cancelable) e.preventDefault();
-      const clientX = "touches" in e ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
-      updatePosition(clientX);
+    const handleMove = (e: PointerEvent) => {
+      updatePosition(e.clientX);
     };
 
     const handleEnd = () => {
       setIsDragging(false);
     };
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseup", handleEnd);
-    window.addEventListener("touchmove", handleMove, { passive: false });
-    window.addEventListener("touchend", handleEnd);
+    window.addEventListener("pointermove", handleMove);
+    window.addEventListener("pointerup", handleEnd);
+    window.addEventListener("pointercancel", handleEnd);
 
     return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseup", handleEnd);
-      window.removeEventListener("touchmove", handleMove);
-      window.removeEventListener("touchend", handleEnd);
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleEnd);
+      window.removeEventListener("pointercancel", handleEnd);
     };
   }, [isDragging, updatePosition]);
-
-  // Intercept pointer/touch events in capture phase before Embla Carousel sees them
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const blockEvent = (e: Event) => {
-      e.stopPropagation();
-    };
-
-    el.addEventListener("pointerdown", blockEvent, true);
-    el.addEventListener("touchstart", blockEvent, true);
-
-    return () => {
-      el.removeEventListener("pointerdown", blockEvent, true);
-      el.removeEventListener("touchstart", blockEvent, true);
-    };
-  }, []);
 
   return (
     <div
       ref={containerRef}
       className={`relative w-full select-none overflow-hidden rounded-2xl bg-slate-200 ${className}`}
-      style={{ aspectRatio: "4 / 5", touchAction: "none" }}
+      style={{ aspectRatio: "4 / 5" }}
       role="img"
       aria-label={`Сравнение: ${beforeAlt} и ${afterAlt}`}
     >
@@ -160,8 +137,8 @@ export function BeforeAfterSlider({
           {/* Handle */}
           <div
             className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize"
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
+            style={{ touchAction: "none" }}
+            onPointerDown={handlePointerDown}
             role="slider"
             aria-label="Разделитель сравнения"
             aria-valuenow={Math.round(sliderPosition)}
@@ -173,7 +150,9 @@ export function BeforeAfterSlider({
               if (e.key === "ArrowRight") setSliderPosition((p) => Math.min(98, p + 2));
             }}
           >
-            <div className="flex h-20 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-transform duration-150 hover:scale-105">
+            {/* Invisible touch-target extension */}
+            <div className="absolute -inset-4" />
+            <div className="relative flex h-20 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-transform duration-150 hover:scale-105 pointer-events-none">
               <svg
                 width="20"
                 height="20"
