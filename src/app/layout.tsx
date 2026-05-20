@@ -11,6 +11,7 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   variable: "--font-inter",
+  weight: ["300", "400", "500"],
   fallback: ["Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 

@@ -49,8 +49,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
           className="absolute right-0 top-0 h-full w-[45%] sm:w-[40%] md:w-[35%]"
           animate={{
             scale: isOpen ? 1 : 1.05,
-            opacity: isOpen ? 0.15 : 1,
-            filter: isOpen ? "blur(8px)" : "blur(0px)",
+            filter: isOpen ? "blur(4px)" : "blur(0px)",
           }}
           transition={{ duration: 0.5 }}
         >
@@ -64,17 +63,24 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
         <div
           className={cn(
             "pointer-events-none absolute inset-0 z-10",
-            "bg-gradient-to-r from-white via-white via-50% to-transparent"
+            "bg-gradient-to-r from-white via-white via-55% to-transparent"
           )}
+        />
+
+        {/* Полупрозрачный градиент в развёрнутом состоянии */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-white/70 via-white/30 via-70% to-transparent"
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
         />
 
         {/* Заголовок — слева */}
         <div className="relative z-20 flex-1 px-6 sm:px-8 md:px-10">
           <motion.div layout transition={{ type: "spring", stiffness: 300, damping: 30 }}>
-            <h2 className="text-xl font-bold leading-tight text-slate-800 sm:text-2xl md:text-3xl">
+            <h2 className="text-lg font-medium leading-[1.3] text-slate-800 sm:text-xl md:text-2xl">
               {category.title}
             </h2>
-            <p className="mt-1.5 max-w-md text-sm leading-relaxed text-muted-foreground line-clamp-2 sm:mt-2 sm:text-base">
+            <p className="mt-1.5 max-w-md text-sm leading-[1.6] text-slate-400 line-clamp-2 sm:mt-2 sm:text-base">
               {category.description}
             </p>
           </motion.div>
@@ -118,17 +124,17 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <Sparkles className="h-4 w-4 shrink-0" style={{ color: "#A3B903" }} />
-                        <h3 className="text-sm font-semibold text-slate-800 sm:text-base">
+                        <h3 className="text-sm font-medium text-slate-800 sm:text-base">
                           {service.name}
                         </h3>
                         {service.isPopular && (
-                          <span className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide" style={{ backgroundColor: "#A3B90320", color: "#A3B903" }}>
+                          <span className="rounded-full px-2.5 py-0.5 text-[11px] font-normal uppercase tracking-wide" style={{ backgroundColor: "#A3B90320", color: "#A3B903" }}>
                             Популярно
                           </span>
                         )}
                       </div>
                       {service.description && (
-                        <p className="ml-6 mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                        <p className="ml-6 mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
                           {service.description}
                         </p>
                       )}
@@ -136,7 +142,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
 
                     {/* Цена + кнопка */}
                     <div className="flex items-center justify-between gap-4 sm:shrink-0">
-                      <span className="text-base font-bold tabular-nums sm:text-lg" style={{ color: "#FF5607" }}>
+                      <span className="text-base font-bold tabular-nums sm:text-lg" style={{ color: "#F97316" }}>
                         {service.price}
                       </span>
                       <button
@@ -145,8 +151,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                           e.stopPropagation();
                           openModal();
                         }}
-                        className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-orange-500 px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-orange-600 active:scale-[0.97] sm:h-10 sm:px-5"
-                        style={{ backgroundColor: "#FF5607" }}
+                        className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-orange-600 active:scale-[0.97] sm:h-10 sm:px-5"
                       >
                         Записаться
                         <ArrowRight className="h-3.5 w-3.5" />

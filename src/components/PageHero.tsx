@@ -38,10 +38,10 @@ export function PageHero({ title, subtitle, videoSrc, className }: PageHeroProps
           {/* Контент */}
           <div className="relative flex min-h-[280px] flex-col justify-center px-6 py-12 sm:min-h-[340px] sm:px-8 sm:py-16 md:min-h-[400px] md:px-10 md:py-20 lg:min-h-[440px] lg:px-12 lg:py-24">
             <div className="relative max-w-xl">
-              <h1 className="text-2xl font-bold leading-tight text-slate-800 sm:text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="text-xl font-medium leading-tight tracking-[-0.02em] text-slate-800 sm:text-2xl md:text-3xl lg:text-4xl">
                 {title}
               </h1>
-              <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base md:text-lg">
+              <p className="mt-3 max-w-lg text-sm leading-[1.6] text-slate-400 sm:mt-4 sm:text-base md:text-lg">
                 {subtitle}
               </p>
             </div>
