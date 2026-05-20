@@ -2,7 +2,7 @@ import { fetchApi } from "@/lib/api/client";
 import { SERVICE_CATEGORIES, type Service, type ServiceCategory } from "@/lib/data";
 import type { MedDirectionDto, MedServiceDto } from "@/lib/types/api";
 
-type CategoryDefinition = Pick<ServiceCategory, "id" | "title" | "description" | "icon"> & {
+type CategoryDefinition = Pick<ServiceCategory, "id" | "title" | "description" | "icon" | "image"> & {
   keywords: string[];
 };
 
@@ -12,6 +12,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Инъекционная косметология",
     description: "Инъекционные методики для омоложения, увлажнения и коррекции возрастных изменений.",
     icon: "Syringe",
+    image: "/images/services/injection.png",
     keywords: ["ботул", "биорев", "контур", "мезо", "плазмо", "инъек", "увеличение губ", "коллаген"],
   },
   {
@@ -19,6 +20,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Аппаратная косметология",
     description: "Технологичные процедуры для лифтинга, лечения кожи и улучшения текстуры.",
     icon: "Zap",
+    image: "/images/services/hardware.png",
     keywords: ["smas", "смас", "лазер", "фото", "rf", "микроток", "ультразвук", "аппарат"],
   },
   {
@@ -26,6 +28,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Нитевой лифтинг",
     description: "Безоперационные методики лифтинга и армирования тканей.",
     icon: "Layers",
+    image: "/images/services/thread.png",
     keywords: ["нити", "нитевой", "aptos", "аптос", "мезонит"],
   },
   {
@@ -33,6 +36,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Пилинги и обновление кожи",
     description: "Программы обновления, выравнивания тона и текстуры кожи.",
     icon: "Sparkles",
+    image: "/images/services/peeling.png",
     keywords: ["пилинг", "prx", "tca", "peel", "джесснер"],
   },
   {
@@ -40,6 +44,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Уходовые процедуры",
     description: "Уход, чистки, массажи и деликатные процедуры для поддержания качества кожи.",
     icon: "Flower2",
+    image: "/images/services/care.png",
     keywords: ["чистк", "уход", "массаж", "пилинг-уход", "маск", "карбокси"],
   },
 ];
@@ -94,6 +99,7 @@ function pickCategory(serviceName: string) {
       title: "Другие услуги",
       description: "Дополнительные процедуры и консультации.",
       icon: "Sparkles",
+      image: "/images/services/care.png",
       keywords: [],
     }
   );
@@ -122,6 +128,7 @@ function groupServices(services: MedServiceDto[]): ServiceCategory[] {
         title: category.title,
         description: category.description,
         icon: category.icon,
+        image: category.image,
         services: [mapServiceToCard(service)],
       });
       continue;

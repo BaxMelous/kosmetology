@@ -30,6 +30,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li><Link href="/prices" className="transition-all duration-300 hover:text-orange-500">Услуги и цены</Link></li>
               <li><Link href="/before-after" className="transition-all duration-300 hover:text-orange-500">До и после</Link></li>
+              <li><Link href="/equipment" className="transition-all duration-300 hover:text-orange-500">Оборудование</Link></li>
               <li><Link href="/doctors" className="transition-all duration-300 hover:text-orange-500">Врачи</Link></li>
               <li><Link href="/reviews" className="transition-all duration-300 hover:text-orange-500">Отзывы</Link></li>
               <li><Link href="/prices" className="transition-all duration-300 hover:text-orange-500">Прайс-лист</Link></li>

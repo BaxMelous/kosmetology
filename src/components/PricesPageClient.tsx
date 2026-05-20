@@ -3,10 +3,8 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import type { ServiceCategory } from "@/lib/data";
-import { Button } from "@/components/ui/button";
-import { useConsultationModal } from "@/components/ConsultationModal";
 import { Input } from "@/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ServiceCategoryCard } from "@/components/ServiceCategoryCard";
 
 type PricesPageClientProps = {
   categories: ServiceCategory[];
@@ -14,7 +12,6 @@ type PricesPageClientProps = {
 
 export function PricesPageClient({ categories }: PricesPageClientProps) {
   const [search, setSearch] = useState("");
-  const { openModal } = useConsultationModal();
 
   const filteredCategories = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -36,13 +33,8 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
   }, [categories, search]);
 
   return (
-    <section className="container mx-auto max-w-7xl px-4 pb-10 md:px-8 md:pb-20">
-      <h1 className="text-3xl font-semibold text-slate-800 sm:text-4xl md:text-6xl">Услуги и цены</h1>
-      <p className="mt-3 max-w-3xl text-base text-slate-500 md:mt-4 md:text-lg">
-        Ознакомьтесь с полным перечнем процедур нашей клиники. Мы используем только сертифицированные препараты и передовое оборудование.
-      </p>
-
-      <div className="relative mt-8">
+    <section className="container mx-auto max-w-7xl px-4 pt-6 md:px-8 md:pt-10">
+      <div className="relative">
         <Search className="pointer-events-none absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
         <Input
           value={search}
@@ -53,62 +45,11 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
       </div>
 
       <div className="mt-8 md:mt-14">
-        <Accordion className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
           {filteredCategories.map((category) => (
-            <AccordionItem
-              key={category.id}
-              value={category.id}
-              className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
-            >
-              <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
-                <span className="flex items-baseline gap-3">
-                  <h2 className="text-lg font-semibold tracking-tight text-slate-800 md:text-xl">
-                    {category.title}
-                  </h2>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium tabular-nums text-slate-500">
-                    {category.services.length}
-                  </span>
-                </span>
-              </AccordionTrigger>
-                <AccordionContent className="pb-4">
-                  <div className="space-y-3">
-                    {category.services.map((service) => (
-                      <article
-                        key={service.id}
-                        className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:flex-row md:items-center md:justify-between md:p-6"
-                      >
-                        <div className="min-w-0 flex-1">
-                          <div className="mb-1 flex flex-wrap items-center gap-2">
-                            <h3 className="text-base font-semibold tracking-tight text-slate-800 md:text-lg">
-                              {service.name}
-                            </h3>
-                            {service.isPopular && (
-                              <span className="rounded-full bg-lime-100 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-lime-700">
-                                Популярно
-                              </span>
-                            )}
-                          </div>
-                          {service.description && (
-                            <p className="text-sm leading-relaxed text-slate-500">
-                              {service.description}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex items-center justify-between gap-4 md:shrink-0">
-                          <span className="text-lg font-semibold tabular-nums tracking-tight text-slate-800 md:text-xl">
-                            {service.price}
-                          </span>
-                          <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 active:scale-[0.98] active:opacity-80 hover:bg-orange-600">
-                              Записаться
-                            </Button>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+            <ServiceCategoryCard key={category.id} category={category} />
           ))}
-        </Accordion>
+        </div>
 
         {filteredCategories.length === 0 && (
           <div className="rounded-3xl bg-white p-10 text-center text-slate-500 shadow-sm">

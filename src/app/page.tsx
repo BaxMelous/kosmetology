@@ -4,9 +4,10 @@ import { ChiefDoctorSection } from "@/components/sections/ChiefDoctorSection";
 import { PopularServices } from "@/components/sections/PopularServices";
 import { DoctorsSection } from "@/components/sections/DoctorsSection";
 import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
+import { EquipmentSection } from "@/components/sections/EquipmentSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
-import { ScrollReveal } from "@/components/ScrollReveal";
+import { ParallaxSection } from "@/components/ParallaxSection";
 import { DOCTORS, SERVICE_CATEGORIES } from "@/lib/data";
 
 export default function Home() {
@@ -19,27 +20,30 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <ScrollReveal>
+      <ParallaxSection>
         <FeaturesSection />
-      </ScrollReveal>
-      <ScrollReveal delayMs={80}>
+      </ParallaxSection>
+      <ParallaxSection>
         <PopularServices services={popularServices} />
-      </ScrollReveal>
-      <ScrollReveal delayMs={120}>
+      </ParallaxSection>
+      <ParallaxSection>
         <div className="bg-white">
           <DoctorsSection doctors={DOCTORS} limit={4} />
         </div>
-      </ScrollReveal>
+      </ParallaxSection>
       <ChiefDoctorSection />
-      <ScrollReveal delayMs={140}>
+      <ParallaxSection>
+        <EquipmentSection />
+      </ParallaxSection>
+      <ParallaxSection>
         <BeforeAfterSection />
-      </ScrollReveal>
-      <ScrollReveal delayMs={160}>
+      </ParallaxSection>
+      <ParallaxSection>
         <ReviewsSection />
-      </ScrollReveal>
-      <ScrollReveal delayMs={200}>
+      </ParallaxSection>
+      <ParallaxSection>
         <CtaConsultation />
-      </ScrollReveal>
+      </ParallaxSection>
     </>
   );
 }
