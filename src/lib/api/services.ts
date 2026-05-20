@@ -12,7 +12,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Инъекционная косметология",
     description: "Инъекционные методики для омоложения, увлажнения и коррекции возрастных изменений.",
     icon: "Syringe",
-    image: "/images/services/injection.png",
+    image: "/images/services/injection.webp",
     keywords: ["ботул", "биорев", "контур", "мезо", "плазмо", "инъек", "увеличение губ", "коллаген"],
   },
   {
@@ -20,7 +20,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Аппаратная косметология",
     description: "Технологичные процедуры для лифтинга, лечения кожи и улучшения текстуры.",
     icon: "Zap",
-    image: "/images/services/hardware.png",
+    image: "/images/services/hardware.webp",
     keywords: ["smas", "смас", "лазер", "фото", "rf", "микроток", "ультразвук", "аппарат"],
   },
   {
@@ -28,7 +28,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Нитевой лифтинг",
     description: "Безоперационные методики лифтинга и армирования тканей.",
     icon: "Layers",
-    image: "/images/services/thread.png",
+    image: "/images/services/thread.webp",
     keywords: ["нити", "нитевой", "aptos", "аптос", "мезонит"],
   },
   {
@@ -36,7 +36,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Пилинги и обновление кожи",
     description: "Программы обновления, выравнивания тона и текстуры кожи.",
     icon: "Sparkles",
-    image: "/images/services/peeling.png",
+    image: "/images/services/peeling.webp",
     keywords: ["пилинг", "prx", "tca", "peel", "джесснер"],
   },
   {
@@ -44,7 +44,7 @@ const CATEGORY_DEFINITIONS: CategoryDefinition[] = [
     title: "Уходовые процедуры",
     description: "Уход, чистки, массажи и деликатные процедуры для поддержания качества кожи.",
     icon: "Flower2",
-    image: "/images/services/care.png",
+    image: "/images/services/care.webp",
     keywords: ["чистк", "уход", "массаж", "пилинг-уход", "маск", "карбокси"],
   },
 ];
@@ -99,7 +99,7 @@ function pickCategory(serviceName: string) {
       title: "Другие услуги",
       description: "Дополнительные процедуры и консультации.",
       icon: "Sparkles",
-      image: "/images/services/care.png",
+      image: "/images/services/care.webp",
       keywords: [],
     }
   );

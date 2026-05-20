@@ -124,7 +124,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: "Инъекционная косметология",
     description: "Забудьте о морщинах, сухости и «поплывшем» овале. Инъекции — это самый быстрый и точный способ вернуть лицу свежесть и четкие черты. Мы работаем только оригинальными препаратами: кожа разглаживается, увлажняется и подтягивается уже после первого сеанса. Никакой «перекачанности» — только естественный и аккуратный результат.",
     icon: "Syringe",
-    image: "/images/services/injection.png",
+    image: "/images/services/injection.webp",
     services: [
       { id: "botox", name: "Ботулинотерапия", price: "от 160 ₽/ед", isPopular: true, description: "Разглаживание морщин за 15 минут. Убираем хмурость и усталость, сохраняя живую мимику без эффекта маски." },
       { id: "biorev", name: "Биоревитализация", price: "от 7 500 ₽", isPopular: true, description: "Сияние как после отпуска. Глубокое увлажнение кожи, которое стирает следы усталости и возвращает лицу свежий, отдохнувший вид." },
@@ -137,7 +137,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: "Аппаратная косметология",
     description: "SMAS-лифтинг, лазерное лечение, фототерапия IPL и аппаратный массаж Icoone Laser Med. Аппаратные методики для подтяжки, омоложения и коррекции фигуры со стойким и долгосрочным эффектом.",
     icon: "Zap",
-    image: "/images/services/hardware.png",
+    image: "/images/services/hardware.webp",
     services: [
       { id: "smas", name: "SMAS-лифтинг", price: "от 7 000 ₽", isPopular: true, description: "Безоперационная подтяжка. Убирает брыли и дряблость, возвращает коже плотность и четкие контуры." },
       { id: "phototherapy", name: "Фототерапия (IPL/M22)", price: "от 6 000 ₽", description: "Омоложение, устранение пигментации и сосудистых дефектов." },
@@ -150,7 +150,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: "Нитевой лифтинг",
     description: "Безоперационная подтяжка лица нитями Aptos. Результат виден сразу после процедуры и сохраняется до 2 лет. Нити постепенно рассасываются, стимулируя выработку собственного коллагена.",
     icon: "Layers",
-    image: "/images/services/thread.png",
+    image: "/images/services/thread.webp",
     services: [
       { id: "aptos", name: "Aptos (2 нити)", price: "45 000 ₽", description: "Лифтинг и подтяжка тканей. Четкий овал лица без операции." },
       { id: "mesoniti", name: "Мезонити (10 шт)", price: "10 000 ₽", description: "Стимуляция коллагена, улучшение текстуры кожи. Мягкий лифтинг." },
@@ -162,7 +162,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: "Химические пилинги",
     description: "Ровная кожа без пятен, акне и тусклого цвета. Пилинги стирают следы усталости и обновляют лицо. Подберем состав под вашу задачу — от легкого сияния до глубокого преображения. Результат виден уже после первой процедуры.",
     icon: "Sparkles",
-    image: "/images/services/peeling.png",
+    image: "/images/services/peeling.webp",
     services: [
       { id: "prx", name: "PRX-T33", price: "2 500 ₽", description: "Биоревитализация без инъекций. Сияние и упругость без шелушения." },
       { id: "valencia", name: "Valencia Peel", price: "3 500 ₽", description: "Мягкое обновление кожи, выравнивание тона и текстуры." },
@@ -175,7 +175,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: "Уходовые процедуры и массажи",
     description: "Уход, который работает. Чистка убирает воспаления, массаж снимает отечность, а обертывания возвращают тонус. Идеально для поддержания красоты или как самостоятельный ритуал расслабления.",
     icon: "Flower2",
-    image: "/images/services/care.png",
+    image: "/images/services/care.webp",
     services: [
       { id: "cleaning", name: "Чистка лица", price: "3 000 ₽", isPopular: true, description: "Убираем черные точки, воспаления и шелушения. Кожа дышит и выглядит безупречно чистой уже после первой процедуры." },
       { id: "massage", name: "Миофасциальный массаж", price: "1 650 ₽", description: "Глубокая проработка мышц лица. Снятие напряжения, лифтинг." },

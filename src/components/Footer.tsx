@@ -11,7 +11,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <img src="/kosmologo.svg" alt="СитиМед Эстетика" className="h-12 w-auto" />
+              <img src="/kosmologo.svg" alt="СитиМед Эстетика" width="168" height="48" className="h-12 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed text-slate-500">
               Профессиональная косметология в Йошкар-Оле. 

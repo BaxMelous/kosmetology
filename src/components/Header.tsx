@@ -88,7 +88,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 lg:h-20 max-w-7xl items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img src="/kosmologo.svg" alt="СитиМед Эстетика" className="h-10 w-auto lg:h-14" />
+          <img src="/kosmologo.svg" alt="СитиМед Эстетика" width="200" height="56" className="h-10 w-auto lg:h-14" />
         </Link>
 
         {/* Desktop Nav: primary + burger */}
