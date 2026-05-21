@@ -1,42 +1,28 @@
-# СитиМед Эстетика — конфигурация Apache
-# Для Next.js static export (output: 'export' + trailingSlash: true)
+# Отключаем автоподбор файлов и вывод содержимого директорий (предотвращает 403 ошибку)
+Options -MultiViews
+Options -Indexes
 
-# Включаем index.html как документ по умолчанию для всех директорий
-DirectoryIndex index.html
+# Ваша защита паролем (оставляем без изменений)
+AuthType Basic
+AuthName "Restricted Access"
+AuthUserFile /home/c/citymed/kosmo-test12/public_html/.htpasswd
+Require valid-user
 
-# Разрешаем доступ ко всем файлам
+# Настройки роутинга для Next.js
 <IfModule mod_rewrite.c>
-  RewriteEngine On
+    RewriteEngine On
+    
+    # 1. Если запрашивается реально существующий файл (например, картинка, css, js) или папка — отдаем их
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-  # Если запрошенный путь — директория без index.html, пробуем index.html
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteCond %{REQUEST_FILENAME}/index.html -f
-  RewriteRule ^(.*)/$ $1/index.html [L]
+    # 2. Если существует такой же файл, но с расширением .html — отдаем его (Next.js генерирует .html страницы)
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L]
 
-  # Если запрошенный путь без слеша — это директория с index.html — редирект на слеш
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteCond %{REQUEST_FILENAME}/index.html -f
-  RewriteRule ^(.*[^/])$ $1/ [R=301,L]
-</IfModule>
-
-# Правильные MIME-типы
-AddType video/mp4 .mp4
-AddType image/webp .webp
-AddType image/svg+xml .svg
-
-# Кеширование статики
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType video/mp4 "access plus 1 year"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-</IfModule>
-
-# Сжатие
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+    # 3. (Опционально) Если файл вообще не найден, можно отдавать кастомную 404 страницу Next.js
+    # RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^ /404.html [L]
 </IfModule>
