@@ -1,28 +1,25 @@
-# Отключаем автоподбор файлов и вывод содержимого директорий (предотвращает 403 ошибку)
-Options -MultiViews
-Options -Indexes
+# Отключаем автоподбор файлов и вывод содержимого директорий
+Options -MultiViews -Indexes
 
-# Ваша защита паролем (оставляем без изменений)
+# Настройки роутинга для Next.js static export
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Реальный файл или папка — отдаём как есть
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # .html-версия существует — отдаём её
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Защита паролем на всё
 AuthType Basic
 AuthName "Restricted Access"
 AuthUserFile /home/c/citymed/kosmo-test12/public_html/.htpasswd
 Require valid-user
 
-# Настройки роутинга для Next.js
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # 1. Если запрашивается реально существующий файл (например, картинка, css, js) или папка — отдаем их
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
-
-    # 2. Если существует такой же файл, но с расширением .html — отдаем его (Next.js генерирует .html страницы)
-    RewriteCond %{REQUEST_FILENAME}.html -f
-    RewriteRule ^(.*)$ $1.html [L]
-
-    # 3. (Опционально) Если файл вообще не найден, можно отдавать кастомную 404 страницу Next.js
-    # RewriteCond %{REQUEST_FILENAME} !-f
-    # RewriteCond %{REQUEST_FILENAME} !-d
-    # RewriteRule ^ /404.html [L]
-</IfModule>
+# Гарантирует показ стандартного диалога входа, а не страницу ошибки
+ErrorDocument 401 default
