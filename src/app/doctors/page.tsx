@@ -4,18 +4,18 @@ import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/PageHero";
 
 export default function DoctorsPage() {
   return (
-    <div className="bg-slate-50 pt-8 md:pt-14">
+    <div className="bg-slate-50 pb-10 md:pb-20">
+      <PageHero
+        title="Наши специалисты"
+        subtitle="Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет."
+        videoSrc="/video/hero-doctors.mp4"
+      />
       <ScrollReveal>
-        <section className="container mx-auto max-w-7xl px-4 pb-10 md:px-8 md:pb-16">
-          <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
-            <h1 className="text-3xl font-semibold text-slate-800 sm:text-4xl md:text-6xl">Наши специалисты</h1>
-            <p className="mt-3 text-base text-slate-500 md:mt-4 md:text-lg">
-              Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет.
-            </p>
-          </div>
+        <section className="container mx-auto max-w-7xl px-4 pt-6 md:px-8 md:pt-10">
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
             {DOCTORS.map((doctor) => (
