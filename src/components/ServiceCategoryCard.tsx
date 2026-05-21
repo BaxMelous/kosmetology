@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight, Sparkles } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useConsultationModal } from "@/components/ConsultationModal";
 import type { ServiceCategory } from "@/lib/data";
@@ -123,7 +123,6 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                     {/* Название + описание */}
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <Sparkles className="h-4 w-4 shrink-0" style={{ color: "#A3B903" }} />
                         <h3 className="text-sm font-medium text-slate-800 sm:text-base">
                           {service.name}
                         </h3>
@@ -134,7 +133,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                         )}
                       </div>
                       {service.description && (
-                        <p className="ml-6 mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
+                        <p className="mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
                           {service.description}
                         </p>
                       )}
