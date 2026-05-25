@@ -18,10 +18,10 @@ export function CtaConsultation() {
             <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-3xl bg-white shadow-sm mb-4">
               <MessageSquare className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             </div>
-            <h2 className="text-2xl md:text-5xl font-semibold leading-tight text-slate-800">
+            <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">
               Запишитесь на первичную консультацию косметолога
             </h2>
-            <p className="text-base md:text-xl font-normal leading-relaxed text-slate-500">
+            <p className="text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">
               На консультации врач-косметолог проведет диагностику кожи, выслушает ваши пожелания и составит индивидуальный план преображения. Подберем оптимальные процедуры с учетом вашего типа кожи, возраста и бюджета.
             </p>
             <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
