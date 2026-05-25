@@ -9,6 +9,8 @@ type PageHeroProps = {
   videoSrc: string;
   posterSrc?: string;
   className?: string;
+  /** CSS-фильтр для видео. По умолчанию brightness(1.1) blur(2px). Передайте "none" чтобы убрать. */
+  videoFilter?: string;
 };
 
 /**
@@ -16,7 +18,7 @@ type PageHeroProps = {
  * Видео загружается лениво через IntersectionObserver,
  * не блокирует FCP/LCP. Показывается CSS-градиент по умолчанию.
  */
-export function PageHero({ title, subtitle, videoSrc, posterSrc, className }: PageHeroProps) {
+export function PageHero({ title, subtitle, videoSrc, posterSrc, className, videoFilter = "brightness(1.1) blur(2px)" }: PageHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -66,7 +68,7 @@ export function PageHero({ title, subtitle, videoSrc, posterSrc, className }: Pa
                 "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
                 videoLoaded ? "opacity-100" : "opacity-0"
               )}
-              style={{ filter: "brightness(1.1) blur(2px)" }}
+              style={{ filter: videoFilter }}
             >
               <source src={videoSrc} type="video/mp4" />
             </video>

@@ -1,16 +1,26 @@
+import type { Metadata } from "next";
 import { Star } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
+import { PageHero } from "@/components/PageHero";
+import { ScrollReveal } from "@/components/ScrollReveal";
+
+export const metadata: Metadata = {
+  title: "Отзывы пациентов | СитиМед Эстетика",
+  description:
+    "Реальные отзывы пациентов о процедурах в клинике СитиМед Эстетика в Йошкар-Оле. Оцените уровень сервиса и профессионализм наших врачей.",
+};
 
 export default function ReviewsPage() {
   return (
-    <div className="bg-slate-50 pt-14">
-      <div className="container mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-16">
-        <div className="text-center space-y-4 mb-10 md:mb-16">
-          <h1 className="text-3xl md:text-6xl font-semibold text-slate-800">Отзывы пациентов</h1>
-          <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto">
-            Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика.
-          </p>
-        </div>
+    <div className="bg-slate-50 pb-10 md:pb-20">
+      <PageHero
+        title="Отзывы пациентов"
+        subtitle="Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика."
+        videoSrc="/video/hero-reviews.mp4"
+        videoFilter="none"
+      />
+      <ScrollReveal>
+        <section className="container mx-auto max-w-7xl px-4 pt-6 md:px-8 md:pt-10">
 
         {/* Aggregate Ratings */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 mb-12 md:mb-20">
@@ -76,7 +86,8 @@ export default function ReviewsPage() {
             </div>
           ))}
         </div>
-      </div>
+        </section>
+      </ScrollReveal>
     </div>
   );
 }
