@@ -44,7 +44,7 @@ export default function ReviewsPage() {
                 <div className="text-3xl font-semibold text-slate-800">{item.rating}</div>
                 <div className="flex gap-0.5 mt-1">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-3 h-3 fill-primary text-primary" />
+                    <Star key={j} className="w-3 h-3 fill-[#FF5607] text-[#FF5607]" />
                   ))}
                 </div>
               </div>
@@ -55,26 +55,26 @@ export default function ReviewsPage() {
         {/* Full Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {REVIEWS.map((review) => (
-            <div key={review.id} className="flex h-full flex-col justify-between rounded-3xl border border-slate-100 bg-white p-5 md:p-10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <div key={review.id} className="flex h-full flex-col justify-between rounded-[2rem] border border-slate-100 bg-white p-5 md:p-10 shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 hover:scale-[1.015] hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)]">
               <div className="space-y-4 md:space-y-6">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-secondary text-secondary" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-[#FF5607] text-[#FF5607]" />
                   ))}
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold leading-snug text-slate-800">
+                <h3 className="text-lg md:text-xl font-medium leading-snug text-slate-800">
                   &laquo;{review.title}&raquo;
                 </h3>
-                <p className="text-sm md:text-base font-normal leading-relaxed text-slate-500">
+                <p className="text-sm md:text-base font-normal leading-loose text-slate-500">
                   {review.text}
                 </p>
               </div>
               <div className="relative z-10 mt-5 md:mt-8 space-y-3 md:space-y-4 border-t border-slate-100 pt-5 md:pt-8">
-                <span className="inline-block rounded-full bg-slate-100 px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-medium text-slate-600">
+                <span className="inline-block rounded-full border border-slate-200/50 bg-white/40 px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-medium text-slate-500 backdrop-blur-[5px]">
                   {review.services}
                 </span>
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-50 text-xl font-semibold text-orange-500">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-white text-xl font-light text-slate-500 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)]">
                     {review.author[0]}
                   </div>
                   <div>

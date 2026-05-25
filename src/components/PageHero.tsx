@@ -44,7 +44,7 @@ export function PageHero({ title, subtitle, videoSrc, posterSrc, className, vide
   return (
     <div ref={containerRef} className={cn("container mx-auto max-w-7xl px-4 lg:px-8", className)}>
       <div className="mt-3 sm:mt-4 md:mt-6">
-        <div className="relative overflow-hidden rounded-3xl">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-50">
           {/* CSS-градиентный фон — виден сразу, не ждёт видео */}
           <div
             className={cn(
@@ -65,7 +65,7 @@ export function PageHero({ title, subtitle, videoSrc, posterSrc, className, vide
               aria-hidden="true"
               onCanPlay={() => setVideoLoaded(true)}
               className={cn(
-                "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
+                "absolute -inset-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] max-w-none object-cover transition-opacity duration-700",
                 videoLoaded ? "opacity-100" : "opacity-0"
               )}
               style={{ filter: videoFilter }}
