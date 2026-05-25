@@ -17,11 +17,13 @@ export function ReviewsSection() {
   return (
     <section id="reviews" className="overflow-hidden bg-slate-50 py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end md:gap-6">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
             <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Отзывы наших пациентов</h2>
-            <p className="text-slate-500">Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика.</p>
+            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">
+              Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика.
+            </p>
           </div>
           <Link
             href="/reviews"
