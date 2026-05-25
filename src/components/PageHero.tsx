@@ -7,6 +7,7 @@ type PageHeroProps = {
   title: string;
   subtitle: string;
   videoSrc: string;
+  posterSrc?: string;
   className?: string;
 };
 
@@ -15,7 +16,7 @@ type PageHeroProps = {
  * Видео загружается лениво через IntersectionObserver,
  * не блокирует FCP/LCP. Показывается CSS-градиент по умолчанию.
  */
-export function PageHero({ title, subtitle, videoSrc, className }: PageHeroProps) {
+export function PageHero({ title, subtitle, videoSrc, posterSrc, className }: PageHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -58,7 +59,7 @@ export function PageHero({ title, subtitle, videoSrc, className }: PageHeroProps
               loop
               playsInline
               preload="none"
-              poster="/video/hero-poster.jpg"
+              poster={posterSrc}
               aria-hidden="true"
               onCanPlay={() => setVideoLoaded(true)}
               className={cn(

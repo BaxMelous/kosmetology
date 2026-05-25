@@ -62,7 +62,7 @@ export const DOCTORS: Doctor[] = [
     id: "gordeeva",
     name: "Гордеева Наталья Владимировна",
     role: "Врач-дерматовенеролог, врач-косметолог",
-    experience: "Более 20 лет опыта в дерматологии и косметологии",
+    experience: "Опыт 20 лет",
     specialties: ["Эстетическая косметология", "Химические пилинги", "Чистка лица"],
     image: "/doctors/gordeeva.webp",
     education: [
