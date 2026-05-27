@@ -55,11 +55,11 @@ export function PopularServices({ services }: PopularServicesProps) {
               {services.map((service, index) => (
                 <CarouselItem key={index} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="flex h-full px-1 pb-1 pt-3">
-                    <article className="group flex w-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+                    <article className="group flex w-full flex-col overflow-hidden rounded-[2rem] border border-slate-100 bg-white transition-all duration-500 hover:-translate-y-1">
 
                       <div className="flex flex-1 flex-col p-8 md:p-10">
                         {/* Бейдж — glassmorphism */}
-                        <span className="mb-4 inline-block w-fit rounded-full border border-white/60 bg-white/50 px-3.5 py-1.5 text-[10px] font-light uppercase tracking-[0.15em] text-slate-600 backdrop-blur-md">
+                        <span className="mb-4 inline-block w-fit rounded-full bg-lime-200/60 px-3 py-1 text-[10px] font-light uppercase tracking-[0.12em] text-lime-800 backdrop-blur-sm">
                           {service.category}
                         </span>
 
