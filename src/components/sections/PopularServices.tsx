@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useConsultationModal } from "@/components/ConsultationModal";
 import type { Service } from "@/lib/data";
@@ -25,27 +24,26 @@ type PopularServicesProps = {
 
 export function PopularServices({ services }: PopularServicesProps) {
   const { openModal } = useConsultationModal();
-  const popularServices = services;
 
   return (
-    <section className="overflow-hidden bg-slate-50 py-10 md:py-28">
+    <section className="overflow-hidden bg-white py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
             <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Популярные услуги</h2>
-            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">Что выбирают наши клиенты?</p>
+            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">Что выбирают наши клиенты</p>
           </div>
           <Link
             href="/prices"
-            className="group inline-flex items-center font-medium text-orange-500 transition-all duration-300 hover:text-orange-600"
+            className="group inline-flex items-center font-light tracking-[0.04em] text-[#F97316] transition-all duration-300 hover:text-[#F97316]/70"
           >
             Все услуги и цены
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        <div className="relative px-0 md:px-12">
+        <div className="relative px-0 md:px-14">
           <Carousel
             opts={{
               align: "start",
@@ -54,36 +52,48 @@ export function PopularServices({ services }: PopularServicesProps) {
             className="w-full"
           >
             <CarouselContent className="-ml-4">
-              {popularServices.map((service, index) => (
+              {services.map((service, index) => (
                 <CarouselItem key={index} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="px-1 pb-1 pt-3">
-                    <Card className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      <CardContent className="flex h-full flex-col p-5 md:p-8">
-                        <div>
-                          <span className="mb-3 md:mb-4 inline-block rounded-full bg-lime-200 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-slate-800">
-                            {service.category}
+                  <div className="flex h-full px-1 pb-1 pt-3">
+                    <article className="group flex w-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+
+                      <div className="flex flex-1 flex-col p-8 md:p-10">
+                        {/* Бейдж — glassmorphism */}
+                        <span className="mb-4 inline-block w-fit rounded-full border border-white/60 bg-white/50 px-3.5 py-1.5 text-[10px] font-light uppercase tracking-[0.15em] text-slate-600 backdrop-blur-md">
+                          {service.category}
+                        </span>
+
+                        {/* Название */}
+                        <h3 className="mb-4 text-xl font-medium leading-snug text-[#1a1a2e] transition-colors duration-300 group-hover:text-[#F97316] md:text-2xl">
+                          {service.name}
+                        </h3>
+
+                        {/* Описание */}
+                        <p className="line-clamp-3 text-sm font-light leading-[1.6] text-[#888] md:text-[15px]">
+                          {service.description}
+                        </p>
+
+                        {/* Футер: цена + кнопка */}
+                        <div className="mt-auto flex items-center justify-between pt-8 md:pt-10">
+                          <span className="text-xl font-light tracking-[0.03em] text-[#1a1a2e] md:text-2xl">
+                            {service.price}
                           </span>
-                          <h3 className="mb-3 md:mb-4 text-xl md:text-2xl font-semibold text-slate-800 transition-colors group-hover:text-orange-500">
-                            {service.name}
-                          </h3>
-                          <p className="line-clamp-3 text-sm md:text-base font-normal leading-relaxed text-slate-500">
-                            {service.description}
-                          </p>
+                          <Button
+                            onClick={openModal}
+                            className="h-10 rounded-xl border border-[#F97316]/30 bg-transparent px-4 text-sm font-light tracking-[0.04em] text-[#F97316] transition-all duration-300 hover:border-[#F97316] hover:bg-[#F97316] hover:text-white hover:shadow-lg hover:shadow-[#F97316]/15"
+                          >
+                            Записаться
+                          </Button>
                         </div>
-                        <div className="mt-5 md:mt-8 flex items-center justify-between border-t border-slate-100 pt-5 md:pt-8">
-                          <span className="text-xl md:text-2xl font-semibold text-slate-800">{service.price}</span>
-                          <Button onClick={openModal} className="h-11 rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
-                              Записаться
-                            </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
+                      </div>
+
+                    </article>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
-            <CarouselNext className="absolute -right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
+            <CarouselPrevious className="absolute -left-1 top-1/2 flex h-9 w-9 -translate-y-1/2 rounded-full border border-slate-200 bg-white/80 text-slate-400 backdrop-blur-sm transition-all duration-300 hover:border-[#F97316]/40 hover:bg-white hover:text-[#F97316] md:-left-6 md:h-11 md:w-11" />
+            <CarouselNext className="absolute -right-1 top-1/2 flex h-9 w-9 -translate-y-1/2 rounded-full border border-slate-200 bg-white/80 text-slate-400 backdrop-blur-sm transition-all duration-300 hover:border-[#F97316]/40 hover:bg-white hover:text-[#F97316] md:-right-6 md:h-11 md:w-11" />
           </Carousel>
         </div>
       </div>
