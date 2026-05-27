@@ -11,7 +11,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { EQUIPMENT } from "@/lib/data";
 
 export function EquipmentSection() {
@@ -22,10 +21,10 @@ export function EquipmentSection() {
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
             <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">
-              Наше оборудование
+              Эстетика технологий
             </h2>
             <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">
-              Аппараты экспертного класса для вашей красоты
+              Аппараты экспертного класса с доказанной эффективностью
             </p>
           </div>
           <Link
@@ -53,51 +52,81 @@ export function EquipmentSection() {
                   className="basis-full pl-4 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="flex h-full px-1 pb-1 pt-3">
-                    <Card className="group flex w-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white pt-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      {/* Image */}
-                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                    <article className="group flex w-full flex-col overflow-hidden rounded-[2rem] border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-0.5">
+
+                      {/* Изображение — на всю ширину, object-cover, с нижним градиентом */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden">
                         {item.image ? (
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                          <>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            {/* Градиент: фото плавно переходит в белый фон карточки */}
+                            <div
+                              className="pointer-events-none absolute inset-x-0 bottom-0 h-14"
+                              style={{
+                                background: "linear-gradient(to top, #FFFFFF, transparent)",
+                              }}
+                            />
+                          </>
                         ) : (
-                          <div className="flex h-full items-center justify-center">
-                            <span className="text-4xl font-light text-slate-300">
-                              {item.name.charAt(0)}
+                          <div className="flex h-full items-center justify-center bg-[#f5f5f5]">
+                            <span className="text-5xl font-light text-slate-300">
+                              {item.name.substring(0, 2).toUpperCase()}
                             </span>
                           </div>
                         )}
                       </div>
 
-                      <CardContent className="flex flex-1 flex-col justify-between space-y-4 p-5 md:p-6">
-                        <div className="space-y-3">
-                          <h3 className="text-lg font-semibold leading-snug text-slate-800 transition-colors group-hover:text-orange-500 md:text-xl">
-                            {item.name}
-                          </h3>
-                          <p className="line-clamp-2 text-sm font-medium leading-relaxed text-slate-500 italic">
-                            «{item.tagline}»
-                          </p>
-                          <p className="line-clamp-3 text-sm leading-relaxed text-slate-500">
-                            {item.description}
-                          </p>
-                        </div>
-                        <div>
-                          <span className="text-xs font-medium text-orange-500 transition-colors group-hover:text-orange-600">
-                            Подробнее об аппарате →
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
+                      {/* Контент */}
+                      <div className="flex flex-1 flex-col p-5 md:p-6">
+                        <h3 className="text-lg font-light tracking-[0.03em] text-[#1a1a2e] transition-colors duration-300 group-hover:text-[#F97316]">
+                          {item.name}
+                        </h3>
+
+                        {/* Тезис */}
+                        <p className="mt-1.5 text-xs font-light italic leading-relaxed text-[#888]">
+                          «{item.tagline}»
+                        </p>
+
+                        {/* Описание */}
+                        <p className="mt-2 line-clamp-2 text-xs font-light leading-[1.6] text-[#666]">
+                          {item.description}
+                        </p>
+
+                        {/* Что решает */}
+                        {item.problems && item.problems.length > 0 && (
+                          <div className="mt-4">
+                            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#1a1a2e]">
+                              Что решает
+                            </p>
+                            <div className="grid grid-cols-1 gap-1.5">
+                              {item.problems.slice(0, 2).map((problem, i) => (
+                                <div key={i} className="flex items-start gap-2">
+                                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F97316]/10">
+                                    <Check className="h-2.5 w-2.5 text-[#F97316]" />
+                                  </div>
+                                  <p className="text-[11px] font-light leading-[1.5] text-[#999]">
+                                    {problem}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                    </article>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:-left-6 md:h-12 md:w-12" />
-            <CarouselNext className="absolute -right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:-right-6 md:h-12 md:w-12" />
+            <CarouselPrevious className="absolute -left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-orange-500 hover:text-white md:-left-6 md:h-12 md:w-12" />
+            <CarouselNext className="absolute -right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-orange-500 hover:text-white md:-right-6 md:h-12 md:w-12" />
           </Carousel>
         </div>
       </div>
