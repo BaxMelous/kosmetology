@@ -83,7 +83,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full select-none overflow-hidden rounded-2xl bg-slate-200 ${className}`}
+      className={`relative w-full select-none overflow-hidden rounded-[1.75rem] bg-slate-200 shadow-[0_12px_30px_rgba(0,0,0,0.04)] ${className}`}
       style={{ aspectRatio: "4 / 5" }}
       role="img"
       aria-label={`Сравнение: ${beforeAlt} и ${afterAlt}`}
@@ -152,16 +152,16 @@ export function BeforeAfterSlider({
           >
             {/* Invisible touch-target extension */}
             <div className="absolute -inset-4" />
-            <div className="relative flex h-20 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-transform duration-150 hover:scale-105 pointer-events-none">
+            <div className="relative flex h-16 w-8 items-center justify-center rounded-full bg-[#FF5607] shadow-lg shadow-[#FF5607]/25 transition-transform duration-150 hover:scale-105 pointer-events-none">
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
-                className="text-slate-700"
+                className="text-white"
               >
                 <path d="M8 4l-6 8 6 8" />
                 <path d="M16 4l6 8-6 8" />
@@ -170,14 +170,14 @@ export function BeforeAfterSlider({
           </div>
 
           {/* Vertical line */}
-          <div className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-white shadow-md" />
+          <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/70" />
         </div>
       </div>
 
       {/* Labels */}
       {/* "До" label on the left (before image area) */}
       <span
-        className="absolute left-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-800 backdrop-blur-sm shadow-sm"
+        className="absolute left-4 top-4 z-20 rounded-full bg-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.15em] text-slate-700 backdrop-blur-md"
         style={{ opacity: sliderPosition > 15 ? 1 : 0 }}
       >
         До
@@ -185,7 +185,7 @@ export function BeforeAfterSlider({
 
       {/* "После" label on the right (after image area) */}
       <span
-        className="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-800 backdrop-blur-sm shadow-sm"
+        className="absolute right-4 top-4 z-20 rounded-full bg-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.15em] text-slate-700 backdrop-blur-md"
         style={{ opacity: sliderPosition < 85 ? 1 : 0 }}
       >
         После
