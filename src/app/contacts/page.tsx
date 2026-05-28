@@ -5,9 +5,8 @@ import { CONTACTS } from "@/lib/data";
 import { MapPin, Phone, Bus, Send, Car, X } from "lucide-react";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { PageHero } from "@/components/PageHero";
 import {
   Accordion,
   AccordionContent,
@@ -25,193 +24,241 @@ export default function ContactsPage() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   return (
-    <div className="bg-slate-50 pt-8 md:pt-14">
-      <div className="container mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-16">
-        <h1 className="mb-10 text-3xl font-semibold text-slate-800 sm:text-4xl md:mb-16 md:text-6xl">Контакты</h1>
+    <div className="bg-slate-50 pb-10 md:pb-20">
+      <PageHero
+        title="Мы всегда на связи"
+        subtitle="Приезжайте в клинику или напишите нам — мы ответим на все вопросы и поможем подобрать удобное время для визита."
+        videoSrc="/video/hero-contacts.mp4"
+        videoFilter="none"
+      />
 
-        <div className="mb-12 grid grid-cols-1 gap-10 lg:mb-24 lg:grid-cols-2 lg:gap-20">
-          {/* Left Column: Info & Form */}
-          <div className="space-y-10 md:space-y-16">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8">
-              <div className="space-y-2">
-                <div className="grid grid-cols-[40px_1fr] items-start gap-x-3 gap-y-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <MapPin className="h-5 w-5" />
+      <ScrollReveal>
+        <div className="container mx-auto max-w-7xl px-4 pt-6 md:px-8 md:pt-10">
+          <div className="mb-12 grid grid-cols-1 gap-10 lg:mb-24 lg:grid-cols-2 lg:gap-20">
+
+            {/* Left Column: Info & Form */}
+            <div className="space-y-8 md:space-y-12">
+
+              {/* Glass Info Cards */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="rounded-[1.5rem] border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316]">
+                    <MapPin className="h-4 w-4" />
                   </div>
-                  <span className="pt-2 font-bold uppercase text-xs tracking-widest text-primary">Адрес</span>
-                  <div className="col-start-2">
-                    <p className="text-base font-medium leading-snug text-slate-800 md:text-lg">{CONTACTS.address}</p>
+                  <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Адрес</p>
+                  <p className="text-sm font-light leading-relaxed text-[#1a1a2e] md:text-base">
+                    {CONTACTS.address}
+                  </p>
+                </div>
+
+                <div className="rounded-[1.5rem] border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316]">
+                    <Phone className="h-4 w-4" />
                   </div>
+                  <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Телефон</p>
+                  <p className="text-sm font-light text-[#1a1a2e] md:text-base">{CONTACTS.phone}</p>
+                  <p className="mt-1.5 text-xs font-light text-[#888]">Ежедневно: 08:00–20:00</p>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <div className="grid grid-cols-[40px_1fr] items-start gap-x-3 gap-y-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <span className="pt-2 font-bold uppercase text-xs tracking-widest text-primary">Телефон</span>
-                  <div className="col-start-2">
-                    <p className="text-base font-medium text-slate-800 md:text-lg">{CONTACTS.phone}</p>
-                    <p className="mt-2 text-sm text-slate-500">Ежедневно: 08:00–20:00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-14">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
-              <div className="relative z-10 space-y-8">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold text-slate-800 md:text-3xl">Остались вопросы? Напишите нам</h3>
-                  <p className="text-slate-500">Напишите нам, и мы свяжемся с вами в течение 15 минут.</p>
+              {/* Contact Form */}
+              <div className="overflow-hidden rounded-[2rem] border border-slate-100 bg-white p-7 md:p-10">
+                <div className="mb-8 space-y-1.5">
+                  <h3 className="text-xl font-light tracking-[0.04em] text-[#1a1a2e] md:text-2xl">
+                    Остались вопросы? Напишите нам
+                  </h3>
+                  <p className="text-sm font-light text-[#888]">
+                    Мы свяжемся с вами в течение 15 минут.
+                  </p>
                 </div>
 
                 <form action="/contacts" method="get" className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-xs font-medium uppercase tracking-widest text-slate-500">Ваше имя</Label>
-                    <Input id="name" placeholder="Введите имя" className="h-14 rounded-2xl border-none bg-white pl-4 shadow-sm focus-visible:ring-primary" />
+                  <div className="space-y-1.5">
+                    <label htmlFor="name" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                      Ваше имя
+                    </label>
+                    <input
+                      id="name"
+                      placeholder="Введите имя"
+                      className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон</Label>
-                    <Input id="phone" placeholder="+7 (___) ___-__-__" className="h-14 rounded-2xl border-none bg-white pl-4 shadow-sm focus-visible:ring-primary" />
+                  <div className="space-y-1.5">
+                    <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                      Телефон
+                    </label>
+                    <input
+                      id="phone"
+                      placeholder="+7 (___) ___-__-__"
+                      className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Сообщение</Label>
-                    <Textarea id="message" placeholder="Ваш вопрос или пожелание..." className="min-h-[120px] rounded-2xl border-none bg-white pl-4 pt-4 shadow-sm focus-visible:ring-primary" />
+                  <div className="space-y-1.5">
+                    <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                      Сообщение
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      placeholder="Ваш вопрос или пожелание..."
+                      className="w-full resize-none border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                    />
                   </div>
-                  <Button type="submit" className="h-12 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                  <Button
+                    type="submit"
+                    className="h-11 w-full rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/15"
+                  >
                     Отправить заявку
-                    <Send className="ml-2 w-5 h-5" />
+                    <Send className="ml-2 h-4 w-4" />
                   </Button>
-                  <p className="text-xs text-slate-400 text-center leading-relaxed">
-                    Нажимая &laquo;Отправить&raquo;, вы даете{" "}
-                    <Link href="/legal" className="underline hover:text-slate-600">согласие</Link>{" "}
+                  <p className="text-center text-[11px] font-light leading-relaxed text-[#888]">
+                    Нажимая «Отправить», вы даете{" "}
+                    <Link href="/legal" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
                     на обработку персональных данных и соглашаетесь с{" "}
-                    <Link href="/legal" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
+                    <Link href="/legal" className="underline transition-colors hover:text-[#1a1a2e]">Политикой конфиденциальности</Link>.
                   </p>
                 </form>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Map & Photos */}
-          <div className="space-y-6 md:space-y-8">
-            {/* Map */}
-            <a
-              href="https://yandex.com/maps/-/CPWKaAzz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/map relative flex h-[300px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-4 border-white shadow-md transition-all duration-300 hover:shadow-xl md:h-[450px] md:rounded-[3rem] md:border-8"
-            >
-              <div
-                className="absolute -inset-2 bg-slate-300"
-                style={{
-                  backgroundImage: `url('https://static-maps.yandex.ru/1.x/?ll=47.8784,56.6319&z=16&size=650,450&l=map&pt=47.8784,56.6319,pm2rdl&lang=ru_RU')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  filter: "blur(4px)",
-                }}
-              />
-              <div className="absolute inset-0 bg-black/5" />
-              <div className="relative z-10 flex flex-col items-center gap-4 transition-transform duration-300 group-hover/map:scale-105">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-primary shadow-2xl">
-                  <MapPin className="h-8 w-8 fill-white text-white" />
+            {/* Right Column: Map & Photos */}
+            <div className="space-y-6 md:space-y-8">
+              {/* Map */}
+              <a
+                href="https://yandex.com/maps/-/CPWKaAzz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/map relative flex h-[320px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 hover:shadow-[0_30px_65px_rgba(0,0,0,0.1)] md:h-[420px]"
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url('https://static-maps.yandex.ru/1.x/?ll=47.8784,56.6319&z=16&size=650,450&l=map&pt=47.8784,56.6319,pm2rdl&lang=ru_RU')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/5 transition-colors duration-300 group-hover/map:bg-black/0" />
+                <div className="relative z-10 flex flex-col items-center gap-3 transition-transform duration-500 group-hover/map:scale-105">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border-3 border-white bg-[#F97316] shadow-xl">
+                    <MapPin className="h-6 w-6 text-white" />
+                  </div>
+                  <span className="inline-flex items-center gap-2 rounded-xl border border-white/60 bg-white/80 px-4 py-2 text-sm font-light tracking-[0.03em] text-[#1a1a2e] backdrop-blur-sm transition-all duration-300 group-hover/map:bg-white group-hover/map:shadow-lg">
+                    <MapPin className="h-4 w-4 text-[#F97316]" />
+                    Открыть в Яндекс Картах
+                  </span>
                 </div>
-                <div className="rounded-2xl bg-white px-6 py-2 text-sm font-bold text-slate-900 shadow-xl">
-                  СитиМед Эстетика
-                </div>
-                <span className="inline-flex items-center gap-2 rounded-xl border border-white/60 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover/map:bg-white group-hover/map:shadow-md">
-                  <MapPin className="h-4 w-4 text-primary" />
-                  Открыть в Яндекс Картах
-                </span>
+              </a>
+
+              {/* Photos Grid */}
+              <div className="grid grid-cols-3 gap-3 md:gap-5">
+                {clinicPhotos.map((img, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setSelectedPhoto(img)}
+                    className="group/photo aspect-square overflow-hidden rounded-[1.25rem] md:rounded-[1.75rem]"
+                  >
+                    <Image
+                      src={img}
+                      alt="Фото клиники СитиМед"
+                      width={400}
+                      height={400}
+                      unoptimized
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover/photo:scale-110"
+                    />
+                  </button>
+                ))}
               </div>
-            </a>
+            </div>
+          </div>
 
-            {/* Photos Grid */}
-            <div className="grid grid-cols-3 gap-3 md:gap-6">
-              {clinicPhotos.map((img, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setSelectedPhoto(img)}
-                  className="aspect-square overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-xl md:rounded-[2rem]"
-                >
-                  <Image
-                    src={img}
-                    alt="Фото клиники СитиМед"
-                    width={400}
-                    height={400}
-                    unoptimized
-                    className="h-full w-full object-cover"
-                  />
-                </button>
-              ))}
+          {/* Directions */}
+          <div className="mx-auto max-w-4xl space-y-8 md:space-y-12">
+            <div className="text-center">
+              <div className="mx-auto mb-6 h-px w-12 bg-[#F97316]/40 md:w-16" />
+              <h2 className="text-2xl font-light tracking-[0.04em] text-[#1a1a2e] md:text-4xl">
+                Как добраться?
+              </h2>
+            </div>
+            <Accordion className="space-y-3">
+              <AccordionItem value="car" className="overflow-hidden rounded-[1.5rem] border border-slate-100 bg-white px-5 md:rounded-[2rem] md:px-7">
+                <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316] md:h-11 md:w-11">
+                      <Car className="h-5 w-5" />
+                    </div>
+                    <span className="text-left text-base font-light tracking-[0.03em] text-[#1a1a2e] md:text-lg">
+                      На автомобиле
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-[#888] md:pb-8 md:pl-14 md:text-base">
+                  Для пациентов предусмотрена бесплатная парковка.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="bus" className="overflow-hidden rounded-[1.5rem] border border-slate-100 bg-white px-5 md:rounded-[2rem] md:px-7">
+                <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316] md:h-11 md:w-11">
+                      <Bus className="h-5 w-5" />
+                    </div>
+                    <span className="text-left text-base font-light tracking-[0.03em] text-[#1a1a2e] md:text-lg">
+                      На общественном транспорте
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-[#888] md:pb-8 md:pl-14 md:text-base">
+                  <p className="mb-4">Остановки: «Якова Эшпая» и «Ленинский проспект».</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["24П", "21К", "18К", "20К", "М8", "М2", "3П"].map(route => (
+                      <span key={route} className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-light text-[#1a1a2e]">
+                        {route}
+                      </span>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* Social Media */}
+          <div className="mx-auto mt-14 max-w-4xl text-center md:mt-20">
+            <div className="rounded-[2rem] border border-slate-100 bg-white px-6 py-10 md:px-12 md:py-14">
+              <p className="text-base font-light tracking-[0.04em] text-[#1a1a2e] md:text-lg">
+                Мы в социальных сетях
+              </p>
+              <div className="mt-6 flex items-center justify-center gap-4">
+                {[
+                  { href: "https://vk.ru/citymed_estetic", icon: "/VK%20Logo.svg", alt: "VK" },
+                  { href: "https://t.me/citymed_12", icon: "/Form%3DRounded%20square-2.svg", alt: "TG" },
+                  { href: "https://max.ru/citimed", icon: "/Form%3DRounded%20square.svg", alt: "MAX" },
+                ].map((s) => (
+                  <a
+                    key={s.alt}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#F97316]/40 hover:bg-[#F97316]/5"
+                    aria-label={s.alt}
+                  >
+                    <img
+                      src={s.icon}
+                      alt={s.alt}
+                      className="h-5 w-5 opacity-40 transition-all duration-300 group-hover:opacity-100"
+                    />
+                  </a>
+                ))}
+              </div>
+              <p className="mt-5 text-xs font-light text-[#888]">
+                Подписывайтесь — публикуем акции, советы косметолога и отзывы пациентов
+              </p>
             </div>
           </div>
         </div>
+      </ScrollReveal>
 
-        {/* Directions */}
-        <div className="mx-auto max-w-4xl space-y-6 md:space-y-12">
-          <h2 className="text-center text-2xl font-semibold text-slate-800 md:text-4xl">Как добраться?</h2>
-          <Accordion className="space-y-4">
-            <AccordionItem value="car" className="overflow-hidden rounded-3xl border-none bg-slate-50 px-4 md:rounded-[2.5rem] md:px-8">
-              <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary">
-                    <Car className="w-6 h-6" />
-                  </div>
-                  <span className="text-left text-lg font-semibold text-slate-800 md:text-xl">На автомобиле</span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pb-6 pl-0 text-base leading-relaxed text-slate-600 md:pb-10 md:pl-16 md:text-lg">
-                Для пациентов предусмотрена бесплатная парковка.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="bus" className="overflow-hidden rounded-3xl border-none bg-slate-50 px-4 md:rounded-[2.5rem] md:px-8">
-              <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary">
-                    <Bus className="w-6 h-6" />
-                  </div>
-                  <span className="text-left text-lg font-semibold text-slate-800 md:text-xl">На общественном транспорте</span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pb-6 pl-0 text-base leading-relaxed text-slate-600 md:pb-10 md:pl-16 md:text-lg">
-                <p className="mb-4">Остановки: «Якова Эшпая» и «Ленинский проспект».</p>
-                <div className="flex flex-wrap gap-2">
-                  {["24П", "21К", "18К", "20К", "М8", "М2", "3П"].map(route => (
-                    <span key={route} className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700">{route}</span>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        {/* Social Media */}
-        <div className="mx-auto mt-14 max-w-4xl text-center md:mt-20">
-          <div className="rounded-3xl bg-slate-50 px-6 py-10 md:px-12 md:py-14">
-            <p className="text-lg font-semibold text-slate-800 md:text-xl">Мы в социальных сетях:</p>
-            <div className="mt-6 flex items-center justify-center gap-6">
-              <a href="https://vk.ru/citymed_estetic" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0077FF] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="ВКонтакте">
-                <img src="/VK%20Logo.svg" alt="VK" className="h-6 w-6" />
-              </a>
-              <a href="https://t.me/citymed_12" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#26A5E4] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="Telegram">
-                <img src="/Form%3DRounded%20square-2.svg" alt="TG" className="h-6 w-6" />
-              </a>
-              <a href="https://max.ru/citimed" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#8B5CF6] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" aria-label="MAX">
-                <img src="/Form%3DRounded%20square.svg" alt="MAX" className="h-6 w-6" />
-              </a>
-            </div>
-            <p className="mt-6 text-sm text-slate-500">
-              Подписывайтесь — публикуем акции, советы косметолога и отзывы пациентов
-            </p>
-          </div>
-        </div>
-      </div>
       {selectedPhoto && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6">
           <button
