@@ -33,7 +33,7 @@ export function HeroSection() {
 
   return (
     <section ref={containerRef} className="bg-slate-50">
-      <div className="container mx-auto max-w-7xl px-4 py-8 sm:py-10 md:px-8 md:py-12">
+      <div className="mx-auto max-w-7xl px-4 pt-1 pb-8 sm:pt-1 sm:pb-10 md:px-8 md:pb-12">
 
         {/* Rounded container — full video background like PageHero */}
         <div className="relative isolate overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:min-h-[600px] xl:min-h-[680px]">
