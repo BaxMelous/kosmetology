@@ -86,20 +86,15 @@ export function HeroSection() {
               className="max-w-2xl space-y-6 md:space-y-8"
             >
               {/* Заголовок */}
-              <h1 className="text-3xl leading-[1.15] tracking-[0.05em] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="block font-light text-[#1a1a2e]">
-                  Профессиональная
-                </span>
-                <span className="block font-light text-[#1a1a2e]">
-                  <span className="font-medium text-[#F97316]">косметология</span>
-                </span>
-                <span className="block font-medium text-[#1a1a2e]">
-                  СитиМед Эстетика
-                </span>
+              <h1 className="text-2xl font-light leading-[1.15] tracking-[0.02em] text-[#1a1a2e] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+                Профессиональная{" "}
+                <span className="font-normal text-[#F97316]">косметология</span>
+                <br />
+                в СитиМед Эстетика
               </h1>
 
               {/* Подзаголовок */}
-              <p className="max-w-lg text-sm font-light leading-[1.7] text-[#666] sm:text-base md:text-lg">
+              <p className="mt-5 max-w-md text-sm font-light leading-[1.7] text-[#999] sm:text-base md:text-lg">
                 Современные методики омоложения и ухода за кожей с использованием
                 сертифицированных препаратов. Индивидуальный подход и видимый
                 результат уже после первой процедуры.
@@ -109,14 +104,14 @@ export function HeroSection() {
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4">
                 <Button
                   onClick={openModal}
-                  className="h-12 rounded-[14px] bg-[#F97316] px-7 text-sm font-light tracking-[0.04em] text-white transition-all duration-500 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/25 sm:w-auto"
+                  className="h-11 rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/20 sm:w-auto"
                 >
                   Записаться
                 </Button>
                 <Link href="/prices">
                   <Button
                     variant="outline"
-                    className="h-12 rounded-[14px] border border-slate-200 bg-white/70 px-7 text-sm font-light tracking-[0.04em] text-[#1a1a2e] backdrop-blur-sm transition-all duration-500 hover:border-[#F97316]/40 hover:bg-white hover:text-[#F97316] sm:w-auto"
+                    className="h-11 rounded-xl border border-slate-200 bg-white px-6 text-sm font-light tracking-[0.04em] text-[#1a1a2e] transition-all duration-300 hover:border-[#F97316]/30 hover:text-[#F97316] sm:w-auto"
                   >
                     Посмотреть услуги
                   </Button>
