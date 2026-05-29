@@ -43,11 +43,11 @@ export function MobileBottomNav() {
                   className={cn(
                     "flex min-h-14 flex-col items-center justify-center gap-1 rounded-full px-2 text-[10px] font-medium tracking-wide transition-all duration-300",
                     isActive
-                      ? "bg-white text-orange-500 shadow-sm"
+                      ? "bg-white text-primary shadow-sm"
                       : "text-slate-500 hover:bg-white/60 hover:text-slate-900"
                   )}
                 >
-                  <Icon className={cn("h-4 w-4", isActive ? "text-orange-500" : "text-slate-500")} />
+                  <Icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-slate-500")} />
                   <span>{item.label}</span>
                 </Link>
               </li>

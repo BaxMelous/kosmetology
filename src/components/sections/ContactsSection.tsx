@@ -10,12 +10,12 @@ import { Link } from "@/components/Link";
 export function ContactsSection() {
   return (
     <section id="contacts" className="bg-slate-50 py-28">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           {/* Info & Map */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <h2 className="text-3xl font-semibold text-slate-800 md:text-5xl">Контакты</h2>
+              <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Контакты</h2>
               <p className="text-slate-500">Мы всегда рады видеть вас в нашей клинике.</p>
             </div>
 
@@ -91,7 +91,7 @@ export function ContactsSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="rounded-3xl border border-slate-100 bg-white p-8 shadow-sm md:p-12">
+          <div className="rounded-card border border-slate-100 bg-white p-8 shadow-sm md:p-12">
             <div className="space-y-6">
               <div className="space-y-2">
                 <h3 className="text-2xl font-semibold text-slate-800">Остались вопросы?</h3>
@@ -111,7 +111,7 @@ export function ContactsSection() {
                   <Label htmlFor="message">Сообщение</Label>
                   <Textarea id="message" placeholder="Ваш вопрос или пожелание..." className="rounded-2xl min-h-[150px]" />
                 </div>
-                <Button type="submit" className="h-11 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                <Button type="submit" className="h-11 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover">
                   Отправить заявку
                   <Send className="ml-2 w-5 h-5" />
                 </Button>

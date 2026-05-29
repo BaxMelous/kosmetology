@@ -34,7 +34,7 @@ export default function ReviewsPage() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex cursor-pointer items-center justify-between rounded-3xl border border-slate-100 bg-white p-5 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group flex cursor-pointer items-center justify-between rounded-card border border-slate-100 bg-white p-5 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div>
                 <p className="mb-1 text-lg font-semibold text-slate-800">{item.platform}</p>
@@ -44,7 +44,7 @@ export default function ReviewsPage() {
                 <div className="text-3xl font-semibold text-slate-800">{item.rating}</div>
                 <div className="flex gap-0.5 mt-1">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-3 h-3 fill-[#FF5607] text-[#FF5607]" />
+                    <Star key={j} className="w-3 h-3 fill-primary text-primary" />
                   ))}
                 </div>
               </div>
@@ -55,11 +55,11 @@ export default function ReviewsPage() {
         {/* Full Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {REVIEWS.map((review) => (
-            <div key={review.id} className="flex h-full flex-col justify-between rounded-[2rem] border border-slate-100 bg-white p-5 md:p-10 shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 hover:scale-[1.015] hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)]">
+            <div key={review.id} className="flex h-full flex-col justify-between rounded-card border border-slate-100 bg-white p-5 md:p-10 shadow-card transition-all duration-500 hover:scale-[1.015] hover:shadow-card-hover">
               <div className="space-y-4 md:space-y-6">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-[#FF5607] text-[#FF5607]" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
                   ))}
                 </div>
                 <h3 className="text-lg md:text-xl font-medium leading-snug text-slate-800">

@@ -13,7 +13,7 @@ export function DetailedPriceList() {
     <section id="price" className="py-24 bg-slate-50">
       <div className="container mx-auto max-w-4xl px-4 md:px-8">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl font-semibold text-slate-800 md:text-5xl">Прайс-лист</h2>
+          <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Прайс-лист</h2>
           <p className="text-slate-500">
             Ознакомьтесь с подробным перечнем процедур нашей клиники.
           </p>
@@ -24,7 +24,7 @@ export function DetailedPriceList() {
             <AccordionItem
               key={category.id} 
               value={category.id}
-              className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-8 shadow-sm"
+              className="overflow-hidden rounded-card border border-slate-100 bg-white px-8 shadow-sm"
             >
               <AccordionTrigger className="hover:no-underline py-6">
                 <span className="text-xl font-semibold text-slate-800">{category.title}</span>
@@ -43,7 +43,7 @@ export function DetailedPriceList() {
                       </div>
                       <div className="flex items-center gap-4">
                         <span className="whitespace-nowrap text-lg font-semibold text-slate-800">{service.price}</span>
-                        <Link href={`/contacts?service=${service.id}`} className="inline-flex h-11 items-center rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600">
+                        <Link href={`/contacts?service=${service.id}`} className="inline-flex h-11 items-center rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover">
                           Записаться
                         </Link>
                       </div>

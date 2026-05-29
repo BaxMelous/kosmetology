@@ -83,7 +83,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full select-none overflow-hidden rounded-[1.75rem] bg-slate-200 shadow-[0_12px_30px_rgba(0,0,0,0.04)] ${className}`}
+      className={`relative w-full select-none overflow-hidden rounded-[1.75rem] bg-slate-200 shadow-card ${className}`}
       style={{ aspectRatio: "4 / 5" }}
       role="img"
       aria-label={`Сравнение: ${beforeAlt} и ${afterAlt}`}
@@ -151,8 +151,8 @@ export function BeforeAfterSlider({
             }}
           >
             {/* Invisible touch-target extension */}
-            <div className="absolute -inset-4" />
-            <div className="relative flex h-16 w-8 items-center justify-center rounded-full bg-[#FF5607] shadow-lg shadow-[#FF5607]/25 transition-transform duration-150 hover:scale-105 pointer-events-none">
+            <div className="absolute -inset-5" />
+            <div className="relative flex h-16 w-8 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/25 transition-transform duration-150 hover:scale-105 pointer-events-none">
               <svg
                 width="18"
                 height="18"

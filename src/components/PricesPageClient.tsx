@@ -52,7 +52,7 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
         </div>
 
         {filteredCategories.length === 0 && (
-          <div className="rounded-3xl bg-white p-10 text-center text-slate-500 shadow-sm">
+          <div className="rounded-card bg-white p-10 text-center text-slate-500 shadow-sm">
             По вашему запросу услуги не найдены.
           </div>
         )}

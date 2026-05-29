@@ -24,7 +24,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
     <motion.div
       layout
       className={cn(
-        "relative cursor-pointer overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-shadow duration-500",
+        "relative cursor-pointer overflow-hidden rounded-card border border-slate-100 bg-white shadow-sm transition-shadow duration-500",
         isOpen ? "shadow-md" : "hover:shadow-lg"
       )}
       onClick={() => setIsOpen(!isOpen)}
@@ -150,7 +150,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                           e.stopPropagation();
                           openModal();
                         }}
-                        className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-orange-600 active:scale-[0.97] sm:h-10 sm:px-5"
+                        className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-primary-hover active:scale-[0.97] sm:h-10 sm:px-5"
                       >
                         Записаться
                         <ArrowRight className="h-3.5 w-3.5" />

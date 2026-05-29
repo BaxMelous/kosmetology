@@ -50,7 +50,7 @@ const FEATURES = [
 export function FeaturesSection() {
   return (
     <section className="bg-white py-14 md:py-28">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="mb-14 text-center md:mb-20">
           <div className="mx-auto mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
           <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">
@@ -63,7 +63,7 @@ export function FeaturesSection() {
               <Link
                 key={feature.href}
                 href={feature.href}
-                className="group relative block min-h-52 overflow-hidden rounded-[2rem] bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] sm:min-h-56 md:min-h-60"
+                className="group relative block min-h-52 overflow-hidden rounded-card bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 sm:min-h-56 md:min-h-60"
               >
                 {/* Фоновое изображение — на всю карточку */}
                 <div
@@ -88,7 +88,7 @@ export function FeaturesSection() {
                     <h3 className="text-base font-medium tracking-[0.01em] text-slate-800 transition-colors duration-300 group-hover:text-[#F97316] sm:text-lg">
                       {feature.title}
                     </h3>
-                    <p className="mt-2.5 max-w-[55%] text-sm font-light leading-[1.6] text-[#666]">
+                    <p className="mt-2.5 max-w-[55%] text-sm font-light leading-[1.6] text-muted-text">
                       {feature.description}
                     </p>
                   </div>

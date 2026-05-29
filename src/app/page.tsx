@@ -33,21 +33,13 @@ export default function Home() {
       </div>
       <ChiefDoctorSection />
       <div className="bg-white">
-        <ParallaxSection>
-          <EquipmentSection />
-        </ParallaxSection>
+        <EquipmentSection />
       </div>
       <div className="bg-white">
-        <ParallaxSection>
-          <BeforeAfterSection />
-        </ParallaxSection>
+        <BeforeAfterSection />
       </div>
-      <ParallaxSection>
-        <ReviewsSection />
-      </ParallaxSection>
-      <ParallaxSection>
-        <CtaConsultation />
-      </ParallaxSection>
+      <ReviewsSection />
+      <CtaConsultation />
     </>
   );
 }

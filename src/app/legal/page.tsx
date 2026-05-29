@@ -57,7 +57,7 @@ export default function LegalPage() {
           {/* Нормативные акты */}
           <AccordionItem
             value="regulations"
-            className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
+            className="overflow-hidden rounded-card border border-slate-100 bg-white px-6 shadow-sm"
           >
             <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
               <h2 className="text-lg font-semibold text-slate-800 md:text-xl">
@@ -86,7 +86,7 @@ export default function LegalPage() {
           {/* Лицензия */}
           <AccordionItem
             value="license"
-            className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
+            className="overflow-hidden rounded-card border border-slate-100 bg-white px-6 shadow-sm"
           >
             <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
               <h2 className="text-lg font-semibold text-slate-800 md:text-xl">
@@ -122,7 +122,7 @@ export default function LegalPage() {
           {/* Вышестоящие организации */}
           <AccordionItem
             value="supervisory"
-            className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
+            className="overflow-hidden rounded-card border border-slate-100 bg-white px-6 shadow-sm"
           >
             <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
               <h2 className="text-lg font-semibold text-slate-800 md:text-xl">
@@ -166,7 +166,7 @@ export default function LegalPage() {
           {/* Правила внутреннего распорядка */}
           <AccordionItem
             value="rules"
-            className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
+            className="overflow-hidden rounded-card border border-slate-100 bg-white px-6 shadow-sm"
           >
             <AccordionTrigger className="min-h-11 py-5 text-left hover:no-underline md:py-6">
               <h2 className="text-lg font-semibold text-slate-800 md:text-xl">

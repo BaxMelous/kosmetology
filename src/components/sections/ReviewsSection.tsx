@@ -16,18 +16,18 @@ import { Link } from "@/components/Link";
 export function ReviewsSection() {
   return (
     <section id="reviews" className="overflow-hidden bg-slate-50 pt-10 pb-6 md:pt-28 md:pb-12">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
             <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Отзывы наших пациентов</h2>
-            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">
+            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-muted-light sm:text-base">
               Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика.
             </p>
           </div>
           <Link
             href="/reviews"
-            className="group inline-flex items-center font-medium text-orange-500 transition-all duration-300 hover:text-orange-600"
+            className="group inline-flex items-center font-medium text-primary transition-all duration-300 hover:text-primary-hover"
           >
             Все отзывы
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -46,12 +46,12 @@ export function ReviewsSection() {
               {REVIEWS.map((review) => (
                 <CarouselItem key={review.id} className="basis-full pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="flex h-full p-1">
-                    <Card className="flex h-full min-h-[320px] md:min-h-[420px] w-full flex-col rounded-3xl border border-slate-100 bg-white shadow-sm">
+                    <Card className="flex h-full w-full flex-col rounded-card border border-slate-100 bg-white shadow-sm">
                       <CardContent className="flex h-full flex-col justify-between p-5 md:p-10">
                         <div className="space-y-4 md:space-y-6">
                           <div className="flex gap-1">
                             {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3.5 h-3.5 fill-[#FF5607] text-[#FF5607]" />
+                              <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
                             ))}
                           </div>
                           <h3 className="text-lg md:text-xl font-medium leading-snug text-slate-800">
@@ -81,8 +81,8 @@ export function ReviewsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
-            <CarouselNext className="absolute -right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-orange-500 hover:text-white md:flex" />
+            <CarouselPrevious className="absolute -left-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-primary hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50 md:-left-6 md:h-12 md:w-12" />
+            <CarouselNext className="absolute -right-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:bg-primary hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50 md:-right-6 md:h-12 md:w-12" />
           </Carousel>
         </div>
 
@@ -99,7 +99,7 @@ export function ReviewsSection() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex cursor-pointer items-center justify-between rounded-2xl border border-slate-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-5"
+                className="group flex cursor-pointer items-center justify-between rounded-2xl border border-slate-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary/50 md:p-5"
               >
                 <div>
                   <p className="text-base font-semibold text-slate-800">{item.platform}</p>
@@ -109,7 +109,7 @@ export function ReviewsSection() {
                   <div className="text-2xl font-semibold text-slate-800">{item.rating}</div>
                   <div className="mt-0.5 flex gap-0.5">
                     {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="h-2.5 w-2.5 fill-[#FF5607] text-[#FF5607]" />
+                      <Star key={j} className="h-2.5 w-2.5 fill-primary text-primary" />
                     ))}
                   </div>
                 </div>

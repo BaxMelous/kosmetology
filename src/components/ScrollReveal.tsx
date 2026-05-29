@@ -25,11 +25,6 @@ export function ScrollReveal({ children, delayMs = 0, className = "" }: ScrollRe
 
     const isMobileMatch = window.matchMedia("(max-width: 767px)").matches;
 
-    if (isMobileMatch || !("IntersectionObserver" in window)) {
-      setVisible(true);
-      return;
-    }
-
     let revealed = false;
 
     const reveal = () => {
@@ -46,7 +41,10 @@ export function ScrollReveal({ children, delayMs = 0, className = "" }: ScrollRe
           reveal();
         }
       },
-      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" }
+      {
+        threshold: 0.05,
+        rootMargin: isMobileMatch ? "200px 0px" : "0px 0px -10% 0px",
+      }
     );
 
     const timeoutId = window.setTimeout(reveal, 500);

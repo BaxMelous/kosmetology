@@ -55,7 +55,7 @@ export default function EquipmentPage() {
           <div className="space-y-8 md:space-y-12">
             {EQUIPMENT.map((item, index) => (
               <ScrollReveal key={item.id} delayMs={index * 80}>
-                <article className="group relative isolate overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)] lg:min-h-[550px]">
+                <article className="group relative isolate overflow-hidden rounded-card border border-slate-100 bg-white shadow-card transition-all duration-500 hover:shadow-card-hover lg:min-h-[550px]">
 
                   {/* Изображение: моб. — сверху с фикс. высотой, десктоп — absolute слева на всю высоту */}
                   <div className="relative h-[300px] w-full shrink-0 overflow-hidden sm:h-[360px] lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-[38%]">
@@ -93,12 +93,12 @@ export default function EquipmentPage() {
                     </h2>
 
                     {/* Тезис */}
-                    <p className="mt-3 text-sm font-light italic leading-relaxed text-[#888] md:text-base">
+                    <p className="mt-3 text-sm font-light italic leading-relaxed text-muted-light md:text-base">
                       «{item.tagline}»
                     </p>
 
                     {/* Описание */}
-                    <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-[#666] md:text-base">
+                    <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-muted-text md:text-base">
                       {item.description}
                     </p>
 
@@ -114,7 +114,7 @@ export default function EquipmentPage() {
                               <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F97316]/10">
                                 <Check className="h-2.5 w-2.5 text-[#F97316]" />
                               </div>
-                              <p className="text-xs font-light leading-relaxed text-[#888] md:text-sm">
+                              <p className="text-xs font-light leading-relaxed text-muted-light md:text-sm">
                                 {problem}
                               </p>
                             </div>
@@ -135,7 +135,7 @@ export default function EquipmentPage() {
                               <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-lime-200/60">
                                 <Check className="h-2.5 w-2.5 text-lime-700" />
                               </div>
-                              <p className="text-xs font-light leading-relaxed text-[#888] md:text-sm">
+                              <p className="text-xs font-light leading-relaxed text-muted-light md:text-sm">
                                 {adv}
                               </p>
                             </div>
@@ -166,7 +166,7 @@ export default function EquipmentPage() {
               {PRIORITIES.map((p, i) => (
                 <div
                   key={i}
-                  className="group rounded-[2rem] border border-slate-100 bg-white p-6 text-center shadow-[0_8px_20px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)]"
+                  className="group rounded-card border border-slate-100 bg-white p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
                 >
                   <div className="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316] transition-colors duration-300 group-hover:bg-[#F97316] group-hover:text-white">
                     <p.icon className="h-5 w-5" />
@@ -174,7 +174,7 @@ export default function EquipmentPage() {
                   <h3 className="mb-2 text-sm font-medium text-[#1a1a2e]">
                     {p.title}
                   </h3>
-                  <p className="text-xs font-light leading-relaxed text-[#888]">
+                  <p className="text-xs font-light leading-relaxed text-muted-light">
                     {p.text}
                   </p>
                 </div>

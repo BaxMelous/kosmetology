@@ -16,20 +16,20 @@ import { EQUIPMENT } from "@/lib/data";
 export function EquipmentSection() {
   return (
     <section className="overflow-hidden py-10 md:py-28">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
             <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">
               Эстетика технологий
             </h2>
-            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-[#888] sm:text-base">
+            <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-muted-light sm:text-base">
               Аппараты экспертного класса с доказанной эффективностью
             </p>
           </div>
           <Link
             href="/equipment"
-            className="group inline-flex items-center font-medium text-orange-500 transition-all duration-300 hover:text-orange-600"
+            className="group inline-flex items-center font-medium text-primary transition-all duration-300 hover:text-primary-hover"
           >
             Всё оборудование
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -41,7 +41,6 @@ export function EquipmentSection() {
             opts={{
               align: "start",
               loop: true,
-              watchDrag: false,
             }}
             className="w-full"
           >
@@ -52,7 +51,7 @@ export function EquipmentSection() {
                   className="basis-full pl-4 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="flex h-full px-1 pb-1 pt-3">
-                    <article className="group flex w-full flex-col overflow-hidden rounded-[2rem] border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-0.5">
+                    <article className="group flex w-full flex-col overflow-hidden rounded-card border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-0.5">
 
                       {/* Изображение — на всю ширину, object-cover, с нижним градиентом */}
                       <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -89,12 +88,12 @@ export function EquipmentSection() {
                         </h3>
 
                         {/* Тезис */}
-                        <p className="mt-1.5 text-xs font-light italic leading-relaxed text-[#888]">
+                        <p className="mt-1.5 text-xs font-light italic leading-relaxed text-muted-light">
                           «{item.tagline}»
                         </p>
 
                         {/* Описание */}
-                        <p className="mt-2 line-clamp-2 text-xs font-light leading-[1.6] text-[#666]">
+                        <p className="mt-2 line-clamp-2 text-xs font-light leading-[1.6] text-muted-text">
                           {item.description}
                         </p>
 
@@ -110,7 +109,7 @@ export function EquipmentSection() {
                                   <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F97316]/10">
                                     <Check className="h-2.5 w-2.5 text-[#F97316]" />
                                   </div>
-                                  <p className="text-[11px] font-light leading-[1.5] text-[#999]">
+                                  <p className="text-[11px] font-light leading-[1.5] text-muted-light">
                                     {problem}
                                   </p>
                                 </div>
@@ -125,8 +124,8 @@ export function EquipmentSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-orange-500 hover:text-white md:-left-6 md:h-12 md:w-12" />
-            <CarouselNext className="absolute -right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-orange-500 hover:text-white md:-right-6 md:h-12 md:w-12" />
+            <CarouselPrevious className="absolute -left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-primary hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50 md:-left-6 md:h-12 md:w-12" />
+            <CarouselNext className="absolute -right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 border border-slate-100 bg-white transition-all duration-300 hover:bg-primary hover:text-white focus-visible:ring-2 focus-visible:ring-primary/50 md:-right-6 md:h-12 md:w-12" />
           </Carousel>
         </div>
       </div>

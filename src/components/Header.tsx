@@ -85,7 +85,7 @@ export function Header() {
   return (
     <header className="fixed top-3 left-1/2 z-50 w-full max-w-7xl -translate-x-1/2 px-4 md:px-8">
       {/* Floating island */}
-      <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/75 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+      <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/75 py-3 shadow-card backdrop-blur-xl">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center pl-5">
           <img src="/kosmologo.svg" alt="СитиМед Эстетика" width="168" height="48" className="h-9 w-auto lg:h-10" />
@@ -102,7 +102,7 @@ export function Header() {
             <button
               onClick={() => setIsBurgerOpen(!isBurgerOpen)}
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-slate-100",
+                "flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-primary/50",
                 isBurgerOpen ? "bg-slate-100 text-[#F97316]" : "text-slate-400"
               )}
               aria-label="Ещё"
@@ -162,9 +162,9 @@ export function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-slate-100 lg:hidden mr-0.5"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-primary/50 lg:hidden mr-0.5"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMobileOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={isMobileOpen}
         >
           {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -178,7 +178,7 @@ export function Header() {
           onClick={() => setIsMobileOpen(false)}
         >
           <div
-            className="absolute inset-x-4 -top-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-[2rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
+            className="absolute inset-x-4 -top-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-card border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
             onClick={(event) => event.stopPropagation()}
           >
             <nav className="flex flex-col space-y-2">

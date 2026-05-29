@@ -15,9 +15,9 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
   return (
     <Link
       href={`/doctors/${doctor.id}`}
-      className="group block h-full active:scale-[0.98] transition-transform duration-200"
+      className="group block h-full active:scale-[0.98] transition-transform duration-200 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-card"
     >
-      <article className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+      <article className="flex h-full flex-col overflow-hidden rounded-card bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-card-hover">
         {/* === Фото: верхние ~68% карточки === */}
         <div className="relative aspect-[3/4] w-full overflow-hidden bg-slate-100">
           {doctor.image ? (
@@ -62,7 +62,7 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
             <h3 className="text-base font-medium tracking-[0.01em] text-slate-800 sm:text-lg">
               {doctor.name}
             </h3>
-            <p className="text-xs leading-[1.5] text-[#777] sm:text-sm">
+            <p className="text-xs leading-[1.5] text-muted-text sm:text-sm">
               {doctor.role}
             </p>
           </div>

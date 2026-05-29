@@ -41,7 +41,7 @@ function DetailSection({ title, items }: { title: string; items: string[] }) {
       <ul className="space-y-3">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3 text-slate-600">
-            <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
+            <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
             <span>{item}</span>
           </li>
         ))}
@@ -80,7 +80,7 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
       <section className="container mx-auto max-w-7xl px-4 pb-12 md:px-8 md:pb-20">
         <Link
           href="/doctors"
-          className="inline-flex items-center gap-2 text-slate-500 transition-colors hover:text-orange-500"
+          className="inline-flex items-center gap-2 text-slate-500 transition-colors hover:text-primary"
         >
           <ArrowLeft className="h-4 w-4" />
           Назад к списку врачей
@@ -88,7 +88,7 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
 
         <div className="mt-8 grid gap-8 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="overflow-hidden rounded-3xl bg-white p-4 shadow-sm md:p-5">
+            <div className="overflow-hidden rounded-card bg-white p-4 shadow-sm md:p-5">
               <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-slate-100">
                 {doctor.image ? (
                   <Image
@@ -105,12 +105,12 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
                   </div>
                 )}
               </div>
-              <OpenModalButton className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-6 py-3 font-medium text-white transition-colors hover:bg-orange-600" />
+              <OpenModalButton className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-3 font-medium text-white transition-colors hover:bg-primary-hover" />
             </div>
           </div>
 
           <div className="md:col-span-8">
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <div className="rounded-card bg-white p-8 shadow-sm">
               <h1 className="text-4xl font-semibold text-slate-900">{doctor.name}</h1>
               <p className="mt-3 text-lg text-slate-500">{doctor.specialties.join(", ")}</p>
 
@@ -123,14 +123,14 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
                   <h3 className="mb-4 text-xl font-medium text-slate-900">Опыт работы</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3 text-slate-600">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
+                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                       <span>{doctor.experience}</span>
                     </li>
                   </ul>
                 </section>
               )}
 
-              <div className="mt-10 rounded-3xl border border-slate-100 bg-slate-50 p-6">
+              <div className="mt-10 rounded-card border border-slate-100 bg-slate-50 p-6">
                 <h3 className="text-xl font-medium text-slate-900">Запись на прием</h3>
                 <p className="mt-3 text-slate-600">
                   Для записи к специалисту свяжитесь с клиникой по телефону {CONTACTS.phone} или оставьте заявку через форму обратной связи.

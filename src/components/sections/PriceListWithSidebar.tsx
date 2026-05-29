@@ -12,7 +12,7 @@ export function PriceListWithSidebar() {
 
   return (
     <section className="bg-white py-12 md:py-24">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
           <aside className="w-full md:w-80 shrink-0 space-y-8">
@@ -26,8 +26,8 @@ export function PriceListWithSidebar() {
                     className={cn(
                       "w-full text-left px-4 py-3 rounded-2xl text-sm font-semibold transition-all",
                       activeCategory === cat.id
-                        ? "bg-orange-500 text-white shadow-sm"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-orange-500"
+                        ? "bg-primary text-white shadow-sm"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-primary"
                     )}
                   >
                     {cat.title}
@@ -36,7 +36,7 @@ export function PriceListWithSidebar() {
               </nav>
             </div>
             
-            <div className="p-6 bg-slate-50 rounded-3xl space-y-4">
+            <div className="p-6 bg-slate-50 rounded-card space-y-4">
               <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wider">Поиск услуги</h4>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -48,7 +48,7 @@ export function PriceListWithSidebar() {
           {/* Main Content */}
           <div className="flex-1 space-y-12">
             <div className="space-y-4">
-              <h2 className="text-3xl font-semibold text-slate-800 md:text-5xl">Услуги и цены</h2>
+              <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Услуги и цены</h2>
               <p className="text-slate-500 max-w-2xl text-lg">
                 Ознакомьтесь с полным перечнем процедур нашей клиники. Мы используем только сертифицированные препараты и передовое оборудование.
               </p>
@@ -68,7 +68,7 @@ export function PriceListWithSidebar() {
                     {cat.services.map((service) => (
                       <div 
                         key={service.id}
-                        className="bg-slate-50 p-6 md:p-8 rounded-[2rem] flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100 group"
+                    <div className="bg-slate-50 p-6 md:p-8 rounded-card flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100 group"
                       >
                         <div className="space-y-2">
                           <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ export function PriceListWithSidebar() {
                           </span>
                           <Link
                             href={`/contacts?service=${service.id}`}
-                            className="inline-flex h-11 items-center rounded-xl border border-orange-500 px-6 font-medium text-orange-500 transition-all duration-300 hover:bg-orange-500 hover:text-white"
+                            className="inline-flex h-11 items-center rounded-xl border border-primary px-6 font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-white"
                           >
                             Записаться
                           </Link>

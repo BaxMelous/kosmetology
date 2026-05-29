@@ -35,7 +35,7 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
         >
-          <div className="relative w-full max-w-md overflow-hidden rounded-[2rem] bg-white shadow-2xl">
+          <div className="relative w-full max-w-md overflow-hidden rounded-card bg-white shadow-2xl">
             <button
               onClick={closeModal}
               className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700"
@@ -67,7 +67,7 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                   <Label htmlFor="modal-message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Комментарий</Label>
                   <Textarea id="modal-message" placeholder="Ваш вопрос или пожелание..." className="min-h-[100px] rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary" />
                 </div>
-                <Button type="submit" className="h-12 w-full rounded-xl bg-orange-500 px-6 font-medium text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/25">
+                <Button type="submit" className="h-12 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25">
                   Отправить заявку
                   <Send className="ml-2 h-5 w-5" />
                 </Button>

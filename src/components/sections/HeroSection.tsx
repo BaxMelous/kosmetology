@@ -9,8 +9,10 @@ import { useConsultationModal } from "@/components/ConsultationModal";
 export function HeroSection() {
   const { openModal } = useConsultationModal();
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   // Detect mobile for softer animations
   useEffect(() => {
@@ -21,6 +23,22 @@ export function HeroSection() {
     return () => mql.removeEventListener("change", handler);
   }, []);
 
+  // Detect prefers-reduced-motion
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  // Pause video for reduced-motion users
+  useEffect(() => {
+    if (reducedMotion && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [reducedMotion]);
+
   // Parallax mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -28,6 +46,8 @@ export function HeroSection() {
   const springY = useSpring(mouseY, { stiffness: 50, damping: 30 });
 
   useEffect(() => {
+    if (isMobile) return; // Skip parallax tracking on mobile
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -37,16 +57,16 @@ export function HeroSection() {
       mouseY.set(y * 10);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
 
   return (
     <section ref={containerRef} className="bg-slate-50">
-      <div className="mx-auto max-w-7xl px-4 pt-4 pb-10 sm:pt-6 sm:pb-12 md:px-8 md:pt-8 md:pb-14">
+      <div className="mx-auto max-w-7xl px-4 pt-4 pb-10 sm:pt-6 sm:pb-12 md:px-8 md:pt-8 md:pb-14 lg:px-12 xl:px-16">
 
         {/* Rounded container — full video background like PageHero */}
-        <div className="relative isolate overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:min-h-[600px] xl:min-h-[680px]">
+        <div className="relative isolate overflow-hidden rounded-card md:rounded-[2.5rem] lg:min-h-[600px] xl:min-h-[680px]">
 
           {/* Video background — parallax */}
           <motion.div
@@ -56,8 +76,9 @@ export function HeroSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <video
               ref={(el) => {
+                // @ts-expect-error ref callback also stores to videoRef
+                videoRef.current = el;
                 if (!el) return;
-                // Handle cached videos where onLoadedData already fired
                 if (el.readyState >= 2) setVideoLoaded(true);
               }}
               autoPlay
@@ -103,7 +124,7 @@ export function HeroSection() {
               className="max-w-2xl space-y-6 md:space-y-8"
             >
               {/* Заголовок */}
-              <h1 className="text-2xl font-light leading-[1.15] tracking-[0.02em] text-[#1a1a2e] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+              <h1 className="text-2xl font-light leading-[1.15] tracking-[0.02em] text-[#1a1a2e] sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">
                 Профессиональная{" "}
                 <span className="font-normal text-[#F97316]">косметология</span>
                 <br />
@@ -111,7 +132,7 @@ export function HeroSection() {
               </h1>
 
               {/* Подзаголовок */}
-              <p className="mt-5 max-w-md text-sm font-light leading-[1.7] text-[#999] sm:text-base md:text-lg">
+              <p className="mt-5 max-w-md text-sm font-light leading-[1.7] text-muted-light sm:text-base md:text-lg">
                 Современные методики омоложения и ухода за кожей с использованием
                 сертифицированных препаратов. Индивидуальный подход и видимый
                 результат уже после первой процедуры.

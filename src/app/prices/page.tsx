@@ -13,7 +13,7 @@ function PricesPageFallback() {
         {Array.from({ length: 3 }).map((_, index) => (
           <div
             key={index}
-            className="h-24 animate-pulse rounded-3xl border border-slate-100 bg-white shadow-sm"
+            className="h-24 animate-pulse rounded-card border border-slate-100 bg-white shadow-sm"
           />
         ))}
       </div>

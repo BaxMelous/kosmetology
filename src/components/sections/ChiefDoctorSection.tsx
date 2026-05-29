@@ -14,7 +14,7 @@ export function ChiefDoctorSection() {
         <div className="absolute top-1/2 left-1/3 h-[300px] w-[300px] rounded-full bg-amber-50/30 blur-[80px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-8">
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
           {/* Текст */}
           <div className="space-y-6 text-left md:text-left md:space-y-7">
@@ -32,7 +32,7 @@ export function ChiefDoctorSection() {
             </div>
 
             {/* Абзац 1 */}
-            <p className="text-sm font-light leading-[1.7] tracking-[0.02em] text-[#666] sm:text-base">
+            <p className="text-sm font-light leading-[1.7] tracking-[0.02em] text-muted-text sm:text-base">
               Зачастую мы откладываем свой визит к косметологу на многие годы
               по каким-либо причинам. Кто-то из-за стеснения, кто-то из-за
               страха боли и последствий, кто-то из-за ложных представлений
@@ -45,7 +45,7 @@ export function ChiefDoctorSection() {
             </blockquote>
 
             {/* Абзац 2 */}
-            <p className="text-sm font-light leading-[1.7] tracking-[0.02em] text-[#666] sm:text-base">
+            <p className="text-sm font-light leading-[1.7] tracking-[0.02em] text-muted-text sm:text-base">
               За многие годы практики мы научились грамотно подходить к запросу
               каждого пациента, не изменяя его индивидуальных особенностей.
               В своей работе мы прекрасно совмещаем аппаратные и инъекционные
@@ -57,7 +57,7 @@ export function ChiefDoctorSection() {
               <p className="text-base font-light leading-[1.7] tracking-[0.02em] text-[#1a1a2e] sm:text-lg">
                 Будем рады видеть Вас в нашем косметологическом центре!
               </p>
-              <p className="mt-2 text-sm font-light leading-[1.7] tracking-[0.02em] text-[#888] sm:text-base">
+              <p className="mt-2 text-sm font-light leading-[1.7] tracking-[0.02em] text-muted-light sm:text-base">
                 Мы поможем Вам сохранить здоровье кожи и Вашу несравненную
                 красоту на долгие годы!
               </p>
@@ -71,7 +71,7 @@ export function ChiefDoctorSection() {
                   <p className="font-serif text-xl italic tracking-[0.02em] text-[#1a1a2e] md:text-2xl">
                     Бахтина М.А.
                   </p>
-                  <p className="mt-1 text-xs font-light tracking-[0.06em] text-[#aaa]">
+                  <p className="mt-1 text-xs font-light tracking-[0.06em] text-muted-light">
                     Ведущий косметолог, дерматовенеролог
                   </p>
                 </div>
@@ -81,7 +81,7 @@ export function ChiefDoctorSection() {
 
           {/* Портрет — книжная ориентация, по центру, скрыт на мобильных */}
           <div className="relative hidden md:block">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-[2rem] shadow-[0_25px_60px_rgba(0,0,0,0.06)] lg:max-w-lg">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-card shadow-card-hover lg:max-w-lg">
               <Image
                 src="/doctors/bakhtina.webp"
                 alt="Бахтина Марина Александровна — ведущий косметолог"
@@ -91,7 +91,7 @@ export function ChiefDoctorSection() {
                 className="object-cover"
                 sizes="(min-width: 1024px) 32rem, 28rem"
               />
-              <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-black/[0.04]" />
+              <div className="absolute inset-0 rounded-card ring-1 ring-inset ring-black/[0.04]" />
             </div>
           </div>
         </div>

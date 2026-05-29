@@ -41,7 +41,7 @@ export default function ContactsPage() {
 
               {/* Glass Info Cards */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.5rem] border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
+                <div className="rounded-card-sm border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
                   <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316]">
                     <MapPin className="h-4 w-4" />
                   </div>
@@ -51,30 +51,30 @@ export default function ContactsPage() {
                   </p>
                 </div>
 
-                <div className="rounded-[1.5rem] border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
+                <div className="rounded-card-sm border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
                   <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316]">
                     <Phone className="h-4 w-4" />
                   </div>
                   <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Телефон</p>
                   <p className="text-sm font-light text-[#1a1a2e] md:text-base">{CONTACTS.phone}</p>
-                  <p className="mt-1.5 text-xs font-light text-[#888]">Ежедневно: 08:00–20:00</p>
+                  <p className="mt-1.5 text-xs font-light text-muted-light">Ежедневно: 08:00–20:00</p>
                 </div>
               </div>
 
               {/* Contact Form */}
-              <div className="overflow-hidden rounded-[2rem] border border-slate-100 bg-white p-7 md:p-10">
+              <div className="overflow-hidden rounded-card border border-slate-100 bg-white p-7 md:p-10">
                 <div className="mb-8 space-y-1.5">
                   <h3 className="text-xl font-light tracking-[0.04em] text-[#1a1a2e] md:text-2xl">
                     Остались вопросы? Напишите нам
                   </h3>
-                  <p className="text-sm font-light text-[#888]">
+                  <p className="text-sm font-light text-muted-light">
                     Мы свяжемся с вами в течение 15 минут.
                   </p>
                 </div>
 
                 <form action="/contacts" method="get" className="space-y-6">
                   <div className="space-y-1.5">
-                    <label htmlFor="name" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                    <label htmlFor="name" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
                       Ваше имя
                     </label>
                     <input
@@ -84,7 +84,7 @@ export default function ContactsPage() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                    <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
                       Телефон
                     </label>
                     <input
@@ -94,7 +94,7 @@ export default function ContactsPage() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-[#888]">
+                    <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
                       Сообщение
                     </label>
                     <textarea
@@ -111,7 +111,7 @@ export default function ContactsPage() {
                     Отправить заявку
                     <Send className="ml-2 h-4 w-4" />
                   </Button>
-                  <p className="text-center text-[11px] font-light leading-relaxed text-[#888]">
+                  <p className="text-center text-[11px] font-light leading-relaxed text-muted-light">
                     Нажимая «Отправить», вы даете{" "}
                     <Link href="/legal" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
                     на обработку персональных данных и соглашаетесь с{" "}
@@ -128,7 +128,7 @@ export default function ContactsPage() {
                 href="https://yandex.com/maps/-/CPWKaAzz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/map relative flex h-[320px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 hover:shadow-[0_30px_65px_rgba(0,0,0,0.1)] md:h-[420px]"
+                className="group/map relative flex h-[320px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-card bg-slate-200 shadow-card-hover transition-all duration-500 hover:shadow-[0_30px_65px_rgba(0,0,0,0.1)] md:h-[420px]"
               >
                 <div
                   className="absolute inset-0"
@@ -157,7 +157,7 @@ export default function ContactsPage() {
                     key={i}
                     type="button"
                     onClick={() => setSelectedPhoto(img)}
-                    className="group/photo aspect-square overflow-hidden rounded-[1.25rem] md:rounded-[1.75rem]"
+                    className="group/photo aspect-square overflow-hidden rounded-card-sm md:rounded-[1.75rem]"
                   >
                     <Image
                       src={img}
@@ -182,7 +182,7 @@ export default function ContactsPage() {
               </h2>
             </div>
             <Accordion className="space-y-3">
-              <AccordionItem value="car" className="overflow-hidden rounded-[1.5rem] border border-slate-100 bg-white px-5 md:rounded-[2rem] md:px-7">
+              <AccordionItem value="car" className="overflow-hidden rounded-card-sm border border-slate-100 bg-white px-5 md:rounded-card md:px-7">
                 <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-6">
                   <div className="flex items-center gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316] md:h-11 md:w-11">
@@ -193,12 +193,12 @@ export default function ContactsPage() {
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-[#888] md:pb-8 md:pl-14 md:text-base">
+                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-muted-light md:pb-8 md:pl-14 md:text-base">
                   Для пациентов предусмотрена бесплатная парковка.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="bus" className="overflow-hidden rounded-[1.5rem] border border-slate-100 bg-white px-5 md:rounded-[2rem] md:px-7">
+              <AccordionItem value="bus" className="overflow-hidden rounded-card-sm border border-slate-100 bg-white px-5 md:rounded-card md:px-7">
                 <AccordionTrigger className="min-h-11 py-5 hover:no-underline md:py-6">
                   <div className="flex items-center gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F97316]/10 text-[#F97316] md:h-11 md:w-11">
@@ -209,7 +209,7 @@ export default function ContactsPage() {
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-[#888] md:pb-8 md:pl-14 md:text-base">
+                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-muted-light md:pb-8 md:pl-14 md:text-base">
                   <p className="mb-4">Остановки: «Якова Эшпая» и «Ленинский проспект».</p>
                   <div className="flex flex-wrap gap-2">
                     {["24П", "21К", "18К", "20К", "М8", "М2", "3П"].map(route => (
@@ -225,7 +225,7 @@ export default function ContactsPage() {
 
           {/* Social Media */}
           <div className="mx-auto mt-14 max-w-4xl text-center md:mt-20">
-            <div className="rounded-[2rem] border border-slate-100 bg-white px-6 py-10 md:px-12 md:py-14">
+            <div className="rounded-card border border-slate-100 bg-white px-6 py-10 md:px-12 md:py-14">
               <p className="text-base font-light tracking-[0.04em] text-[#1a1a2e] md:text-lg">
                 Мы в социальных сетях
               </p>
@@ -251,7 +251,7 @@ export default function ContactsPage() {
                   </a>
                 ))}
               </div>
-              <p className="mt-5 text-xs font-light text-[#888]">
+              <p className="mt-5 text-xs font-light text-muted-light">
                 Подписывайтесь — публикуем акции, советы косметолога и отзывы пациентов
               </p>
             </div>
