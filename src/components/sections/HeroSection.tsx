@@ -10,6 +10,16 @@ export function HeroSection() {
   const { openModal } = useConsultationModal();
   const containerRef = useRef<HTMLDivElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile for softer animations
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   // Parallax mouse tracking
   const mouseX = useMotionValue(0);
@@ -87,9 +97,9 @@ export function HeroSection() {
           {/* Content overlay */}
           <div className="relative z-10 flex items-center px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:px-16 lg:py-28 xl:px-20">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
+              initial={{ opacity: 0, x: isMobile ? -10 : -40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: isMobile ? 0.5 : 0.9, ease: [0.25, 0.1, 0.25, 1] }}
               className="max-w-2xl space-y-6 md:space-y-8"
             >
               {/* Заголовок */}
@@ -111,14 +121,14 @@ export function HeroSection() {
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4">
                 <Button
                   onClick={openModal}
-                  className="h-11 rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/20 sm:w-auto"
+                  className="h-11 w-full rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/20 sm:w-auto"
                 >
                   Записаться
                 </Button>
-                <Link href="/prices">
+                <Link href="/prices" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="h-11 rounded-xl border border-slate-200 bg-white px-6 text-sm font-light tracking-[0.04em] text-[#1a1a2e] transition-all duration-300 hover:border-[#F97316]/30 hover:text-[#F97316] sm:w-auto"
+                    className="h-11 w-full rounded-xl border border-slate-200 bg-white px-6 text-sm font-light tracking-[0.04em] text-[#1a1a2e] transition-all duration-300 hover:border-[#F97316]/30 hover:text-[#F97316] sm:w-auto"
                   >
                     Посмотреть услуги
                   </Button>

@@ -162,7 +162,7 @@ export function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-slate-100 lg:hidden mr-1"
+          className="flex h-9 w-9 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-slate-100 lg:hidden mr-0.5"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMobileOpen}
@@ -174,11 +174,11 @@ export function Header() {
       {/* Mobile Menu */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm lg:hidden"
+          className="fixed top-[4.5rem] inset-x-0 bottom-0 z-[60] bg-black/20 backdrop-blur-sm lg:hidden"
           onClick={() => setIsMobileOpen(false)}
         >
           <div
-            className="absolute inset-x-4 top-20 overflow-hidden rounded-[2rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
+            className="absolute inset-x-4 -top-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-[2rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
             onClick={(event) => event.stopPropagation()}
           >
             <nav className="flex flex-col space-y-2">

@@ -63,7 +63,7 @@ export function FeaturesSection() {
               <Link
                 key={feature.href}
                 href={feature.href}
-                className="group relative block h-52 overflow-hidden rounded-[2rem] bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] sm:h-56 md:h-60"
+                className="group relative block min-h-52 overflow-hidden rounded-[2rem] bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] sm:min-h-56 md:min-h-60"
               >
                 {/* Фоновое изображение — на всю карточку */}
                 <div
