@@ -19,7 +19,7 @@ export default function ContactsPage() {
   const clinicPhotos = [
     "/Contacts_1.webp",
     "/Contacts_2.webp",
-    "/Contacts_3.webp",
+    "/Contacts_3.png",
   ];
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
