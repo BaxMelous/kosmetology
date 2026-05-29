@@ -174,11 +174,11 @@ export function Header() {
       {/* Mobile Menu */}
       {isMobileOpen && (
         <div
-          className="fixed top-[4.5rem] inset-x-0 bottom-0 z-[60] bg-black/20 backdrop-blur-sm lg:hidden"
+          className="fixed top-[4.5rem] inset-x-0 bottom-0 z-[70] bg-black/20 backdrop-blur-sm lg:hidden"
           onClick={() => setIsMobileOpen(false)}
         >
           <div
-            className="absolute inset-x-4 -top-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-card border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
+            className="absolute inset-x-4 -top-3 max-h-[calc(100vh-10rem)] overflow-y-auto overscroll-contain rounded-card border border-white/70 bg-white/95 p-6 pb-24 shadow-[0_24px_80px_rgba(15,23,42,0.18)]"
             onClick={(event) => event.stopPropagation()}
           >
             <nav className="flex flex-col space-y-2">

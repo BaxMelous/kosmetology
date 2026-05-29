@@ -76,7 +76,6 @@ export function HeroSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <video
               ref={(el) => {
-                // @ts-expect-error ref callback also stores to videoRef
                 videoRef.current = el;
                 if (!el) return;
                 if (el.readyState >= 2) setVideoLoaded(true);

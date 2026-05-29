@@ -68,7 +68,7 @@ export function PriceListWithSidebar() {
                     {cat.services.map((service) => (
                       <div 
                         key={service.id}
-                    <div className="bg-slate-50 p-6 md:p-8 rounded-card flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100 group"
+                        className="bg-slate-50 p-6 md:p-8 rounded-card flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100 group"
                       >
                         <div className="space-y-2">
                           <div className="flex items-center gap-3">
