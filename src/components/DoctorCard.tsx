@@ -68,7 +68,7 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
           </div>
 
           {/* Кнопка «Подробнее» */}
-          <span className="mt-4 inline-flex h-9 w-fit items-center rounded-xl border px-4 text-xs font-medium text-[#F97316] transition-all duration-300 group-hover:border-[#F97316] group-hover:bg-[#F97316] group-hover:text-white sm:h-10 sm:px-5 sm:text-sm" style={{ borderColor: "#F97316" }}>
+          <span className="mt-4 inline-flex h-10 w-fit items-center rounded-xl border border-[#F97316]/30 bg-transparent px-4 text-sm font-light tracking-[0.04em] text-[#F97316] transition-all duration-300 group-hover:border-[#F97316] group-hover:bg-[#F97316] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#F97316]/15">
             Подробнее
           </span>
         </div>
