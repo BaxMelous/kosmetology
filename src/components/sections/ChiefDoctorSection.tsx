@@ -72,7 +72,7 @@ export function ChiefDoctorSection() {
                     Бахтина М.А.
                   </p>
                   <p className="mt-1 text-xs font-light tracking-[0.06em] text-[#aaa]">
-                    Главный врач, дерматовенеролог, косметолог
+                    Ведущий косметолог, дерматовенеролог
                   </p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ export function ChiefDoctorSection() {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-[2rem] shadow-[0_25px_60px_rgba(0,0,0,0.06)] lg:max-w-lg">
               <Image
                 src="/doctors/bakhtina.webp"
-                alt="Бахтина Марина Александровна — главный врач"
+                alt="Бахтина Марина Александровна — ведущий косметолог"
                 fill
                 quality={90}
                 unoptimized

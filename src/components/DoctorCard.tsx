@@ -42,14 +42,14 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
           )}
 
           {/* === Стеклянные бейджи === */}
-          <div className="absolute left-3 top-3 z-10 flex flex-col gap-2 sm:left-4 sm:top-4">
+          <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-2 sm:left-4 sm:top-4">
             {isChief && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.05em] text-slate-700 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.12em] text-slate-600 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
                 <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#F97316" }} />
-                Главный врач
+                Ведущий косметолог
               </span>
             )}
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.05em] text-slate-700 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.12em] text-slate-600 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
               <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#A3B903" }} />
               {doctor.experience ?? "Опыт 10 лет"}
             </span>
