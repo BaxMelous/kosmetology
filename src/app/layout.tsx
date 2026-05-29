@@ -40,7 +40,7 @@ export default function RootLayout({
         <AccessibilityProvider>
           <ConsultationModalProvider>
             <Header />
-            <main className="flex-grow pb-24 lg:pb-0">
+            <main className="grow pt-[96px] pb-24 lg:pb-0">
               {children}
             </main>
             <Footer />

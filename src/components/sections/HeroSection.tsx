@@ -33,7 +33,7 @@ export function HeroSection() {
 
   return (
     <section ref={containerRef} className="bg-slate-50">
-      <div className="mx-auto max-w-7xl px-4 pt-1 pb-8 sm:pt-1 sm:pb-10 md:px-8 md:pb-12">
+      <div className="mx-auto max-w-7xl px-4 pt-4 pb-10 sm:pt-6 sm:pb-12 md:px-8 md:pt-8 md:pb-14">
 
         {/* Rounded container — full video background like PageHero */}
         <div className="relative isolate overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:min-h-[600px] xl:min-h-[680px]">
@@ -45,21 +45,28 @@ export function HeroSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <video
+              ref={(el) => {
+                if (!el) return;
+                // Handle cached videos where onLoadedData already fired
+                if (el.readyState >= 2) setVideoLoaded(true);
+              }}
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               onLoadedData={() => setVideoLoaded(true)}
-              className={`h-full w-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
+              onCanPlay={() => setVideoLoaded(true)}
+              className="absolute inset-0 h-full w-full object-cover"
             >
               <source src="/video/hero-main.mp4" type="video/mp4" />
             </video>
           </motion.div>
 
-          {/* Skeleton */}
-          {!videoLoaded && (
-            <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-slate-100 via-white to-slate-50" />
-          )}
+          {/* Skeleton — covers video until loaded, then fades out */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br from-slate-100 via-white to-slate-50 transition-opacity duration-500 pointer-events-none ${videoLoaded ? "opacity-0" : "opacity-100"}`}
+          />
 
           {/* Overlay — gentle darkening for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/40 to-transparent" />
