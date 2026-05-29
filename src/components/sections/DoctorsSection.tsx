@@ -13,7 +13,7 @@ export function DoctorsSection({ doctors, limit }: DoctorsSectionProps) {
   const visibleDoctors = typeof limit === "number" ? doctors.slice(0, limit) : doctors;
 
   return (
-    <section id="doctors" className="bg-white py-10 md:py-28">
+    <section id="doctors" className="py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">

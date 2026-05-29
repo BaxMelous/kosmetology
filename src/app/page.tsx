@@ -26,18 +26,22 @@ export default function Home() {
       <ParallaxSection>
         <PopularServices services={popularServices} />
       </ParallaxSection>
-      <ParallaxSection>
-        <div className="bg-white">
+      <div className="bg-white">
+        <ParallaxSection>
           <DoctorsSection doctors={DOCTORS} limit={4} />
-        </div>
-      </ParallaxSection>
+        </ParallaxSection>
+      </div>
       <ChiefDoctorSection />
-      <ParallaxSection>
-        <EquipmentSection />
-      </ParallaxSection>
-      <ParallaxSection>
-        <BeforeAfterSection />
-      </ParallaxSection>
+      <div className="bg-white">
+        <ParallaxSection>
+          <EquipmentSection />
+        </ParallaxSection>
+      </div>
+      <div className="bg-white">
+        <ParallaxSection>
+          <BeforeAfterSection />
+        </ParallaxSection>
+      </div>
       <ParallaxSection>
         <ReviewsSection />
       </ParallaxSection>

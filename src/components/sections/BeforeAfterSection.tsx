@@ -15,7 +15,7 @@ import { BEFORE_AFTER_CASES } from "@/lib/data";
 
 export function BeforeAfterSection() {
   return (
-    <section className="overflow-hidden bg-white py-10 md:py-28">
+    <section className="overflow-hidden py-10 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">

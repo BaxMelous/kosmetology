@@ -8,7 +8,7 @@ import { useConsultationModal } from "@/components/ConsultationModal";
 export function CtaConsultation() {
   const { openModal } = useConsultationModal();
   return (
-    <section className="py-14 md:py-28">
+    <section className="pt-4 pb-14 md:pt-10 md:pb-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 p-6 md:p-20 text-center">
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2" />

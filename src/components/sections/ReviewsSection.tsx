@@ -15,7 +15,7 @@ import { Link } from "@/components/Link";
 
 export function ReviewsSection() {
   return (
-    <section id="reviews" className="overflow-hidden bg-slate-50 py-10 md:py-28">
+    <section id="reviews" className="overflow-hidden bg-slate-50 pt-10 pb-6 md:pt-28 md:pb-12">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
