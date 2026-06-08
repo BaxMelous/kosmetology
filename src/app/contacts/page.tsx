@@ -113,9 +113,9 @@ export default function ContactsPage() {
                   </Button>
                   <p className="text-center text-[11px] font-light leading-relaxed text-muted-light">
                     Нажимая «Отправить», вы даете{" "}
-                    <Link href="/legal" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
+                    <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
                     на обработку персональных данных и соглашаетесь с{" "}
-                    <Link href="/legal" className="underline transition-colors hover:text-[#1a1a2e]">Политикой конфиденциальности</Link>.
+                    <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">Политикой конфиденциальности</Link>.
                   </p>
                 </form>
               </div>

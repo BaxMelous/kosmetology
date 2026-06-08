@@ -73,9 +73,9 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                 </Button>
                 <p className="text-center text-[11px] leading-relaxed text-slate-400">
                   Нажимая &laquo;Отправить&raquo;, вы даете{" "}
-                  <Link href="/legal" className="underline hover:text-slate-600">согласие</Link>{" "}
+                  <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">согласие</Link>{" "}
                   на обработку персональных данных и соглашаетесь с{" "}
-                  <Link href="/legal" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
+                  <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
                 </p>
               </form>
             </div>

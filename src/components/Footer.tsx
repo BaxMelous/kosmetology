@@ -19,8 +19,8 @@ export function Footer() {
             </p>
             <div className="text-xs space-y-1 text-slate-400">
               <p>ООО «СитиМед»</p>
-              <p>ИНН: 1215004470</p>
-              <p>ОГРН: 1021200763875</p>
+              <p>ИНН: 1215157275</p>
+              <p>ОГРН: 1111215003789</p>
             </div>
           </div>
 
@@ -41,7 +41,7 @@ export function Footer() {
           <div>
             <h3 className="mb-6 font-semibold text-slate-800">Информация</h3>
             <ul className="space-y-4 text-sm">
-              <li><Link href="/legal" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Политика конфиденциальности</Link></li>
+              <li><Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Политика конфиденциальности</Link></li>
               <li><Link href="/legal" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Правовая информация</Link></li>
               <li><Link href="/legal" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Лицензии</Link></li>
             </ul>
