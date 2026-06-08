@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -6,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { AccessibilityProvider } from "@/components/AccessibilityProvider";
 import { ConsultationModalProvider } from "@/components/ConsultationModal";
+import { YandexMetrika } from "@/components/YandexMetrika";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -47,6 +49,10 @@ export default function RootLayout({
             <MobileBottomNav />
           </ConsultationModalProvider>
         </AccessibilityProvider>
+        {/* Яндекс Метрика: ленивая загрузка, обёрнута в Suspense для совместимости с SSG */}
+        <Suspense fallback={null}>
+          <YandexMetrika counterId={99121294} />
+        </Suspense>
       </body>
     </html>
   );
