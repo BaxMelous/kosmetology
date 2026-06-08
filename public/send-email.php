@@ -130,23 +130,38 @@ try {
     $phone = htmlspecialchars(trim($data['phone'] ?? ''), ENT_QUOTES, 'UTF-8');
     $message = nl2br(htmlspecialchars(trim($data['message'] ?? ''), ENT_QUOTES, 'UTF-8'));
     $page = htmlspecialchars(trim($data['page'] ?? 'Не указана'), ENT_QUOTES, 'UTF-8');
+    $userSubject = htmlspecialchars(trim($data['subject'] ?? ''), ENT_QUOTES, 'UTF-8');
 
     if (empty($phone) && empty($name)) {
         throw new Exception('Не заполнены обязательные поля');
     }
 
     $subject = 'Заявка с сайта СитиМед Эстетика';
-    if (!empty($name)) {
+    if (!empty($userSubject)) {
+        $subject .= ' — ' . $userSubject;
+    } elseif (!empty($name)) {
         $subject .= ' — ' . $name;
     }
 
     $dateTime = date('d.m.Y H:i');
+
+    // Строка с услугой/врачом (если передана)
+    $subjectRow = '';
+    if (!empty($userSubject)) {
+        $subjectRow = <<<ROW
+            <tr>
+                <td style="padding: 8px 12px; background: #f8f9fa; font-weight: bold; width: 120px;">Услуга / врач</td>
+                <td style="padding: 8px 12px; color: #F97316; font-weight: 500;">{$userSubject}</td>
+            </tr>
+        ROW;
+    }
 
     $messageBody = <<<HTML
     <html>
     <body style="font-family: Arial, sans-serif; color: #1a1a2e; max-width: 600px;">
         <h2 style="color: #F97316; margin-bottom: 20px;">Новая заявка с сайта</h2>
         <table style="width: 100%; border-collapse: collapse;">
+            {$subjectRow}
             <tr>
                 <td style="padding: 8px 12px; background: #f8f9fa; font-weight: bold; width: 120px;">Имя</td>
                 <td style="padding: 8px 12px;">{$name}</td>

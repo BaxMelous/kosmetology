@@ -153,7 +153,7 @@ export function Header() {
             +7 (927) 684-54-54
           </a>
           <Button
-            onClick={openModal}
+            onClick={() => openModal()}
             className="h-9 rounded-full bg-[#F97316] px-5 text-sm font-light tracking-[0.03em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/15"
           >
             Записаться
@@ -207,7 +207,7 @@ export function Header() {
                 +7 (927) 684-54-54
               </a>
               <Button
-                onClick={openModal}
+                onClick={() => openModal()}
                 className="h-11 w-full rounded-full bg-[#F97316] px-6 text-sm font-light tracking-[0.03em] text-white transition-all duration-300 hover:bg-[#F97316]/90"
               >
                 Записаться

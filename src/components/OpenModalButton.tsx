@@ -6,7 +6,7 @@ export function OpenModalButton({ className }: { className?: string }) {
   const { openModal } = useConsultationModal();
 
   return (
-    <button onClick={openModal} className={className}>
+    <button onClick={() => openModal()} className={className}>
       Записаться
     </button>
   );

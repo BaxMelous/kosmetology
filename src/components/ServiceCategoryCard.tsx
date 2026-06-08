@@ -148,7 +148,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          openModal();
+                          openModal(service.name);
                         }}
                         className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-primary-hover active:scale-[0.97] sm:h-10 sm:px-5"
                       >

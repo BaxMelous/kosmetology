@@ -41,6 +41,7 @@ export default function ContactsPage() {
           name: name.trim(),
           phone: phone.trim(),
           message: message.trim(),
+          subject: "",
           page: window.location.href,
         }),
       });

@@ -140,7 +140,7 @@ export function HeroSection() {
               {/* Кнопки */}
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4">
                 <Button
-                  onClick={openModal}
+                  onClick={() => openModal()}
                   className="h-11 w-full rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/20 sm:w-auto"
                 >
                   Записаться

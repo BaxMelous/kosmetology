@@ -24,7 +24,7 @@ export function CtaConsultation() {
             <p className="text-sm font-light leading-[1.6] tracking-[0.02em] text-muted-light sm:text-base">
               На консультации врач-косметолог проведет диагностику кожи, выслушает ваши пожелания и составит индивидуальный план преображения. Подберем оптимальные процедуры с учетом вашего типа кожи, возраста и бюджета.
             </p>
-            <Button onClick={openModal} className="h-11 rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2">
+            <Button onClick={() => openModal()} className="h-11 rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2">
               Записаться
             </Button>
           </div>

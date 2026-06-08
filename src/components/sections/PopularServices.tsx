@@ -79,7 +79,7 @@ export function PopularServices({ services }: PopularServicesProps) {
                             {service.price}
                           </span>
                           <Button
-                            onClick={openModal}
+                            onClick={(e) => { e.stopPropagation(); openModal(service.name); }}
                             className="shrink-0 h-10 rounded-xl border border-[#F97316]/30 bg-transparent px-4 text-sm font-light tracking-[0.04em] text-[#F97316] transition-all duration-300 hover:border-[#F97316] hover:bg-[#F97316] hover:text-white hover:shadow-lg hover:shadow-[#F97316]/15"
                           >
                             Записаться

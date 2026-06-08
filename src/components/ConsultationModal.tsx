@@ -9,7 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Link } from "@/components/Link";
 
 type ModalContextType = {
-  openModal: () => void;
+  /** Открыть модальное окно. context — услуга/врач (опционально) */
+  openModal: (context?: string) => void;
   closeModal: () => void;
 };
 
@@ -30,9 +31,12 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  /** Контекст заявки: название услуги или имя врача */
+  const [context, setContext] = useState<string | undefined>(undefined);
 
-  const openModal = () => {
+  const openModal = (ctx?: string) => {
     setStatus("idle");
+    setContext(ctx);
     setIsOpen(true);
   };
 
@@ -62,6 +66,7 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
           name: name.trim(),
           phone: phone.trim(),
           message: message.trim(),
+          subject: context || "",
           page: window.location.href,
         }),
       });
@@ -98,6 +103,11 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                 <h2 className="text-xl font-semibold text-slate-800 md:text-2xl">
                   Запись на консультацию
                 </h2>
+                {context && (
+                  <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    {context}
+                  </span>
+                )}
                 <p className="text-sm text-slate-500">
                   Оставьте заявку, и мы перезвоним вам в течение 15 минут.
                 </p>
