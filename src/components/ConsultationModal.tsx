@@ -25,17 +25,29 @@ export function useConsultationModal() {
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
+/** Убирает из строки все цифры */
+function stripDigits(value: string): string {
+  return value.replace(/\d/g, "");
+}
+
+/** Оставляет только цифры и + ( ) - пробел */
+function stripNonDigits(value: string): string {
+  return value.replace(/[^\d+\-() ]/g, "");
+}
+
 export function ConsultationModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errors, setErrors] = useState<{ phone?: string }>({});
   /** Контекст заявки: название услуги или имя врача */
   const [context, setContext] = useState<string | undefined>(undefined);
 
   const openModal = (ctx?: string) => {
     setStatus("idle");
+    setErrors({});
     setContext(ctx);
     setIsOpen(true);
   };
@@ -43,18 +55,25 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
   const closeModal = useCallback(() => {
     if (status === "loading") return;
     setIsOpen(false);
-    // Сбрасываем поля через небольшую задержку, чтобы анимация закрытия прошла гладко
     setTimeout(() => {
       setName("");
       setPhone("");
       setMessage("");
       setStatus("idle");
+      setErrors({});
     }, 300);
   }, [status]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!phone.trim() && !name.trim()) return;
+
+    // Валидация
+    const newErrors: { phone?: string } = {};
+    if (!phone.trim()) {
+      newErrors.phone = "Укажите номер телефона";
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
     setStatus("loading");
 
@@ -132,20 +151,23 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                     <Input
                       id="modal-name"
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setName(stripDigits(e.target.value))}
                       placeholder="Введите имя"
                       className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="modal-phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон</Label>
+                    <Label htmlFor="modal-phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон *</Label>
                     <Input
                       id="modal-phone"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
                       placeholder="+7 (___) ___-__-__"
-                      className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"
+                      className={errors.phone ? "h-12 rounded-xl border-red-300 bg-red-50 focus-visible:ring-red-400" : "h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"}
                     />
+                    {errors.phone && (
+                      <p className="text-xs text-red-500">{errors.phone}</p>
+                    )}
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="modal-message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Комментарий</Label>

@@ -9,15 +9,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/components/Link";
 
+/** Убирает из строки все цифры */
+function stripDigits(value: string): string {
+  return value.replace(/\d/g, "");
+}
+
+/** Оставляет только цифры и + ( ) - пробел */
+function stripNonDigits(value: string): string {
+  return value.replace(/[^\d+\-() ]/g, "");
+}
+
 export function ContactsSection() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<{ phone?: string }>({});
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!phone.trim() && !name.trim()) return;
+
+    const newErrors: { phone?: string } = {};
+    if (!phone.trim()) {
+      newErrors.phone = "Укажите номер телефона";
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
     setStatus("loading");
 
@@ -148,20 +165,23 @@ export function ContactsSection() {
                     <Input
                       id="contacts-name"
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setName(stripDigits(e.target.value))}
                       placeholder="Иван Иванов"
                       className="rounded-2xl h-12"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="contacts-phone">Телефон</Label>
+                    <Label htmlFor="contacts-phone">Телефон *</Label>
                     <Input
                       id="contacts-phone"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
                       placeholder="+7 (___) ___-__-__"
-                      className="rounded-2xl h-12"
+                      className={errors.phone ? "rounded-2xl h-12 border-red-300 bg-red-50" : "rounded-2xl h-12"}
                     />
+                    {errors.phone && (
+                      <p className="text-xs text-red-500">{errors.phone}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="contacts-message">Сообщение</Label>

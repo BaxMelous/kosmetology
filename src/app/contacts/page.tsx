@@ -26,10 +26,22 @@ export default function ContactsPage() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<{ phone?: string }>({});
+
+  /** Убирает из строки все цифры */
+  const stripDigits = (value: string) => value.replace(/\d/g, "");
+  /** Оставляет только цифры и + ( ) - пробел */
+  const stripNonDigits = (value: string) => value.replace(/[^\d+\-() ]/g, "");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!phone.trim() && !name.trim()) return;
+
+    const newErrors: { phone?: string } = {};
+    if (!phone.trim()) {
+      newErrors.phone = "Укажите номер телефона";
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
     setStatus("loading");
 
@@ -122,22 +134,25 @@ export default function ContactsPage() {
                       <input
                         id="name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setName(stripDigits(e.target.value))}
                         placeholder="Введите имя"
                         className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
                       />
                     </div>
                     <div className="space-y-1.5">
                       <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
-                        Телефон
+                        Телефон *
                       </label>
                       <input
                         id="phone"
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
                         placeholder="+7 (___) ___-__-__"
-                        className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                        className={`w-full border-b bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:outline-none ${errors.phone ? "border-red-300 focus:border-red-400" : "border-slate-200 focus:border-[#F97316]"}`}
                       />
+                      {errors.phone && (
+                        <p className="text-xs font-light text-red-500">{errors.phone}</p>
+                      )}
                     </div>
                     <div className="space-y-1.5">
                       <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
