@@ -44,11 +44,12 @@ export function YandexMetrika({ counterId }: Props) {
     window.__ymPendingHits = [];
 
     (function (d: Document, w: Window & typeof globalThis, c: string) {
-      const id = (w as Record<string, unknown>)[`yandex_metrika_callbacks`] as
+      const g = w as unknown as Record<string, unknown>;
+      const id = g[`yandex_metrika_callbacks`] as
         | Array<() => void>
         | undefined;
       const callbacks = id ?? [];
-      (w as Record<string, unknown>)[`yandex_metrika_callbacks`] = callbacks;
+      g[`yandex_metrika_callbacks`] = callbacks;
 
       w.ym = function (...args: unknown[]) {
         const a = args as unknown[];
