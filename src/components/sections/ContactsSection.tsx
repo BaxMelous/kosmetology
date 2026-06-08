@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState, type FormEvent } from "react";
 import { CONTACTS } from "@/lib/data";
-import { MapPin, Phone, Clock, Bus, Send } from "lucide-react";
+import { MapPin, Phone, Clock, Bus, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +10,34 @@ import { Label } from "@/components/ui/label";
 import { Link } from "@/components/Link";
 
 export function ContactsSection() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!phone.trim() && !name.trim()) return;
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/send-email.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
+          page: window.location.href,
+        }),
+      });
+
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
   return (
     <section id="contacts" className="bg-slate-50 py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 xl:px-16">
@@ -98,30 +128,83 @@ export function ContactsSection() {
                 <p className="text-slate-500">Напишите нам, и мы свяжемся с вами в ближайшее время.</p>
               </div>
 
-              <form action="/contacts" method="get" className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Ваше имя</Label>
-                  <Input id="name" placeholder="Иван Иванов" className="rounded-2xl h-12" />
+              {status === "success" ? (
+                <div className="flex flex-col items-center py-10 text-center">
+                  <CheckCircle2 className="mb-3 h-12 w-12 text-green-500" />
+                  <h3 className="mb-1 text-lg font-semibold text-slate-800">Сообщение отправлено!</h3>
+                  <p className="text-sm text-slate-500">Мы свяжемся с вами в ближайшее время.</p>
+                  <Button
+                    onClick={() => setStatus("idle")}
+                    className="mt-5 h-11 rounded-xl bg-slate-100 px-6 text-slate-700 hover:bg-slate-200"
+                  >
+                    Отправить ещё заявку
+                  </Button>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Телефон</Label>
-                  <Input id="phone" placeholder="+7 (___) ___-__-__" className="rounded-2xl h-12" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message">Сообщение</Label>
-                  <Textarea id="message" placeholder="Ваш вопрос или пожелание..." className="rounded-2xl min-h-[150px]" />
-                </div>
-                <Button type="submit" className="h-11 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover">
-                  Отправить заявку
-                  <Send className="ml-2 w-5 h-5" />
-                </Button>
-                <p className="text-xs text-slate-400 text-center leading-relaxed">
-                  Нажимая &laquo;Отправить&raquo;, вы даете{" "}
-                  <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">согласие</Link>{" "}
-                  на обработку персональных данных и соглашаетесь с{" "}
-                  <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
-                </p>
-              </form>
+              ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  <div className="space-y-2">
+                    <Label htmlFor="contacts-name">Ваше имя</Label>
+                    <Input
+                      id="contacts-name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Иван Иванов"
+                      className="rounded-2xl h-12"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contacts-phone">Телефон</Label>
+                    <Input
+                      id="contacts-phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+7 (___) ___-__-__"
+                      className="rounded-2xl h-12"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contacts-message">Сообщение</Label>
+                    <Textarea
+                      id="contacts-message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Ваш вопрос или пожелание..."
+                      className="rounded-2xl min-h-[150px]"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      Ошибка отправки. Пожалуйста, попробуйте ещё раз или позвоните нам.
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="h-11 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover disabled:opacity-60"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Отправка...
+                      </>
+                    ) : (
+                      <>
+                        Отправить заявку
+                        <Send className="ml-2 w-5 h-5" />
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-xs text-slate-400 text-center leading-relaxed">
+                    Нажимая &laquo;Отправить&raquo;, вы даете{" "}
+                    <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">согласие</Link>{" "}
+                    на обработку персональных данных и соглашаетесь с{" "}
+                    <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>

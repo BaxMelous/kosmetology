@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { CONTACTS } from "@/lib/data";
-import { MapPin, Phone, Bus, Send, Car, X } from "lucide-react";
+import { MapPin, Phone, Bus, Send, Car, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -22,6 +22,34 @@ export default function ContactsPage() {
     "/Contacts_3.png",
   ];
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!phone.trim() && !name.trim()) return;
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/send-email.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
+          page: window.location.href,
+        }),
+      });
+
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
@@ -72,52 +100,90 @@ export default function ContactsPage() {
                   </p>
                 </div>
 
-                <form action="/contacts" method="get" className="space-y-6">
-                  <div className="space-y-1.5">
-                    <label htmlFor="name" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
-                      Ваше имя
-                    </label>
-                    <input
-                      id="name"
-                      placeholder="Введите имя"
-                      className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
-                    />
+                {status === "success" ? (
+                  <div className="flex flex-col items-center py-10 text-center">
+                    <CheckCircle2 className="mb-3 h-12 w-12 text-green-500" />
+                    <h3 className="mb-1 text-lg font-light tracking-[0.04em] text-[#1a1a2e]">Сообщение отправлено!</h3>
+                    <p className="text-sm font-light text-muted-light">Мы свяжемся с вами в течение 15 минут.</p>
+                    <Button
+                      onClick={() => { setStatus("idle"); setName(""); setPhone(""); setMessage(""); }}
+                      className="mt-5 h-11 rounded-xl bg-slate-100 px-6 text-sm font-light text-slate-700 hover:bg-slate-200"
+                    >
+                      Отправить ещё заявку
+                    </Button>
                   </div>
-                  <div className="space-y-1.5">
-                    <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
-                      Телефон
-                    </label>
-                    <input
-                      id="phone"
-                      placeholder="+7 (___) ___-__-__"
-                      className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
-                      Сообщение
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      placeholder="Ваш вопрос или пожелание..."
-                      className="w-full resize-none border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="h-11 w-full rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/15"
-                  >
-                    Отправить заявку
-                    <Send className="ml-2 h-4 w-4" />
-                  </Button>
-                  <p className="text-center text-[11px] font-light leading-relaxed text-muted-light">
-                    Нажимая «Отправить», вы даете{" "}
-                    <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
-                    на обработку персональных данных и соглашаетесь с{" "}
-                    <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">Политикой конфиденциальности</Link>.
-                  </p>
-                </form>
+                ) : (
+                  <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div className="space-y-1.5">
+                      <label htmlFor="name" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
+                        Ваше имя
+                      </label>
+                      <input
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Введите имя"
+                        className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="phone" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
+                        Телефон
+                      </label>
+                      <input
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+7 (___) ___-__-__"
+                        className="w-full border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="message" className="text-[10px] font-light uppercase tracking-[0.15em] text-muted-light">
+                        Сообщение
+                      </label>
+                      <textarea
+                        id="message"
+                        rows={4}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Ваш вопрос или пожелание..."
+                        className="w-full resize-none border-b border-slate-200 bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:border-[#F97316] focus:outline-none"
+                      />
+                    </div>
+
+                    {status === "error" && (
+                      <p className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-light text-red-600">
+                        <AlertCircle className="h-4 w-4 shrink-0" />
+                        Ошибка отправки. Пожалуйста, попробуйте ещё раз или позвоните нам.
+                      </p>
+                    )}
+
+                    <Button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="h-11 w-full rounded-xl bg-[#F97316] px-6 text-sm font-light tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#F97316]/90 hover:shadow-lg hover:shadow-[#F97316]/15 disabled:opacity-60"
+                    >
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Отправка...
+                        </>
+                      ) : (
+                        <>
+                          Отправить заявку
+                          <Send className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                    <p className="text-center text-[11px] font-light leading-relaxed text-muted-light">
+                      Нажимая «Отправить», вы даете{" "}
+                      <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">согласие</Link>{" "}
+                      на обработку персональных данных и соглашаетесь с{" "}
+                      <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline transition-colors hover:text-[#1a1a2e]">Политикой конфиденциальности</Link>.
+                    </p>
+                  </form>
+                )}
               </div>
             </div>
 

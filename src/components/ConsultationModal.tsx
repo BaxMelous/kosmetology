@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
-import { X, Send } from "lucide-react";
+import { createContext, useContext, useState, useCallback, type ReactNode, type FormEvent } from "react";
+import { X, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,10 +22,59 @@ export function useConsultationModal() {
   return useContext(ConsultationModalContext);
 }
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
 export function ConsultationModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+
+  const openModal = () => {
+    setStatus("idle");
+    setIsOpen(true);
+  };
+
+  const closeModal = useCallback(() => {
+    if (status === "loading") return;
+    setIsOpen(false);
+    // Сбрасываем поля через небольшую задержку, чтобы анимация закрытия прошла гладко
+    setTimeout(() => {
+      setName("");
+      setPhone("");
+      setMessage("");
+      setStatus("idle");
+    }, 300);
+  }, [status]);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!phone.trim() && !name.trim()) return;
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/send-email.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
+          page: window.location.href,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <ConsultationModalContext.Provider value={{ openModal, closeModal }}>
@@ -54,30 +103,83 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                 </p>
               </div>
 
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); closeModal(); }}>
-                <div className="space-y-1.5">
-                  <Label htmlFor="modal-name" className="text-xs font-medium uppercase tracking-widest text-slate-500">Ваше имя</Label>
-                  <Input id="modal-name" placeholder="Введите имя" className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary" />
+              {status === "success" ? (
+                <div className="flex flex-col items-center py-6 text-center">
+                  <CheckCircle2 className="mb-3 h-12 w-12 text-green-500" />
+                  <h3 className="mb-1 text-lg font-semibold text-slate-800">Заявка отправлена!</h3>
+                  <p className="text-sm text-slate-500">Мы перезвоним вам в течение 15 минут.</p>
+                  <Button
+                    onClick={closeModal}
+                    className="mt-5 h-11 rounded-xl bg-slate-100 px-6 text-slate-700 hover:bg-slate-200"
+                  >
+                    Закрыть
+                  </Button>
                 </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="modal-phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон</Label>
-                  <Input id="modal-phone" placeholder="+7 (___) ___-__-__" className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="modal-message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Комментарий</Label>
-                  <Textarea id="modal-message" placeholder="Ваш вопрос или пожелание..." className="min-h-[100px] rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary" />
-                </div>
-                <Button type="submit" className="h-12 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25">
-                  Отправить заявку
-                  <Send className="ml-2 h-5 w-5" />
-                </Button>
-                <p className="text-center text-[11px] leading-relaxed text-slate-400">
-                  Нажимая &laquo;Отправить&raquo;, вы даете{" "}
-                  <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">согласие</Link>{" "}
-                  на обработку персональных данных и соглашаетесь с{" "}
-                  <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
-                </p>
-              </form>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="modal-name" className="text-xs font-medium uppercase tracking-widest text-slate-500">Ваше имя</Label>
+                    <Input
+                      id="modal-name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Введите имя"
+                      className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="modal-phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон</Label>
+                    <Input
+                      id="modal-phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+7 (___) ___-__-__"
+                      className="h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="modal-message" className="text-xs font-medium uppercase tracking-widest text-slate-500">Комментарий</Label>
+                    <Textarea
+                      id="modal-message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Ваш вопрос или пожелание..."
+                      className="min-h-[100px] rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      Ошибка отправки. Пожалуйста, попробуйте ещё раз или позвоните нам.
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="h-12 w-full rounded-xl bg-primary px-6 font-medium text-white transition-all duration-300 hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25 disabled:opacity-60"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Отправка...
+                      </>
+                    ) : (
+                      <>
+                        Отправить заявку
+                        <Send className="ml-2 h-5 w-5" />
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-center text-[11px] leading-relaxed text-slate-400">
+                    Нажимая &laquo;Отправить&raquo;, вы даете{" "}
+                    <Link href="/documents/Согласие на обработку персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">согласие</Link>{" "}
+                    на обработку персональных данных и соглашаетесь с{" "}
+                    <Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">Политикой конфиденциальности</Link>.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>
