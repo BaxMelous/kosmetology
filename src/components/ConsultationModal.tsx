@@ -90,6 +90,8 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
 
       if (res.ok) {
         setStatus("success");
+        // Цель Яндекс Метрики: отправка формы
+        try { window.ym?.(109738119, "reachGoal", "consultation"); } catch { /* ok */ }
       } else {
         setStatus("error");
       }

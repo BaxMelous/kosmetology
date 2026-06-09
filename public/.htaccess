@@ -15,11 +15,12 @@ Options -MultiViews -Indexes
     RewriteRule ^(.*)$ $1.html [L]
 </IfModule>
 
-# Защита паролем на всё
-AuthType Basic
-AuthName "Restricted Access"
-AuthUserFile /home/c/citymed/kosmo-test12/public_html/.htpasswd
-Require valid-user
+# Защита паролем — отключена для выдачи SSL-сертификата
+# Раскомментируйте строки ниже, чтобы снова включить:
+# AuthType Basic
+# AuthName "Restricted Access"
+# AuthUserFile /home/c/citymed/kosmetolog/public_html/.htpasswd
+# Require valid-user
 
 # Гарантирует показ стандартного диалога входа, а не страницу ошибки
 ErrorDocument 401 default

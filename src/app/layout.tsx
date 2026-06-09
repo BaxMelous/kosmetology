@@ -51,8 +51,18 @@ export default function RootLayout({
         </AccessibilityProvider>
         {/* Яндекс Метрика: ленивая загрузка, обёрнута в Suspense для совместимости с SSG */}
         <Suspense fallback={null}>
-          <YandexMetrika counterId={99121294} />
+          <YandexMetrika counterId={109738119} />
         </Suspense>
+        {/* Noscript-пиксель для пользователей с отключённым JavaScript */}
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/109738119"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
       </body>
     </html>
   );
