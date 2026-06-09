@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { usePriority } from "@/components/PriorityLoader";
 
 type PageHeroProps = {
   title: string;
@@ -9,15 +11,14 @@ type PageHeroProps = {
   videoSrc: string;
   posterSrc?: string;
   className?: string;
-  /** CSS-фильтр для видео. По умолчанию brightness(1.1) blur(2px). Передайте "none" чтобы убрать. */
   videoFilter?: string;
 };
 
 /**
  * PageHero — премиальный верхний блок с фоновым видео.
- * - Постер загружается через <link rel="preload"> + new Image() — кешируется браузером
- * - Видео загружается лениво через IntersectionObserver
- * - Если постер не загрузился — показывает CSS-градиент и догружает при повторной попытке
+ * - Постер грузится сразу через preload
+ * - Сжатое видео — priority 0 (критическое, первым в очереди)
+ * - Полное видео — priority 3 (фоном, после загрузки страницы)
  */
 export function PageHero({
   title,
@@ -29,6 +30,8 @@ export function PageHero({
 }: PageHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const pathname = usePathname();
+  const { schedule } = usePriority();
   const [shouldLoad, setShouldLoad] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [posterReady, setPosterReady] = useState(false);
@@ -36,45 +39,41 @@ export function PageHero({
   const posterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const upgradedRef = useRef(false);
 
-  // ── Проверка: режим экономии трафика? ──
-  const isSaveData = (() => {
-    if (typeof navigator === "undefined") return false;
-    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    return conn?.saveData === true;
-  })();
+  // ── Регистрируем сжатое видео в очереди с приоритетом 0 (пересоздаётся при навигации) ──
+  useEffect(() => {
+    setShouldLoad(false);
+    setVideoLoaded(false);
+    const id = `hero-video:${videoSrc}`;
+    schedule(id, 0, async () => {
+      setShouldLoad(true);
+    }, `hero ${videoSrc}`);
+  }, [videoSrc, schedule, pathname]);
 
-  // ── Замена сжатого видео на полноразмерное (всегда, кроме saveData) ──
-  const upgradeToFullQuality = async () => {
-    if (upgradedRef.current || isSaveData) return;
+  // ── Полное видео: грузится фоном, не через очередь (не конкурирует с контентом) ──
+  const upgradeToFullQuality = () => {
+    if (upgradedRef.current) return;
     upgradedRef.current = true;
 
     const fullSrc = videoSrc.replace("/video/", "/video/full/");
     const video = videoRef.current;
     if (!video) return;
 
-    try {
-      const res = await fetch(fullSrc, { method: "HEAD" });
-      if (!res.ok) return;
-
-      const currentTime = video.currentTime;
-      const wasPlaying = !video.paused;
-
-      const onCanPlay = () => {
-        video.removeEventListener("canplay", onCanPlay);
-        video.currentTime = currentTime;
-        if (wasPlaying) video.play().catch(() => {});
-      };
-
-      video.addEventListener("canplay", onCanPlay);
-
-      const source = video.querySelector("source");
-      if (source) {
-        source.src = fullSrc;
-        video.load();
-      }
-    } catch {
-      // full-файл недоступен — остаёмся на сжатом
-    }
+    // Фоновая загрузка — не блокирует очередь
+    fetch(fullSrc, { method: "HEAD" })
+      .then((res) => {
+        if (!res.ok) return;
+        const currentTime = video.currentTime;
+        const wasPlaying = !video.paused;
+        const onCanPlay = () => {
+          video.removeEventListener("canplay", onCanPlay);
+          video.currentTime = currentTime;
+          if (wasPlaying) video.play().catch(() => {});
+        };
+        video.addEventListener("canplay", onCanPlay);
+        const source = video.querySelector("source");
+        if (source) { source.src = fullSrc; video.load(); }
+      })
+      .catch(() => {});
   };
 
   // ── Предзагрузка постера: только <link rel="preload"> (не дублируем new Image) ──
@@ -124,26 +123,6 @@ export function PageHero({
     };
   }, [posterSrc]);
 
-  // ── Ленивая загрузка видео через IntersectionObserver ──
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Плавно скрываем градиент, когда постер И видео готовы
   const hideGradient = posterReady && videoLoaded;
 
   return (

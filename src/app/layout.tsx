@@ -8,6 +8,9 @@ import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { AccessibilityProvider } from "@/components/AccessibilityProvider";
 import { ConsultationModalProvider } from "@/components/ConsultationModal";
 import { YandexMetrika } from "@/components/YandexMetrika";
+import { PriorityLoaderProvider } from "@/components/PriorityLoader";
+import { PagePreloader } from "@/components/PagePreloader";
+import { NavigationProgress } from "@/components/NavigationProgress";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -41,12 +44,16 @@ export default function RootLayout({
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>
         <AccessibilityProvider>
           <ConsultationModalProvider>
-            <Header />
-            <main className="grow pt-[96px] pb-24 lg:pb-0">
-              {children}
-            </main>
-            <Footer />
-            <MobileBottomNav />
+            <PriorityLoaderProvider>
+              <Header />
+              <main className="grow pt-[96px] pb-24 lg:pb-0">
+                {children}
+              </main>
+              <Footer />
+              <MobileBottomNav />
+              <PagePreloader />
+              <NavigationProgress />
+            </PriorityLoaderProvider>
           </ConsultationModalProvider>
         </AccessibilityProvider>
         {/* Яндекс Метрика: ленивая загрузка, обёрнута в Suspense для совместимости с SSG */}
