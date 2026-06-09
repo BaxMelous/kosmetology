@@ -173,6 +173,7 @@ export default function LegalPage() {
         title="Нормативные документы"
         subtitle="Лицензии, учредительные документы и правила клиники СитиМед Эстетика. Официальная информация о нашей деятельности."
         videoSrc="/video/hero-contacts.mp4"
+        posterSrc="/video/hero-contacts-poster.jpg"
         videoFilter="none"
       />
 

@@ -17,6 +17,7 @@ export default function ReviewsPage() {
         title="Отзывы пациентов"
         subtitle="Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика."
         videoSrc="/video/hero-reviews.mp4"
+        posterSrc="/video/hero-reviews-poster.jpg"
         videoFilter="none"
       />
       <ScrollReveal>

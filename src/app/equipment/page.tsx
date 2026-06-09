@@ -47,6 +47,7 @@ export default function EquipmentPage() {
         title="Эстетика технологий"
         subtitle="Аппараты экспертного класса для вашей красоты и здоровья. Работаем на передовом оборудовании с доказанной эффективностью."
         videoSrc="/video/hero-equipment.mp4"
+        posterSrc="/video/hero-equipment-poster.jpg"
         videoFilter="none"
       />
 

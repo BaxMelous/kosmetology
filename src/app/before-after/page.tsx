@@ -18,6 +18,7 @@ export default function BeforeAfterPage() {
         title="До и после"
         subtitle="Реальные результаты наших пациентов. Каждая фотография — это история преображения, подтверждающая профессионализм врачей СитиМед Эстетика."
         videoSrc="/video/hero-before-after.mp4"
+        posterSrc="/video/hero-before-after-poster.jpg"
         videoFilter="none"
       />
 

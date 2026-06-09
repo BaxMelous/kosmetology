@@ -61,7 +61,7 @@ export default function ContactsPage() {
 
       setStatus(res.ok ? "success" : "error");
       // Цель Яндекс Метрики: отправка формы
-      if (res.ok) { try { window.ym?.(109738119, "reachGoal", "contact_form"); } catch { /* ok */ } }
+      if (res.ok) { try { window.ym?.(109738119, "reachGoal", "ym-submit-leadform"); } catch { /* ok */ } }
     } catch {
       setStatus("error");
     }
@@ -73,6 +73,7 @@ export default function ContactsPage() {
         title="Мы всегда на связи"
         subtitle="Приезжайте в клинику или напишите нам — мы ответим на все вопросы и поможем подобрать удобное время для визита."
         videoSrc="/video/hero-contacts.mp4"
+        posterSrc="/video/hero-contacts-poster.jpg"
         videoFilter="none"
       />
 
