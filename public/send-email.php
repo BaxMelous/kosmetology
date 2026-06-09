@@ -122,7 +122,7 @@ try {
         throw new Exception('Нет данных или неверный JSON');
     }
 
-    $to = 'belousovmr@yandex.ru';
+    $to = 'info@citymed12.ru';
     $fromEmail = 'noreply@mccitymed.ru';
     $fromName = 'СитиМед Эстетика';
 

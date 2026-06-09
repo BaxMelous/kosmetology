@@ -7,6 +7,7 @@ import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
+import { formatPhone, isPhoneComplete } from "@/lib/utils";
 import {
   Accordion,
   AccordionContent,
@@ -30,8 +31,6 @@ export default function ContactsPage() {
 
   /** Убирает из строки все цифры */
   const stripDigits = (value: string) => value.replace(/\d/g, "");
-  /** Оставляет только цифры и + ( ) - пробел */
-  const stripNonDigits = (value: string) => value.replace(/[^\d+\-() ]/g, "");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,6 +38,8 @@ export default function ContactsPage() {
     const newErrors: { phone?: string } = {};
     if (!phone.trim()) {
       newErrors.phone = "Укажите номер телефона";
+    } else if (!isPhoneComplete(phone)) {
+      newErrors.phone = "Введите номер полностью";
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -145,9 +146,11 @@ export default function ContactsPage() {
                       </label>
                       <input
                         id="phone"
+                        type="tel"
                         value={phone}
-                        onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
-                        placeholder="+7 (___) ___-__-__"
+                        onChange={(e) => { setPhone(formatPhone(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
+                        onFocus={(e) => { if (!e.target.value) setPhone("+7"); }}
+                        placeholder="+7(XXX)XXX-XX-XX"
                         className={`w-full border-b bg-transparent py-3 text-sm font-light text-[#1a1a2e] placeholder:text-slate-300 transition-colors duration-300 focus:outline-none ${errors.phone ? "border-red-300 focus:border-red-400" : "border-slate-200 focus:border-[#F97316]"}`}
                       />
                       {errors.phone && (

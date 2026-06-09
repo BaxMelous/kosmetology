@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/components/Link";
+import { formatPhone, isPhoneComplete } from "@/lib/utils";
 
 type ModalContextType = {
   /** Открыть модальное окно. context — услуга/врач (опционально) */
@@ -28,11 +29,6 @@ type SubmitStatus = "idle" | "loading" | "success" | "error";
 /** Убирает из строки все цифры */
 function stripDigits(value: string): string {
   return value.replace(/\d/g, "");
-}
-
-/** Оставляет только цифры и + ( ) - пробел */
-function stripNonDigits(value: string): string {
-  return value.replace(/[^\d+\-() ]/g, "");
 }
 
 export function ConsultationModalProvider({ children }: { children: ReactNode }) {
@@ -71,6 +67,8 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
     const newErrors: { phone?: string } = {};
     if (!phone.trim()) {
       newErrors.phone = "Укажите номер телефона";
+    } else if (!isPhoneComplete(phone)) {
+      newErrors.phone = "Введите номер полностью";
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -160,9 +158,11 @@ export function ConsultationModalProvider({ children }: { children: ReactNode })
                     <Label htmlFor="modal-phone" className="text-xs font-medium uppercase tracking-widest text-slate-500">Телефон *</Label>
                     <Input
                       id="modal-phone"
+                      type="tel"
                       value={phone}
-                      onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
-                      placeholder="+7 (___) ___-__-__"
+                      onChange={(e) => { setPhone(formatPhone(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
+                      onFocus={(e) => { if (!e.target.value) setPhone("+7"); }}
+                      placeholder="+7(XXX)XXX-XX-XX"
                       className={errors.phone ? "h-12 rounded-xl border-red-300 bg-red-50 focus-visible:ring-red-400" : "h-12 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-primary"}
                     />
                     {errors.phone && (

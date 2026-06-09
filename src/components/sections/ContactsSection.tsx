@@ -8,15 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/components/Link";
+import { formatPhone, isPhoneComplete } from "@/lib/utils";
 
 /** Убирает из строки все цифры */
 function stripDigits(value: string): string {
   return value.replace(/\d/g, "");
-}
-
-/** Оставляет только цифры и + ( ) - пробел */
-function stripNonDigits(value: string): string {
-  return value.replace(/[^\d+\-() ]/g, "");
 }
 
 export function ContactsSection() {
@@ -32,6 +28,8 @@ export function ContactsSection() {
     const newErrors: { phone?: string } = {};
     if (!phone.trim()) {
       newErrors.phone = "Укажите номер телефона";
+    } else if (!isPhoneComplete(phone)) {
+      newErrors.phone = "Введите номер полностью";
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
@@ -174,9 +172,11 @@ export function ContactsSection() {
                     <Label htmlFor="contacts-phone">Телефон *</Label>
                     <Input
                       id="contacts-phone"
+                      type="tel"
                       value={phone}
-                      onChange={(e) => { setPhone(stripNonDigits(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
-                      placeholder="+7 (___) ___-__-__"
+                      onChange={(e) => { setPhone(formatPhone(e.target.value)); setErrors((prev) => ({ ...prev, phone: undefined })); }}
+                      onFocus={(e) => { if (!e.target.value) setPhone("+7"); }}
+                      placeholder="+7(XXX)XXX-XX-XX"
                       className={errors.phone ? "rounded-2xl h-12 border-red-300 bg-red-50" : "rounded-2xl h-12"}
                     />
                     {errors.phone && (
