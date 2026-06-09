@@ -41,6 +41,7 @@ export function BeforeAfterSection() {
             opts={{
               align: "start",
               loop: true,
+              watchDrag: false,
             }}
             className="w-full"
           >
