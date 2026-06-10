@@ -9,8 +9,8 @@ import { AccessibilityProvider } from "@/components/AccessibilityProvider";
 import { ConsultationModalProvider } from "@/components/ConsultationModal";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { PriorityLoaderProvider } from "@/components/PriorityLoader";
-import { PagePreloader } from "@/components/PagePreloader";
 import { NavigationProgress } from "@/components/NavigationProgress";
+import { PrefetchInjector } from "@/components/PageCache";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -51,7 +51,6 @@ export default function RootLayout({
               </main>
               <Footer />
               <MobileBottomNav />
-              <PagePreloader />
               <NavigationProgress />
             </PriorityLoaderProvider>
           </ConsultationModalProvider>

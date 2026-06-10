@@ -39,6 +39,16 @@ export function PageHero({
   const posterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const upgradedRef = useRef(false);
 
+  // ── Проверка соединения: на 2G/3G/saveData не грузим полное видео ──
+  const canUpgrade = (() => {
+    if (typeof navigator === "undefined") return true;
+    const conn = (navigator as Navigator & { connection?: { effectiveType?: string; saveData?: boolean } }).connection;
+    if (!conn) return true; // нет API → считаем быстрым
+    if (conn.saveData) return false;
+    const type = conn.effectiveType;
+    return type !== "slow-2g" && type !== "2g" && type !== "3g";
+  })();
+
   // ── Регистрируем сжатое видео в очереди с приоритетом 0 (пересоздаётся при навигации) ──
   useEffect(() => {
     setShouldLoad(false);
@@ -49,31 +59,44 @@ export function PageHero({
     }, `hero ${videoSrc}`);
   }, [videoSrc, schedule, pathname]);
 
-  // ── Полное видео: грузится фоном, не через очередь (не конкурирует с контентом) ──
+  // ── Полное видео: загружается в скрытом элементе, заменяет сжатое только когда готово ──
   const upgradeToFullQuality = () => {
-    if (upgradedRef.current) return;
+    if (upgradedRef.current || !canUpgrade) return;
     upgradedRef.current = true;
 
     const fullSrc = videoSrc.replace("/video/", "/video/full/");
-    const video = videoRef.current;
-    if (!video) return;
+    const mainVideo = videoRef.current;
+    if (!mainVideo) return;
 
-    // Фоновая загрузка — не блокирует очередь
-    fetch(fullSrc, { method: "HEAD" })
-      .then((res) => {
-        if (!res.ok) return;
-        const currentTime = video.currentTime;
-        const wasPlaying = !video.paused;
-        const onCanPlay = () => {
-          video.removeEventListener("canplay", onCanPlay);
-          video.currentTime = currentTime;
-          if (wasPlaying) video.play().catch(() => {});
-        };
-        video.addEventListener("canplay", onCanPlay);
-        const source = video.querySelector("source");
-        if (source) { source.src = fullSrc; video.load(); }
-      })
-      .catch(() => {});
+    // Создаём скрытый video-элемент для предзагрузки полного качества
+    const preloader = document.createElement("video");
+    preloader.preload = "auto";
+    preloader.muted = true;
+    preloader.playsInline = true;
+    preloader.style.cssText = "position:absolute;width:1px;height:1px;opacity:0;pointer-events:none";
+    preloader.src = fullSrc;
+    // Добавляем в DOM — браузер начнёт загрузку
+    mainVideo.parentNode?.insertBefore(preloader, mainVideo);
+
+    let swapped = false;
+    const doSwap = () => {
+      if (swapped) return;
+      swapped = true;
+      const currentTime = mainVideo.currentTime;
+      const wasPlaying = !mainVideo.paused;
+      const source = mainVideo.querySelector("source");
+      if (source) {
+        source.src = fullSrc;
+        mainVideo.load();
+        mainVideo.currentTime = currentTime;
+        if (wasPlaying) mainVideo.play().catch(() => {});
+      }
+      preloader.remove();
+    };
+
+    preloader.addEventListener("canplaythrough", doSwap, { once: true });
+    // Fallback: если за 15 сек не загрузилось — удаляем прелоадер
+    setTimeout(() => { if (!swapped) preloader.remove(); }, 15000);
   };
 
   // ── Предзагрузка постера: только <link rel="preload"> (не дублируем new Image) ──
