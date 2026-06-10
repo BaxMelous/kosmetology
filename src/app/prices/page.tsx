@@ -34,7 +34,7 @@ export default function PricesPage() {
         title="Услуги и цены"
         subtitle="Ознакомьтесь с полным перечнем процедур нашей клиники. Мы используем только сертифицированные препараты и передовое оборудование."
         videoSrc="/video/hero-prices.mp4"
-        posterSrc="/video/hero-poster.jpg"
+        posterSrc="/video/hero-prices-poster.webp"
       />
       <Suspense fallback={<PricesPageFallback />}>
         <ScrollReveal>

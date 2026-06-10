@@ -11,7 +11,7 @@ export default function DoctorsPage() {
         title="Наши специалисты"
         subtitle="Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет."
         videoSrc="/video/hero-doctors.mp4"
-        posterSrc="/video/hero-doctors-poster.jpg"
+        posterSrc="/video/hero-doctors-poster.webp"
       />
       <ScrollReveal>
         <section className="container mx-auto max-w-7xl px-4 pt-6 md:px-8 md:pt-10">

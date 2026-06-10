@@ -73,7 +73,7 @@ export default function ContactsPage() {
         title="Мы всегда на связи"
         subtitle="Приезжайте в клинику или напишите нам — мы ответим на все вопросы и поможем подобрать удобное время для визита."
         videoSrc="/video/hero-contacts.mp4"
-        posterSrc="/video/hero-contacts-poster.jpg"
+        posterSrc="/video/hero-contacts-poster.webp"
         videoFilter="none"
       />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useLayoutEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { usePriority } from "@/components/PriorityLoader";
@@ -99,24 +99,23 @@ export function PageHero({
     setTimeout(() => { if (!swapped) preloader.remove(); }, 15000);
   };
 
-  // ── Предзагрузка постера: только <link rel="preload"> (не дублируем new Image) ──
-  useEffect(() => {
+  // ── Максимальный приоритет: preload постера ДО первого рендера ──
+  useLayoutEffect(() => {
     if (!posterSrc) {
       setPosterReady(true);
       return;
     }
 
-    // preload даёт высокий приоритет, браузер сам кеширует
+    // <link rel="preload" as="image" fetchpriority="high"> — браузер начинает загрузку немедленно
     const link = document.createElement("link");
     link.rel = "preload";
     link.as = "image";
     link.href = posterSrc;
+    link.setAttribute("fetchpriority", "high");
     document.head.appendChild(link);
 
-    // Отслеживаем загрузку постера через тег <img> в DOM (не в памяти)
     const img = document.createElement("img");
     img.src = posterSrc;
-    // fetchpriority="high" — доп. гарантия приоритета для hero-изображения
     img.fetchPriority = "high";
 
     const onLoad = () => {
@@ -146,21 +145,29 @@ export function PageHero({
     };
   }, [posterSrc]);
 
-  const hideGradient = posterReady && videoLoaded;
-
   return (
     <div ref={containerRef} className={cn("container mx-auto max-w-7xl px-4 lg:px-8", className)}>
       <div className="mt-3 sm:mt-4 md:mt-6">
         <div className="relative overflow-hidden rounded-card bg-slate-50">
-          {/* CSS-градиентный фон: виден сразу, исчезает когда всё готово */}
-          <div
-            className={cn(
-              "absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 transition-opacity duration-700",
-              hideGradient && "opacity-0"
-            )}
-          />
+          {/* CSS-градиентный фон: виден сразу, исчезает когда постер готов */}
+          {!posterReady && (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200" />
+          )}
 
-          {/* Видео: постер загружен отдельно, видео — лениво */}
+          {/* Постер: рендерится как <img> — появляется мгновенно, не ждёт видео */}
+          {posterSrc && posterReady && (
+            <img
+              src={posterSrc}
+              alt=""
+              aria-hidden="true"
+              className={cn(
+                "absolute -inset-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] max-w-none object-cover transition-opacity duration-500",
+                videoLoaded ? "opacity-0" : "opacity-100"
+              )}
+            />
+          )}
+
+          {/* Видео: invisible пока не готово, затем плавно проявляется поверх постера */}
           {shouldLoad && (
             <video
               ref={videoRef}
@@ -169,13 +176,12 @@ export function PageHero({
               loop
               playsInline
               preload="none"
-              poster={posterSrc}
               aria-hidden="true"
               onCanPlay={() => setVideoLoaded(true)}
               onPlaying={() => upgradeToFullQuality()}
               onError={() => setVideoLoaded(true)}
               className={cn(
-                "absolute -inset-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] max-w-none object-cover transition-opacity duration-700",
+                "absolute -inset-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] max-w-none object-cover transition-opacity duration-500",
                 videoLoaded ? "opacity-100" : "opacity-0"
               )}
               style={{ filter: videoFilter }}
