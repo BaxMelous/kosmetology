@@ -91,9 +91,14 @@ export default function ContactsPage() {
                     <MapPin className="h-4 w-4" />
                   </div>
                   <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Адрес</p>
-                  <p className="text-sm font-light leading-relaxed text-[#1a1a2e] md:text-base">
+                  <a
+                    href="https://yandex.com/maps/-/CPx-V073"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-light leading-relaxed text-[#1a1a2e] transition-colors hover:text-[#F97316] md:text-base"
+                  >
                     {CONTACTS.address}
-                  </p>
+                  </a>
                 </div>
 
                 <div className="rounded-card-sm border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
@@ -282,7 +287,17 @@ export default function ContactsPage() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-muted-light md:pb-8 md:pl-14 md:text-base">
-                  Для пациентов предусмотрена бесплатная парковка.
+                  <div className="space-y-5">
+                    <p>Для пациентов клиники предусмотрена бесплатная парковка непосредственно у здания.</p>
+                    <div>
+                      <p className="mb-2 font-medium text-[#1a1a2e]">Со стороны Ленинского проспекта:</p>
+                      <p>Двигайтесь по Ленинскому проспекту до пересечения с ул. Лобачевского, поверните на ул. Лобачевского. Клиника расположена в здании № 1 — ориентир: вывеска «СитиМед» у главного входа.</p>
+                    </div>
+                    <div>
+                      <p className="mb-2 font-medium text-[#1a1a2e]">Со стороны улицы Зарубина:</p>
+                      <p>Следуйте по ул. Зарубина в направлении центра, поверните на ул. Лобачевского. Здание клиники находится слева по ходу движения. Парковка перед зданием.</p>
+                    </div>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -297,6 +312,36 @@ export default function ContactsPage() {
                     </span>
                   </div>
                 </AccordionTrigger>
+                <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-muted-light md:pb-8 md:pl-14 md:text-base">
+                  <p className="mb-4">Остановки: «Якова Эшпая» и «Ленинский проспект».</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["24П", "21К", "18К", "20К", "М8", "М2", "3П"].map(route => (
+                      <span key={route} className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-light text-[#1a1a2e]">
+                        {route}
+                      </span>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* Link to Main Site */}
+          <div className="mx-auto mt-14 max-w-4xl text-center md:mt-20">
+            <a
+              href="https://mccitymed.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-8 py-4 text-sm font-light tracking-[0.03em] text-[#1a1a2e] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F97316]/30 hover:text-[#F97316] hover:shadow-md"
+            >
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F97316]/10 text-[#F97316] transition-colors group-hover:bg-[#F97316] group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+              Медицинский центр «СитиМед» — основной сайт
+            </a>
+          </div>
+
+          {/*   </AccordionTrigger>
                 <AccordionContent className="pb-5 pl-0 text-sm font-light leading-relaxed text-muted-light md:pb-8 md:pl-14 md:text-base">
                   <p className="mb-4">Остановки: «Якова Эшпая» и «Ленинский проспект».</p>
                   <div className="flex flex-wrap gap-2">

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Link } from "@/components/Link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -115,6 +115,28 @@ export function EquipmentSection() {
                                 </div>
                               ))}
                             </div>
+                          </div>
+                        )}
+
+                        {/* Регистрационное удостоверение */}
+                        {item.regNumber && (
+                          <div className="mt-auto pt-4">
+                            {item.regCertificate ? (
+                              <a
+                                href={item.regCertificate}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50/50 px-3 py-2 transition-colors hover:border-green-200 hover:bg-green-50/50"
+                              >
+                                <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-green-600" />
+                                <span className="text-[10px] font-light text-muted-light">{item.regNumber}</span>
+                              </a>
+                            ) : (
+                              <div className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50/50 px-3 py-2">
+                                <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-green-600" />
+                                <span className="text-[10px] font-light text-muted-light">{item.regNumber}</span>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>

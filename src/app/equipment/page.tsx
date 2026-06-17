@@ -10,12 +10,12 @@ const PRIORITIES = [
   {
     icon: ShieldCheck,
     title: "Аппараты экспертного класса",
-    text: "M22 и Айкун — редкость для Йошкар-Олы, работаем на передовом оборудовании",
+    text: "Работаем на оборудовании премиум-класса с подтверждённой клинической эффективностью — результат, которому можно доверять",
   },
   {
     icon: Award,
     title: "Всё сертифицировано",
-    text: "Аппараты одобрены и имеют все необходимые документы",
+    text: "Полное соответствие медицинским и косметологическим стандартам — от стерилизации инструментов до регистрационных удостоверений на оборудование",
   },
   {
     icon: GraduationCap,
@@ -30,14 +30,14 @@ const PRIORITIES = [
   {
     icon: ClipboardCheck,
     title: "Честный подбор",
-    text: "Консультация перед процедурой, чтобы не делать лишнего",
+    text: "Консультация перед процедурой, чтобы составить индивидуальный план лечения и косметологических процедур, подходящий именно вам",
   },
 ];
 
 export const metadata: Metadata = {
   title: "Оборудование клиники | СитиМед Эстетика",
   description:
-    "Аппараты экспертного класса для косметологии в Йошкар-Оле: LUMENIS M22, UTIMS SMAS-лифтинг, NEOGEN evo, Айкун Icoone Laser, RF Secret.",
+    "Аппараты экспертного класса для косметологии в Йошкар-Оле: LUMENIS M22, UTIMS SMAS-лифтинг, NEOGEN evo, Айкун Icoone Laser.",
 };
 
 export default function EquipmentPage() {
@@ -142,6 +142,28 @@ export default function EquipmentPage() {
                             </div>
                           ))}
                         </div>
+                      </div>
+                    )}
+
+                    {/* Регистрационное удостоверение */}
+                    {item.regNumber && (
+                      <div className="mt-6">
+                        {item.regCertificate ? (
+                          <a
+                            href={item.regCertificate}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-lg border border-green-200 bg-green-50/50 px-4 py-2 transition-colors hover:bg-green-50"
+                          >
+                            <ShieldCheck className="h-4 w-4 shrink-0 text-green-600" />
+                            <span className="text-xs font-light text-muted-light">{item.regNumber}</span>
+                          </a>
+                        ) : (
+                          <div className="inline-flex items-center gap-2 rounded-lg border border-green-200 bg-green-50/50 px-4 py-2">
+                            <ShieldCheck className="h-4 w-4 shrink-0 text-green-600" />
+                            <span className="text-xs font-light text-muted-light">{item.regNumber}</span>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
