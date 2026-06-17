@@ -37,9 +37,8 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://static-maps.yandex.ru" />
+        {/* Только САМЫЙ важный LCP-постер — не конкурирует с другими ресурсами */}
+        <link rel="preload" as="image" href="/video/hero-doctors-poster.webp" fetchPriority="high" />
       </head>
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>
         <AccessibilityProvider>

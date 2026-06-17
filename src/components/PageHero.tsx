@@ -99,44 +99,27 @@ export function PageHero({
     setTimeout(() => { if (!swapped) preloader.remove(); }, 15000);
   };
 
-  // ── Максимальный приоритет: preload постера ДО первого рендера ──
+  // ── Отслеживаем загрузку постера (preload уже в HTML <head>) ──
   useLayoutEffect(() => {
     if (!posterSrc) {
       setPosterReady(true);
       return;
     }
 
-    // <link rel="preload" as="image" fetchpriority="high"> — браузер начинает загрузку немедленно
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = posterSrc;
-    link.setAttribute("fetchpriority", "high");
-    document.head.appendChild(link);
-
-    const img = document.createElement("img");
-    img.src = posterSrc;
+    const img = new Image();
     img.fetchPriority = "high";
 
-    const onLoad = () => {
-      setPosterReady(true);
-      // Убираем preload чтобы не держать соединение
-      document.head.removeChild(link);
-    };
+    const onLoad = () => setPosterReady(true);
     const onError = () => {
-      document.head.removeChild(link);
       if (posterRetries.current < 2) {
         posterRetries.current++;
-        posterTimer.current = setTimeout(() => {
-          img.src = posterSrc; // повторная попытка
-        }, 1500);
+        posterTimer.current = setTimeout(() => { img.src = posterSrc; }, 1500);
       }
     };
 
     img.onload = onLoad;
     img.onerror = onError;
-
-    // Не вставляем в DOM — браузер всё равно загрузит и закеширует src
+    img.src = posterSrc;
 
     return () => {
       img.onload = null;
