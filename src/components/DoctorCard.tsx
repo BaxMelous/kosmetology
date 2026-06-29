@@ -49,10 +49,12 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
                 Ведущий косметолог
               </span>
             )}
-            <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.12em] text-slate-600 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
-              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#A3B903" }} />
-              {doctor.experience ?? "Опыт 10 лет"}
-            </span>
+            {(Array.isArray(doctor.experience) ? doctor.experience : [doctor.experience ?? "Опыт 10 лет"]).map((exp, i) => (
+              <span key={i} className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/50 px-3 py-1 text-[11px] font-light uppercase tracking-[0.12em] text-slate-600 backdrop-blur-[12px] sm:text-xs" style={{ background: "rgba(255,255,255,0.4)" }}>
+                <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#A3B903" }} />
+                {exp}
+              </span>
+            ))}
           </div>
         </div>
 

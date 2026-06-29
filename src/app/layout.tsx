@@ -36,10 +36,7 @@ export default function RootLayout({
       className="h-full antialiased scroll-smooth"
       data-scroll-behavior="smooth"
     >
-      <head>
-        {/* Только САМЫЙ важный LCP-постер — не конкурирует с другими ресурсами */}
-        <link rel="preload" as="image" href="/video/hero-doctors-poster.webp" fetchPriority="high" />
-      </head>
+      <head />
       <body className={`${inter.className} ${inter.variable} min-h-full flex flex-col bg-slate-50 text-slate-900`}>
         <AccessibilityProvider>
           <ConsultationModalProvider>

@@ -115,6 +115,12 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
               <p className="mt-3 text-lg text-slate-500">{doctor.specialties.join(", ")}</p>
 
               <DetailSection title="Образование" items={doctor.education ?? []} />
+              <DetailSection title="Аккредитация" items={doctor.accreditation ?? []} />
+              {(doctor.accreditation?.length ?? 0) > 0 && (
+                <p className="mt-2 text-xs font-light text-muted-light">
+                  Все аккредитации выданы Федеральным государственным бюджетным образовательным учреждением дополнительного профессионального образования «Российская медицинская академия непрерывного профессионального образования» Министерства здравоохранения Российской Федерации.
+                </p>
+              )}
               <DetailSection title="Направления деятельности" items={doctor.directions ?? []} />
               <DetailSection title="Опыт работы" items={doctor.workExperience ?? []} />
 
@@ -122,10 +128,12 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
                 <section className="mt-8">
                   <h3 className="mb-4 text-xl font-medium text-slate-900">Опыт работы</h3>
                   <ul className="space-y-3">
-                    <li className="flex items-start gap-3 text-slate-600">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                      <span>{doctor.experience}</span>
-                    </li>
+                    {(Array.isArray(doctor.experience) ? doctor.experience : [doctor.experience]).map((exp, i) => (
+                      <li key={i} className="flex items-start gap-3 text-slate-600">
+                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                        <span>{exp}</span>
+                      </li>
+                    ))}
                   </ul>
                 </section>
               )}

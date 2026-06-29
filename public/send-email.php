@@ -39,7 +39,7 @@ try {
         throw new Exception('Нет данных или неверный JSON');
     }
 
-    $to = 'info@citymed12.ru';
+    $to = 'premium@citymed12.ru';
     $fromEmail = 'noreply@mccitymed.ru';
     $fromName = 'СитиМед Эстетика';
 

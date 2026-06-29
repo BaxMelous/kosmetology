@@ -5,6 +5,10 @@ Options -MultiViews -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
+    # Блокируем RSC-запросы от Next.js роутера — отдаём обычный HTML
+    RewriteCond %{QUERY_STRING} (^|&)_rsc=
+    RewriteRule ^(.*)/$ $1/index.html [L]
+    
     # Реальный файл или папка — отдаём как есть
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
@@ -18,8 +22,6 @@ Options -MultiViews -Indexes
 # Кеширование статических ресурсов
 <IfModule mod_expires.c>
     ExpiresActive On
-    
-    # Изображения, видео, шрифты — 1 год (хеши в именах при сборке)
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
@@ -27,19 +29,19 @@ Options -MultiViews -Indexes
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresByType video/mp4 "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
-    
-    # CSS и JS Next.js — хеши в именах, можно кешировать агрессивно
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
-    
-    # HTML — не кешируем (SPA-роутинг)
     ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
-# Дополнительно: Cache-Control для всех статических файлов
+# Cache-Control для статических файлов
 <IfModule mod_headers.c>
     <FilesMatch "\.(jpg|jpeg|webp|png|gif|svg|ico|mp4|woff2|css|js)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 </IfModule>
 
+# Блокировка доступа к скрытым файлам
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
