@@ -33,8 +33,8 @@ export function DoctorsSection({ doctors, limit }: DoctorsSectionProps) {
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-          {visibleDoctors.map((doctor) => (
-            <DoctorCard key={doctor.id} doctor={doctor} isChief={doctor.isChief} />
+          {visibleDoctors.map((doctor, i) => (
+            <DoctorCard key={doctor.id} doctor={doctor} isChief={doctor.isChief} priority={i === 0} />
           ))}
         </div>
       </div>

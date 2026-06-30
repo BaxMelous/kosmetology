@@ -5,13 +5,14 @@ import type { Doctor } from "@/lib/data";
 type DoctorCardProps = {
   doctor: Doctor;
   isChief?: boolean;
+  priority?: boolean;
 };
 
 /**
  * DoctorCard — карточка врача в стиле «современный люкс».
  * Вертикальное фото, стеклянные бейджи, чистая типографика.
  */
-export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
+export function DoctorCard({ doctor, isChief = false, priority = false }: DoctorCardProps) {
   return (
     <Link
       href={`/doctors/${doctor.id}`}
@@ -26,6 +27,7 @@ export function DoctorCard({ doctor, isChief = false }: DoctorCardProps) {
                 src={doctor.image}
                 alt={doctor.name}
                 fill
+                priority={priority}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ borderRadius: "0 0 24px 24px" }}

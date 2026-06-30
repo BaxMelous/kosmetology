@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
     formats: ["image/avif", "image/webp"],
+    // Поддерживаемые уровни качества для next/image
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",

@@ -3,6 +3,12 @@ import { getCosmetologyServices } from "@/lib/api/services";
 import { PricesPageClient } from "@/components/PricesPageClient";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Цены на косметологию — прайс-лист",
+  description: "Актуальные цены на косметологические услуги в Йошкар-Оле: ботулинотерапия от 160 ₽/ед, биоревитализация от 7500 ₽, SMAS-лифтинг от 7000 ₽, чистка лица, контурная пластика, пилинги.",
+};
 
 function PricesPageFallback() {
   return (

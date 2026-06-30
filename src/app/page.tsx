@@ -9,6 +9,13 @@ import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { DOCTORS, SERVICE_CATEGORIES } from "@/lib/data";
+import { JsonLd } from "@/components/JsonLd";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Косметология в Йошкар-Оле на Ленинском проспекте | СитиМед Эстетика",
+  description: "Центр косметологии СитиМед Эстетика в Йошкар-Оле: ул. Лобачевского, 1, Ленинский проспект. SMAS-лифтинг, контурная пластика, биоревитализация, ботулинотерапия от морщин, коррекция фигуры, чистка лица. Запись: +7 (927) 684-54-54.",
+};
 
 export default function Home() {
   const popularServices = SERVICE_CATEGORIES.flatMap((category) =>
@@ -19,6 +26,7 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd />
       <HeroSection />
       <ParallaxSection>
         <FeaturesSection />

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://kosmetology.mccitymed.ru/sitemap.xml
+Sitemap: https://kosmetolog-citymed.ru/sitemap.xml
