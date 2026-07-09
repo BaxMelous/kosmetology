@@ -32,7 +32,7 @@ export function PopularServices({ services }: PopularServicesProps) {
         <div className="mb-10 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-center md:gap-6">
           <div className="space-y-4">
             <div className="mb-6 h-px w-12 bg-[#F97316]/40 md:mb-8 md:w-16" />
-            <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Популярные услуги</h2>
+            <h2 className="text-xl font-light tracking-[0.08em] text-[#1a1a2e] sm:text-2xl md:text-3xl">Популярные услуги в Йошкар-Оле</h2>
             <p className="max-w-lg text-sm font-light leading-[1.6] tracking-[0.02em] text-muted-light sm:text-base">Что выбирают наши клиенты</p>
           </div>
           <Link

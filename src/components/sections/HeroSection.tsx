@@ -125,9 +125,7 @@ export function HeroSection() {
               {/* Заголовок */}
               <h1 className="text-2xl font-light leading-[1.15] tracking-[0.02em] text-[#1a1a2e] sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">
                 Профессиональная{" "}
-                <span className="font-normal text-[#F97316]">косметология</span>
-                <br />
-                в СитиМед Эстетика
+                <span className="font-normal text-[#F97316]">косметология СитиМед Эстетика в Йошкар-Оле</span>
               </h1>
 
               {/* Подзаголовок */}
