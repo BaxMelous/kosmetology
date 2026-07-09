@@ -11,27 +11,17 @@ type ServiceCategoryCardProps = {
   category: ServiceCategory;
 };
 
-/** Максимальная длина описания до обрезки */
-const DESC_LIMIT = 100;
-
 /**
  * Премиальная карточка категории услуг.
- * Высокий блок (~200px) с фото модели справа, градиентной маской,
+ * Высокий блок с фото модели справа, градиентной маской,
  * плавным раскрытием при клике и анимацией на hover.
+ * Описание категории: всегда в DOM (для SEO), визуально обрезается CSS line-clamp,
+ * раскрывается по кнопке «Подробнее».
  */
 export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedDescs, setExpandedDescs] = useState<Set<string>>(new Set());
+  const [catDescExpanded, setCatDescExpanded] = useState(false);
   const { openModal } = useConsultationModal();
-
-  const toggleDesc = (serviceId: string) => {
-    setExpandedDescs((prev) => {
-      const next = new Set(prev);
-      if (next.has(serviceId)) next.delete(serviceId);
-      else next.add(serviceId);
-      return next;
-    });
-  };
 
   return (
     <motion.div
@@ -54,7 +44,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
       <motion.div
         layout
         className="relative flex items-center overflow-hidden"
-        animate={{ height: isOpen ? 120 : 200 }}
+        animate={{ height: isOpen ? 120 : (catDescExpanded ? "auto" : 200) }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         {/* Фото модели — справа */}
@@ -88,14 +78,33 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
         />
 
         {/* Заголовок — слева */}
-        <div className="relative z-20 flex-1 px-6 sm:px-8 md:px-10">
+        <div className="relative z-20 flex-1 px-6 py-7 sm:px-8 sm:py-8 md:px-10 md:py-9">
           <motion.div layout transition={{ type: "spring", stiffness: 300, damping: 30 }}>
             <h2 className="text-lg font-medium leading-[1.3] text-slate-800 sm:text-xl md:text-2xl">
               {category.title}
             </h2>
-            <p className="mt-1.5 max-w-md text-sm leading-[1.6] text-slate-400 line-clamp-2 sm:mt-2 sm:text-base">
-              {category.description}
-            </p>
+            {!isOpen && (
+              <div className="mt-1.5 max-w-md sm:mt-2">
+                <p
+                  className={cn(
+                    "text-sm leading-[1.6] text-slate-400 sm:text-base",
+                    !catDescExpanded && "line-clamp-2"
+                  )}
+                >
+                  {category.description}
+                </p>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCatDescExpanded(!catDescExpanded);
+                  }}
+                  className="mt-0.5 text-xs font-medium text-[#F97316] hover:text-[#e8690b] transition-colors"
+                >
+                  {catDescExpanded ? "Свернуть" : "Подробнее"}
+                </button>
+              </div>
+            )}
           </motion.div>
         </div>
 
@@ -145,32 +154,11 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                           </span>
                         )}
                       </div>
-                      {service.description && (() => {
-                        const isLong = service.description.length > DESC_LIMIT;
-                        const expanded = expandedDescs.has(service.id);
-                        const displayText = isLong && !expanded
-                          ? service.description.slice(0, DESC_LIMIT) + "…"
-                          : service.description;
-                        return (
-                          <div className="mt-1">
-                            <p className="text-xs leading-[1.6] text-muted-foreground sm:text-sm">
-                              {displayText}
-                            </p>
-                            {isLong && (
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleDesc(service.id);
-                                }}
-                                className="mt-0.5 text-xs font-medium text-[#F97316] hover:text-[#e8690b] transition-colors"
-                              >
-                                {expanded ? "Свернуть" : "Подробнее"}
-                              </button>
-                            )}
-                          </div>
-                        );
-                      })()}
+                      {service.description && (
+                        <p className="mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
+                          {service.description}
+                        </p>
+                      )}
                     </div>
 
                     {/* Цена + кнопка */}

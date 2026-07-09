@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "@/components/Link";
 import { ArrowRight } from "lucide-react";
 import {
@@ -23,21 +23,8 @@ type PopularServicesProps = {
   services: PopularService[];
 };
 
-/** Максимальная длина описания до обрезки в карточке */
-const CARD_DESC_LIMIT = 120;
-
 export function PopularServices({ services }: PopularServicesProps) {
   const { openModal } = useConsultationModal();
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
-
-  const toggleCardDesc = (idx: number) => {
-    setExpandedCards((prev) => {
-      const next = new Set(prev);
-      if (next.has(idx)) next.delete(idx);
-      else next.add(idx);
-      return next;
-    });
-  };
 
   return (
     <section className="overflow-hidden bg-white py-10 md:py-28">
@@ -83,29 +70,11 @@ export function PopularServices({ services }: PopularServicesProps) {
                         </h3>
 
                         {/* Описание */}
-                        {service.description && (() => {
-                          const isLong = service.description.length > CARD_DESC_LIMIT;
-                          const expanded = expandedCards.has(index);
-                          const displayText = isLong && !expanded
-                            ? service.description.slice(0, CARD_DESC_LIMIT) + "…"
-                            : service.description;
-                          return (
-                            <div>
-                              <p className="text-sm font-light leading-[1.6] text-muted-light md:text-[15px]">
-                                {displayText}
-                              </p>
-                              {isLong && (
-                                <button
-                                  type="button"
-                                  onClick={(e) => { e.stopPropagation(); toggleCardDesc(index); }}
-                                  className="mt-1 text-xs font-medium text-[#F97316] hover:text-[#e8690b] transition-colors"
-                                >
-                                  {expanded ? "Свернуть" : "Подробнее"}
-                                </button>
-                              )}
-                            </div>
-                          );
-                        })()}
+                        {service.description && (
+                          <p className="text-sm font-light leading-[1.6] text-muted-light md:text-[15px]">
+                            {service.description}
+                          </p>
+                        )}
 
                         {/* Футер: цена + кнопка */}
                         <div className="mt-auto flex items-center justify-between gap-3 pt-8 md:pt-10">
