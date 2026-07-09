@@ -11,6 +11,9 @@ type ServiceCategoryCardProps = {
   category: ServiceCategory;
 };
 
+/** Максимальная длина описания до обрезки */
+const DESC_LIMIT = 100;
+
 /**
  * Премиальная карточка категории услуг.
  * Высокий блок (~200px) с фото модели справа, градиентной маской,
@@ -18,7 +21,17 @@ type ServiceCategoryCardProps = {
  */
 export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedDescs, setExpandedDescs] = useState<Set<string>>(new Set());
   const { openModal } = useConsultationModal();
+
+  const toggleDesc = (serviceId: string) => {
+    setExpandedDescs((prev) => {
+      const next = new Set(prev);
+      if (next.has(serviceId)) next.delete(serviceId);
+      else next.add(serviceId);
+      return next;
+    });
+  };
 
   return (
     <motion.div
@@ -63,13 +76,13 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
         <div
           className={cn(
             "pointer-events-none absolute inset-0 z-10",
-            "bg-gradient-to-r from-white via-white via-55% to-transparent"
+            "bg-linear-to-r from-white via-white via-55% to-transparent"
           )}
         />
 
         {/* Полупрозрачный градиент в развёрнутом состоянии */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-white/70 via-white/30 via-70% to-transparent"
+          className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-white/70 via-white/30 via-70% to-transparent"
           animate={{ opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.4 }}
         />
@@ -132,11 +145,32 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
                           </span>
                         )}
                       </div>
-                      {service.description && (
-                        <p className="mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
-                          {service.description}
-                        </p>
-                      )}
+                      {service.description && (() => {
+                        const isLong = service.description.length > DESC_LIMIT;
+                        const expanded = expandedDescs.has(service.id);
+                        const displayText = isLong && !expanded
+                          ? service.description.slice(0, DESC_LIMIT) + "…"
+                          : service.description;
+                        return (
+                          <div className="mt-1">
+                            <p className="text-xs leading-[1.6] text-muted-foreground sm:text-sm">
+                              {displayText}
+                            </p>
+                            {isLong && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleDesc(service.id);
+                                }}
+                                className="mt-0.5 text-xs font-medium text-[#F97316] hover:text-[#e8690b] transition-colors"
+                              >
+                                {expanded ? "Свернуть" : "Подробнее"}
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Цена + кнопка */}
