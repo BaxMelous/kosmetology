@@ -33,9 +33,12 @@ async function PricesPageContent() {
   return <PricesPageClient categories={categories} />;
 }
 
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+
 export default function PricesPage() {
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Услуги и цены", url: "/prices/" }]} />
       <PageHero
         title="Услуги и цены"
         subtitle="Ознакомьтесь с полным перечнем процедур нашей клиники. Мы используем только сертифицированные препараты и передовое оборудование."

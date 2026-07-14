@@ -1,6 +1,9 @@
 # Отключаем автоподбор файлов и вывод содержимого директорий
 Options -MultiViews -Indexes
 
+# Страница 404
+ErrorDocument 404 /404.html
+
 # Настройки роутинга для Next.js static export
 <IfModule mod_rewrite.c>
     RewriteEngine On

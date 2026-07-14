@@ -3,6 +3,7 @@ import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function DoctorsPage() {
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Врачи", url: "/doctors/" }]} />
       <PageHero
         title="Наши специалисты"
         subtitle="Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет."

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { EQUIPMENT } from "@/lib/data";
 import { Check, ShieldCheck, Award, GraduationCap, Clock, ClipboardCheck } from "lucide-react";
 
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
 export default function EquipmentPage() {
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Оборудование", url: "/equipment/" }]} />
       <PageHero
         title="Эстетика технологий"
         subtitle="Аппараты экспертного класса для вашей красоты и здоровья. Работаем на передовом оборудовании с доказанной эффективностью."

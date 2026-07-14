@@ -7,6 +7,7 @@ import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { formatPhone, isPhoneComplete } from "@/lib/utils";
 import {
   Accordion,
@@ -69,6 +70,7 @@ export default function ContactsPage() {
 
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Контакты", url: "/contacts/" }]} />
       <PageHero
         title="Мы всегда на связи"
         subtitle="Приезжайте в клинику или напишите нам — мы ответим на все вопросы и поможем подобрать удобное время для визита."

@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Отзывы пациентов | СитиМед Эстетика",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function ReviewsPage() {
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Отзывы", url: "/reviews/" }]} />
       <PageHero
         title="Отзывы пациентов"
         subtitle="Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика."

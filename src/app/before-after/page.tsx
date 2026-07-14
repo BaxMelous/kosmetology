@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { PageHero } from "@/components/PageHero";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { BEFORE_AFTER_CASES } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function BeforeAfterPage() {
   return (
     <div className="bg-slate-50 pb-10 md:pb-20">
+      <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "До и после", url: "/before-after/" }]} />
       <PageHero
         title="До и после"
         subtitle="Реальные результаты наших пациентов. Каждая фотография — это история преображения, подтверждающая профессионализм врачей СитиМед Эстетика."
