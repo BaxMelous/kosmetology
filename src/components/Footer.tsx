@@ -13,8 +13,8 @@ export function Footer() {
               СитиМед <span className="text-slate-800">Эстетика</span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-500">
-              Профессиональная косметология в Йошкар-Оле. 
-              Современные методики омоложения и ухода за кожей.
+              Клиника косметологии в Йошкар-Оле: инъекционные и аппаратные методики,
+              нитевой лифтинг, пилинги и уходовые процедуры.
             </p>
           </div>
 
@@ -40,14 +40,26 @@ export function Footer() {
           </div>
 
           {/* Contacts */}
-          <div className="space-y-4 text-sm">
+          <address className="space-y-4 text-sm not-italic">
             <h4 className="mb-6 font-semibold text-slate-800">Контакты</h4>
             <p>{CONTACTS.address}</p>
-            <p className="font-semibold text-slate-800">{CONTACTS.phone}</p>
-            <p className="pt-4 text-xs text-slate-500">
-              © {new Date().getFullYear()} СитиМед Эстетика. Все права защищены.
-            </p>
-          </div>
+            <a
+              href={`tel:${CONTACTS.phone.replace(/[^\d+]/g, "")}`}
+              className="block font-semibold text-slate-800 transition-colors hover:text-orange-500"
+            >
+              {CONTACTS.phone}
+            </a>
+            <p className="text-slate-500">{CONTACTS.workingHours.weekdays}</p>
+            <p className="text-slate-500">{CONTACTS.workingHours.saturday}</p>
+          </address>
+        </div>
+
+        <div className="mt-12 space-y-3 border-t border-slate-200 pt-8 text-xs leading-relaxed text-slate-500">
+          <p>
+            Имеются противопоказания. Необходима консультация специалиста. Информация на сайте
+            не является публичной офертой.
+          </p>
+          <p>© {new Date().getFullYear()} СитиМед Эстетика. Все права защищены.</p>
         </div>
       </div>
     </footer>

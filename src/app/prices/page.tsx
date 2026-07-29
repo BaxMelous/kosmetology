@@ -1,7 +1,23 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getCosmetologyServices } from "@/lib/api/services";
 import { PricesPageClient } from "@/components/PricesPageClient";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { buildBreadcrumbJsonLd, buildPriceListJsonLd, jsonLdScriptProps } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Цены на косметологию в Йошкар-Оле",
+  description:
+    "Актуальный прайс-лист на косметологию в Йошкар-Оле: ботулинотерапия, биоревитализация, контурная пластика, " +
+    "SMAS-лифтинг, пилинги и чистка лица. Цены клиники «СитиМед Эстетика».",
+  alternates: { canonical: "/prices" },
+  openGraph: {
+    url: "/prices",
+    title: "Цены на косметологию в Йошкар-Оле — прайс-лист клиники «СитиМед Эстетика»",
+    description:
+      "Полный прайс-лист процедур: инъекционная и аппаратная косметология, нитевой лифтинг, пилинги, уходовые процедуры.",
+  },
+};
 
 function PricesPageFallback() {
   return (
@@ -27,7 +43,20 @@ function PricesPageFallback() {
 async function PricesPageContent() {
   const categories = await getCosmetologyServices();
 
-  return <PricesPageClient categories={categories} />;
+  return (
+    <>
+      <script {...jsonLdScriptProps(buildPriceListJsonLd(categories))} />
+      <script
+        {...jsonLdScriptProps(
+          buildBreadcrumbJsonLd([
+            { name: "Главная", path: "/" },
+            { name: "Услуги и цены", path: "/prices" },
+          ])
+        )}
+      />
+      <PricesPageClient categories={categories} />
+    </>
+  );
 }
 
 export default function PricesPage() {

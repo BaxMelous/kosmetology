@@ -7,6 +7,10 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
+      // Без этого Base UI не рендерит содержимое закрытых панелей вообще:
+      // прайс-лист пропадал из HTML и был невидим для Яндекса и Google.
+      // hidden="until-found" оставляет контент в DOM и индексируемым.
+      hiddenUntilFound
       className={cn("flex w-full flex-col", className)}
       {...props}
     />
@@ -26,10 +30,16 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 function AccordionTrigger({
   className,
   children,
+  headingLevel,
   ...props
-}: AccordionPrimitive.Trigger.Props) {
+}: AccordionPrimitive.Trigger.Props & {
+  /** Уровень заголовка секции. Base UI по умолчанию рендерит h3. */
+  headingLevel?: "h2" | "h3" | "h4"
+}) {
+  const Heading = headingLevel ?? "h3"
+
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className="flex" render={<Heading />}>
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(

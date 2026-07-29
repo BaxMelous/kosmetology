@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
@@ -71,6 +72,15 @@ async function DoctorsContent() {
 
   return <DoctorsSection doctors={doctors} limit={4} />;
 }
+
+export const metadata: Metadata = {
+  // absolute — иначе шаблон из layout добавит второе упоминание бренда.
+  title: { absolute: "Косметология в Йошкар-Оле — клиника «СитиМед Эстетика»" },
+  description:
+    "Косметология в Йошкар-Оле: инъекционные и аппаратные методики, нитевой лифтинг, пилинги, чистка лица. " +
+    "Приём ведут врачи-дерматовенерологи. ул. Лобачевского, 1. Запись по телефону.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

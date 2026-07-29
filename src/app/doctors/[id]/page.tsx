@@ -3,8 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
-import { getDoctorById } from "@/lib/api/doctors";
+import { getCosmetologyDoctors, getDoctorById } from "@/lib/api/doctors";
 import { CONTACTS } from "@/lib/data";
+import { buildBreadcrumbJsonLd, buildPhysicianJsonLd, jsonLdScriptProps } from "@/lib/seo";
+
+/**
+ * Пререндерим карточки врачей, чтобы они отдавались статикой:
+ * поисковый робот получает готовый HTML, а не ждёт ответа бэкенда.
+ */
+export async function generateStaticParams() {
+  const doctors = await getCosmetologyDoctors();
+
+  return doctors.map((doctor) => ({ id: doctor.id }));
+}
 
 type DoctorPageProps = {
   params: Promise<{
@@ -15,12 +26,13 @@ type DoctorPageProps = {
 function formatDoctorMetaTitle(name: string) {
   const [surname = "", firstName = "", patronymic = ""] = name.split(" ");
   const initials = [firstName, patronymic].filter(Boolean).map((part) => `${part[0]}.`).join("");
-  return `Врач ${surname} ${initials} - Косметолог | СитиМед Эстетика`.trim();
+  // Суффикс с названием клиники добавляет title.template из корневого layout.
+  return `${surname} ${initials} — врач-косметолог в Йошкар-Оле`.replace(/\s+/g, " ").trim();
 }
 
 function buildDoctorMetaDescription(name: string, specialties: string[]) {
   const specialtyLine = specialties.slice(0, 3).join(", ");
-  return `${name}. Специализации: ${specialtyLine}. Запись на прием в клинику СитиМед Эстетика.`;
+  return `${name} — врач-косметолог клиники «СитиМед Эстетика» в Йошкар-Оле. Специализации: ${specialtyLine}. Запись на приём по телефону или онлайн.`;
 }
 
 function DetailSection({ title, items }: { title: string; items: string[] }) {
@@ -49,14 +61,25 @@ export async function generateMetadata({ params }: DoctorPageProps): Promise<Met
 
   if (!doctor) {
     return {
-      title: "Врач не найден | СитиМед Эстетика",
+      title: "Врач не найден",
       description: "Специалист не найден в каталоге клиники СитиМед Эстетика.",
+      robots: { index: false, follow: true },
     };
   }
 
+  const title = formatDoctorMetaTitle(doctor.name);
+  const description = buildDoctorMetaDescription(doctor.name, doctor.specialties);
+
   return {
-    title: formatDoctorMetaTitle(doctor.name),
-    description: buildDoctorMetaDescription(doctor.name, doctor.specialties),
+    title,
+    description,
+    alternates: { canonical: `/doctors/${doctor.id}` },
+    openGraph: {
+      type: "profile",
+      url: `/doctors/${doctor.id}`,
+      title,
+      description,
+    },
   };
 }
 
@@ -70,6 +93,16 @@ export default async function DoctorDetailPage({ params }: DoctorPageProps) {
 
   return (
     <main className="bg-slate-50 pt-8 md:pt-14">
+      <script {...jsonLdScriptProps(buildPhysicianJsonLd(doctor))} />
+      <script
+        {...jsonLdScriptProps(
+          buildBreadcrumbJsonLd([
+            { name: "Главная", path: "/" },
+            { name: "Врачи", path: "/doctors" },
+            { name: doctor.name, path: `/doctors/${doctor.id}` },
+          ])
+        )}
+      />
       <section className="container mx-auto max-w-7xl px-4 pb-12 md:px-8 md:pb-20">
         <Link
           href="/doctors"

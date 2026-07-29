@@ -12,12 +12,13 @@ export function HeroSection() {
           <div className="flex-1 space-y-6 text-left lg:text-left">
             <h1 className="text-3xl font-semibold leading-tight text-slate-800 sm:text-4xl md:text-6xl">
               Косметология <br />
-              <span className="text-primary">экспертного уровня</span> <br />
-              в СитиМед Эстетика
+              <span className="text-primary">в Йошкар-Оле</span> <br />
+              экспертного уровня
             </h1>
             <p className="max-w-2xl text-base font-normal leading-relaxed text-slate-500 md:text-xl lg:mx-0">
-              Безопасность, передовые технологии и команда признанных экспертов для вашей красоты и здоровья. 
-              Мы создаем результаты, которыми вы будете гордиться.
+              Клиника косметологии «СитиМед Эстетика» на ул. Лобачевского, 1 в Йошкар-Оле.
+              Инъекционная и аппаратная косметология, нитевой лифтинг, пилинги и уходовые процедуры —
+              у врачей-дерматовенерологов, на сертифицированных препаратах и оборудовании.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 lg:justify-start">
               <Link href="/contacts">
@@ -38,10 +39,11 @@ export function HeroSection() {
             <div className="relative z-10 w-full max-w-[520px] overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-500 lg:rotate-3 lg:hover:rotate-0">
               <Image
                 src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=75&w=720&h=900&auto=format&fit=crop"
-                alt="Врач-косметолог за работой"
+                alt="Врач-косметолог клиники «СитиМед Эстетика» в Йошкар-Оле на приёме"
                 width={720}
                 height={900}
                 quality={75}
+                priority
                 unoptimized
                 className="h-[400px] w-full object-cover md:h-auto"
               />

@@ -1,13 +1,37 @@
+import type { Metadata } from "next";
 import { getCosmetologyDoctors } from "@/lib/api/doctors";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { buildBreadcrumbJsonLd, jsonLdScriptProps } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Врачи-косметологи в Йошкар-Оле",
+  description:
+    "Врачи-дерматовенерологи и косметологи клиники «СитиМед Эстетика» в Йошкар-Оле: образование, " +
+    "специализации и направления работы. Запись на приём к косметологу.",
+  alternates: { canonical: "/doctors" },
+  openGraph: {
+    url: "/doctors",
+    title: "Врачи-косметологи в Йошкар-Оле — клиника «СитиМед Эстетика»",
+    description:
+      "Команда врачей-дерматовенерологов и косметологов с высшим медицинским образованием.",
+  },
+};
 
 export default async function DoctorsPage() {
   const doctors = await getCosmetologyDoctors();
 
   return (
     <div className="bg-slate-50 pt-8 md:pt-14">
+      <script
+        {...jsonLdScriptProps(
+          buildBreadcrumbJsonLd([
+            { name: "Главная", path: "/" },
+            { name: "Врачи", path: "/doctors" },
+          ])
+        )}
+      />
       <ScrollReveal>
         <section className="container mx-auto max-w-7xl px-4 pb-10 md:px-8 md:pb-16">
           <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">

@@ -52,21 +52,30 @@ export function PricesPageClient({ categories }: PricesPageClientProps) {
       </div>
 
       <div className="mt-8 md:mt-14">
-        <Accordion className="space-y-5">
+        {/* Первая категория раскрыта: часть прайса видна без взаимодействия —
+            это и лучше для пользователя, и надёжнее для индексации. */}
+        <Accordion
+          defaultValue={categories[0] ? [categories[0].id] : []}
+          className="space-y-5"
+        >
           {filteredCategories.map((category) => (
             <AccordionItem
               key={category.id}
               value={category.id}
               className="overflow-hidden rounded-3xl border border-slate-100 bg-white px-6 shadow-sm"
             >
-              <AccordionTrigger className="min-h-11 py-5 text-left text-xl font-semibold text-slate-800 hover:no-underline md:py-6 md:text-2xl">
-                <h2>{category.title}</h2>
+              <AccordionTrigger
+                headingLevel="h2"
+                className="min-h-11 py-5 text-left text-xl font-semibold text-slate-800 hover:no-underline md:py-6 md:text-2xl"
+              >
+                {category.title}
               </AccordionTrigger>
               <AccordionContent className="pb-4">
                 <div className="space-y-3">
                   {category.services.map((service) => (
                     <article
                       key={service.id}
+                      id={service.id}
                       className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:flex-row md:items-center md:justify-between md:p-6"
                     >
                       <div>

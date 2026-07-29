@@ -1,9 +1,32 @@
+import type { Metadata } from "next";
 import { Star } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
+import { buildBreadcrumbJsonLd, jsonLdScriptProps } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: { absolute: "Отзывы о косметологии в Йошкар-Оле — клиника «СитиМед Эстетика»" },
+  description:
+    "Отзывы пациентов о косметологии в Йошкар-Оле: инъекционные и аппаратные процедуры, чистка лица, " +
+    "работа врачей клиники «СитиМед Эстетика».",
+  alternates: { canonical: "/reviews" },
+  openGraph: {
+    url: "/reviews",
+    title: "Отзывы пациентов — косметология «СитиМед Эстетика», Йошкар-Ола",
+    description: "Что пациенты пишут о процедурах и врачах клиники.",
+  },
+};
 
 export default function ReviewsPage() {
   return (
     <div className="bg-slate-50 pt-14">
+      <script
+        {...jsonLdScriptProps(
+          buildBreadcrumbJsonLd([
+            { name: "Главная", path: "/" },
+            { name: "Отзывы", path: "/reviews" },
+          ])
+        )}
+      />
       <div className="container mx-auto max-w-7xl px-4 py-16 md:px-8">
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-4xl font-semibold text-slate-800 md:text-6xl">Отзывы пациентов</h1>
