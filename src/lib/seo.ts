@@ -4,7 +4,7 @@ import { CONTACTS } from "@/lib/data";
  * Канонический адрес сайта. ОБЯЗАТЕЛЬНО задайте NEXT_PUBLIC_SITE_URL в окружении
  * продакшена — от этого значения зависят canonical, sitemap.xml, robots.txt и OG-теги.
  */
-const FALLBACK_SITE_URL = "https://estetica.mccitymed.ru";
+const FALLBACK_SITE_URL = "https://kosmetolog-citymed.ru";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || FALLBACK_SITE_URL).replace(
   /\/$/,
