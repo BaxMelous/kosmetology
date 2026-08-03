@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { EQUIPMENT } from "@/lib/data";
+import { canonicalPath } from "@/lib/seo";
 import { Check, ShieldCheck, Award, GraduationCap, Clock, ClipboardCheck } from "lucide-react";
 
 const PRIORITIES = [
@@ -36,9 +37,11 @@ const PRIORITIES = [
 ];
 
 export const metadata: Metadata = {
-  title: "Оборудование клиники | СитиМед Эстетика",
+  // Бренд добавляет title.template из корневого layout — здесь его не дублируем.
+  title: "Оборудование клиники косметологии",
   description:
     "Аппараты экспертного класса для косметологии в Йошкар-Оле: LUMENIS M22, UTIMS SMAS-лифтинг, NEOGEN evo, Айкун Icoone Laser.",
+  alternates: { canonical: canonicalPath("/equipment") },
 };
 
 export default function EquipmentPage() {

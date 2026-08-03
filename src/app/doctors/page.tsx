@@ -4,11 +4,13 @@ import { DoctorCard } from "@/components/DoctorCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { canonicalPath } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Врачи-косметологи",
+  title: "Врачи-косметологи в Йошкар-Оле",
   description: "Врачи-косметологи СитиМед Эстетика в Йошкар-Оле: Бахтина М.А., Гордеева Н.В., Домрачева Н.Ю., Смирнова О.С. Опыт от 10 лет, регулярное обучение.",
+  alternates: { canonical: canonicalPath("/doctors") },
 };
 
 export default function DoctorsPage() {
@@ -16,8 +18,8 @@ export default function DoctorsPage() {
     <div className="bg-slate-50 pb-10 md:pb-20">
       <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Врачи", url: "/doctors/" }]} />
       <PageHero
-        title="Наши специалисты"
-        subtitle="Наши врачи постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет."
+        title="Врачи-косметологи в Йошкар-Оле"
+        subtitle="Врачи клиники «СитиМед Эстетика» в Йошкар-Оле постоянно повышают квалификацию, следят за новыми методиками и искренне любят свою работу. Красота и безопасность — их главный приоритет."
         videoSrc="/video/hero-doctors.mp4"
         posterSrc="/video/hero-doctors-poster.webp"
       />
@@ -26,7 +28,13 @@ export default function DoctorsPage() {
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
             {DOCTORS.map((doctor, i) => (
-              <DoctorCard key={doctor.id} doctor={doctor} isChief={doctor.isChief} priority={i === 0} />
+              <DoctorCard
+                key={doctor.id}
+                doctor={doctor}
+                isChief={doctor.isChief}
+                priority={i === 0}
+                headingLevel="h2"
+              />
             ))}
           </div>
         </section>

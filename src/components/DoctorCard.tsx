@@ -6,13 +6,24 @@ type DoctorCardProps = {
   doctor: Doctor;
   isChief?: boolean;
   priority?: boolean;
+  /**
+   * Уровень заголовка с именем врача. На главной карточки идут внутри секции
+   * с h2, поэтому там h3; на /doctors они следуют сразу за h1 — там нужен h2,
+   * иначе в структуре страницы получается пропуск уровня.
+   */
+  headingLevel?: "h2" | "h3";
 };
 
 /**
  * DoctorCard — карточка врача в стиле «современный люкс».
  * Вертикальное фото, стеклянные бейджи, чистая типографика.
  */
-export function DoctorCard({ doctor, isChief = false, priority = false }: DoctorCardProps) {
+export function DoctorCard({
+  doctor,
+  isChief = false,
+  priority = false,
+  headingLevel: Heading = "h3",
+}: DoctorCardProps) {
   return (
     <Link
       href={`/doctors/${doctor.id}`}
@@ -63,9 +74,9 @@ export function DoctorCard({ doctor, isChief = false, priority = false }: Doctor
         {/* === Контент === */}
         <div className="flex flex-1 flex-col justify-between px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
           <div className="space-y-1.5">
-            <h3 className="text-base font-medium tracking-[0.01em] text-slate-800 sm:text-lg">
+            <Heading className="text-base font-medium tracking-[0.01em] text-slate-800 sm:text-lg">
               {doctor.name}
-            </h3>
+            </Heading>
             <p className="text-xs leading-[1.5] text-muted-text sm:text-sm">
               {doctor.role}
             </p>

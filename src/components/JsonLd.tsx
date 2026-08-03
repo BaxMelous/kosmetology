@@ -1,11 +1,28 @@
+import { ORGANIZATION_PROFILES, SITE_NAME, SITE_URL, openingHoursSpecification } from "@/lib/seo";
+
 export function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "СитиМед Эстетика",
+    // MedicalClinic — более точный подтип MedicalBusiness: и Google, и Яндекс
+    // используют его для сопоставления сайта с карточкой организации.
+    "@type": ["MedicalBusiness", "MedicalClinic"],
+    "@id": `${SITE_URL}/#organization`,
+    "name": SITE_NAME,
     "description": "Профессиональная косметология в Йошкар-Оле: SMAS-лифтинг, аппаратная и инъекционная косметология, контурная пластика, биоревитализация, чистка лица, пилинги.",
-    "url": "https://kosmetolog-citymed.ru",
+    "url": SITE_URL,
+    "image": `${SITE_URL}/og-image.webp`,
+    "logo": `${SITE_URL}/og-image.webp`,
     "telephone": "+79276845454",
+    "medicalSpecialty": "Dermatology",
+    "areaServed": {
+      "@type": "City",
+      "name": "Йошкар-Ола",
+    },
+    // Связывает сайт с карточками в Яндекс.Бизнесе и Google Business Profile.
+    // Список задаётся в src/lib/seo.ts; пока он пуст — поле не выводится.
+    ...(ORGANIZATION_PROFILES.filter(Boolean).length > 0
+      ? { sameAs: ORGANIZATION_PROFILES.filter(Boolean) }
+      : {}),
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "ул. Лобачевского, 1",
@@ -19,20 +36,8 @@ export function JsonLd() {
       "latitude": 56.6319,
       "longitude": 47.8784,
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "20:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "18:00",
-      },
-    ],
+    // Часы — из src/lib/seo.ts, тот же источник, что и подписи на сайте.
+    "openingHoursSpecification": openingHoursSpecification(),
     "priceRange": "от 160 ₽",
     "makesOffer": [
       {

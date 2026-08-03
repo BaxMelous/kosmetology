@@ -5,11 +5,14 @@ import { PageHero } from "@/components/PageHero";
 import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { BEFORE_AFTER_CASES } from "@/lib/data";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Результаты до и после процедур | СитиМед Эстетика",
+  // Бренд добавляет title.template из корневого layout — здесь его не дублируем.
+  title: "Результаты до и после процедур",
   description:
     "Реальные фотографии пациентов до и после косметологических процедур в клинике СитиМед Эстетика. Оцените результаты работы наших специалистов.",
+  alternates: { canonical: canonicalPath("/before-after") },
 };
 
 export default function BeforeAfterPage() {

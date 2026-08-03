@@ -10,11 +10,13 @@ import { CtaConsultation } from "@/components/sections/CtaConsultation";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { DOCTORS, SERVICE_CATEGORIES } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { canonicalPath } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Косметология в Йошкар-Оле | СитиМед Эстетика",
   description: "Центр косметологии СитиМед Эстетика в Йошкар-Оле: ул. Лобачевского, 1. SMAS-лифтинг, контурная пластика, биоревитализация, ботулинотерапия от морщин, коррекция фигуры, чистка лица. Запись: +7 (927) 684-54-54.",
+  alternates: { canonical: canonicalPath("/") },
 };
 
 export default function Home() {

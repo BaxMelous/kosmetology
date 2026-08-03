@@ -49,9 +49,17 @@ for (const file of htmlFiles) {
 const today = new Date().toISOString().split("T")[0];
 const pages = [];
 
+// Служебные страницы в sitemap не нужны: 404 попадала туда как каталог out/404/.
+const EXCLUDED_FROM_SITEMAP = new Set(["404", "404.html", "_not-found"]);
+
+// Файлы подтверждения прав в панелях вебмастеров (yandex_*.html, google*.html).
+// Это не страницы сайта — в sitemap им не место, а их индексация ещё и вредна.
+const VERIFICATION_FILE = /^(yandex_|google[0-9a-f]{16}|wmail-)/i;
+
 function walkPages(dir, base = "") {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith("_") || entry.name === "404.html") continue;
+    if (entry.name.startsWith("_") || EXCLUDED_FROM_SITEMAP.has(entry.name)) continue;
+    if (VERIFICATION_FILE.test(entry.name)) continue;
     const p = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       walkPages(p, base + "/" + entry.name);

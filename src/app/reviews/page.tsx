@@ -4,11 +4,14 @@ import { REVIEWS } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Отзывы пациентов | СитиМед Эстетика",
+  // Бренд добавляет title.template из корневого layout — здесь его не дублируем.
+  title: "Отзывы пациентов о косметологии в Йошкар-Оле",
   description:
     "Реальные отзывы пациентов о процедурах в клинике СитиМед Эстетика в Йошкар-Оле. Оцените уровень сервиса и профессионализм наших врачей.",
+  alternates: { canonical: canonicalPath("/reviews") },
 };
 
 export default function ReviewsPage() {
@@ -16,8 +19,8 @@ export default function ReviewsPage() {
     <div className="bg-slate-50 pb-10 md:pb-20">
       <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Отзывы", url: "/reviews/" }]} />
       <PageHero
-        title="Отзывы пациентов"
-        subtitle="Мы ценим ваше доверие. Более 1000 пациентов уже оценили уровень сервиса и профессионализм врачей СитиМед Эстетика."
+        title="Отзывы о косметологии в Йошкар-Оле"
+        subtitle="Мы ценим ваше доверие. Более 1000 пациентов в Йошкар-Оле уже оценили уровень сервиса и профессионализм врачей клиники «СитиМед Эстетика»."
         videoSrc="/video/hero-reviews.mp4"
         posterSrc="/video/hero-reviews-poster.webp"
         videoFilter="none"
@@ -65,9 +68,10 @@ export default function ReviewsPage() {
                     <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
                   ))}
                 </div>
-                <h3 className="text-lg md:text-xl font-medium leading-snug text-slate-800">
+                {/* h2: карточки идут сразу за h1 страницы — h3 давал пропуск уровня. */}
+                <h2 className="text-lg md:text-xl font-medium leading-snug text-slate-800">
                   &laquo;{review.title}&raquo;
-                </h3>
+                </h2>
                 <p className="text-sm md:text-base font-normal leading-loose text-slate-500">
                   {review.text}
                 </p>

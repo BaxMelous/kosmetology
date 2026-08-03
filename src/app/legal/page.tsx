@@ -9,11 +9,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Нормативные документы | СитиМед Эстетика",
+  // Бренд добавляет title.template из корневого layout — здесь его не дублируем.
+  title: "Нормативные документы и лицензии",
   description:
     "Нормативные документы, лицензии, учредительные документы и правила клиники СитиМед Эстетика в Йошкар-Оле. Официальная информация о деятельности клиники.",
+  alternates: { canonical: canonicalPath("/legal") },
 };
 
 // --- Document link card ---
@@ -185,10 +188,10 @@ export default function LegalPage() {
               value="license"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Лицензия
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="space-y-6">
@@ -239,10 +242,10 @@ export default function LegalPage() {
               value="founding"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Учредительные документы
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 {/* Company details */}
@@ -275,10 +278,10 @@ export default function LegalPage() {
               value="regulations"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Нормативные акты
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
@@ -294,10 +297,10 @@ export default function LegalPage() {
               value="personalData"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Персональные данные
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
@@ -313,10 +316,10 @@ export default function LegalPage() {
               value="paidServices"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Платные медицинские услуги
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
@@ -332,10 +335,10 @@ export default function LegalPage() {
               value="patientInfo"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Информация для пациентов
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
@@ -351,10 +354,10 @@ export default function LegalPage() {
               value="supervisory"
               className="overflow-hidden rounded-card border border-slate-100 bg-white shadow-card"
             >
-              <AccordionTrigger className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
-                <h2 className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
+              <AccordionTrigger headingLevel="h2" className="min-h-11 px-6 py-5 text-left hover:no-underline md:px-8 md:py-6">
+                <span className="text-lg font-light tracking-[0.04em] text-[#1a1a2e] md:text-xl">
                   Вышестоящие организации
-                </h2>
+                </span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6 md:px-8 md:pb-8">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

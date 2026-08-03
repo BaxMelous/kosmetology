@@ -1,3 +1,4 @@
+import React from "react"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 
 import { cn } from "@/lib/utils"
@@ -26,10 +27,22 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 function AccordionTrigger({
   className,
   children,
+  headingLevel,
   ...props
-}: AccordionPrimitive.Trigger.Props) {
+}: AccordionPrimitive.Trigger.Props & {
+  /**
+   * Уровень заголовка-обёртки. Base UI по умолчанию рендерит Header как h3;
+   * если аккордеон идёт сразу за h1 страницы, это даёт пропуск уровня.
+   * Передавайте "h2" в таких местах — и не вкладывайте свой заголовок
+   * внутрь триггера, иначе получится вложенность вида h3 > h2.
+   */
+  headingLevel?: "h2" | "h3" | "h4"
+}) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header
+      className="flex"
+      render={headingLevel ? React.createElement(headingLevel) : undefined}
+    >
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(

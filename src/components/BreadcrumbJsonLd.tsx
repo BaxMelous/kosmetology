@@ -2,6 +2,8 @@
  * BreadcrumbJsonLd — хлебные крошки для поисковой выдачи.
  * Генерирует структурированные данные BreadcrumbList.
  */
+import { absoluteUrl } from "@/lib/seo";
+
 export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string }[] }) {
   if (!items.length) return null;
 
@@ -12,7 +14,7 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `https://kosmetolog-citymed.ru${item.url}`,
+      item: absoluteUrl(item.url),
     })),
   };
 

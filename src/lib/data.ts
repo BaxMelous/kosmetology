@@ -1,3 +1,5 @@
+import { CLOSED_DAY_LABEL, OPENING_HOURS, PHONE_DISPLAY, formatOpeningHours } from "@/lib/seo";
+
 export interface Doctor {
   id: string;
   name: string;
@@ -606,12 +608,14 @@ export const REVIEWS: Review[] = [
 
 export const CONTACTS = {
   address: "г. Йошкар-Ола, ул. Лобачевского, 1 (Республика Марий Эл, 424008)",
+  // Часы берутся из src/lib/seo.ts — там же их читает schema.org-разметка.
+  // Правьте график только там, чтобы сайт и структурированные данные не разошлись.
   workingHours: {
-    weekdays: "Пн–Пт: 8:00–20:00",
-    saturday: "Сб: 8:00–18:00",
-    sunday: "Вс: выходной",
+    weekdays: formatOpeningHours(OPENING_HOURS[0]),
+    saturday: formatOpeningHours(OPENING_HOURS[1]),
+    sunday: CLOSED_DAY_LABEL,
   },
-  phone: "+7 (927) 684-54-54",
+  phone: PHONE_DISPLAY,
   stops: "«Якова Эшпая» и «Ленинский проспект»",
   routes: "24П, 21К, 18К, 20К, М8, М2, 3П",
 };

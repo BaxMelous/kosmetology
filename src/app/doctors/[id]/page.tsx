@@ -5,6 +5,8 @@ import { ArrowLeft, Check } from "lucide-react";
 import { notFound } from "next/navigation";
 import { use } from "react";
 import { DOCTORS, CONTACTS } from "@/lib/data";
+import { buildPhysicianJsonLd, canonicalPath, jsonLdScriptProps } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { OpenModalButton } from "@/components/OpenModalButton";
 
 export function generateStaticParams() {
@@ -22,7 +24,8 @@ type DoctorPageProps = {
 function formatDoctorMetaTitle(name: string) {
   const [surname = "", firstName = "", patronymic = ""] = name.split(" ");
   const initials = [firstName, patronymic].filter(Boolean).map((part) => `${part[0]}.`).join("");
-  return `Врач ${surname} ${initials} - Косметолог | СитиМед Эстетика`.trim();
+  // Бренд добавляет title.template из корневого layout — здесь его не дублируем.
+  return `${surname} ${initials} — врач-косметолог в Йошкар-Оле`.replace(/\s+/g, " ").trim();
 }
 
 function buildDoctorMetaDescription(name: string, specialties: string[]) {
@@ -37,7 +40,8 @@ function DetailSection({ title, items }: { title: string; items: string[] }) {
 
   return (
     <section className="mt-8">
-      <h3 className="mb-4 text-xl font-medium text-slate-900">{title}</h3>
+      {/* h2: секции идут сразу за h1 с именем врача — h3 давал пропуск уровня. */}
+      <h2 className="mb-4 text-xl font-medium text-slate-900">{title}</h2>
       <ul className="space-y-3">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3 text-slate-600">
@@ -56,14 +60,16 @@ export async function generateMetadata({ params }: DoctorPageProps): Promise<Met
 
   if (!doctor) {
     return {
-      title: "Врач не найден | СитиМед Эстетика",
+      title: "Врач не найден",
       description: "Специалист не найден в каталоге клиники СитиМед Эстетика.",
+      robots: { index: false, follow: true },
     };
   }
 
   return {
     title: formatDoctorMetaTitle(doctor.name),
     description: buildDoctorMetaDescription(doctor.name, doctor.specialties),
+    alternates: { canonical: canonicalPath(`/doctors/${doctor.id}`) },
   };
 }
 
@@ -77,6 +83,14 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
 
   return (
     <main className="bg-slate-50 pt-8 md:pt-14">
+      <script {...jsonLdScriptProps(buildPhysicianJsonLd(doctor))} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Главная", url: "/" },
+          { name: "Врачи", url: "/doctors/" },
+          { name: doctor.name, url: `/doctors/${doctor.id}/` },
+        ]}
+      />
       <section className="container mx-auto max-w-7xl px-4 pb-12 md:px-8 md:pb-20">
         <Link
           href="/doctors"
@@ -126,7 +140,7 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
 
               {doctor.experience && (
                 <section className="mt-8">
-                  <h3 className="mb-4 text-xl font-medium text-slate-900">Опыт работы</h3>
+                  <h2 className="mb-4 text-xl font-medium text-slate-900">Опыт работы</h2>
                   <ul className="space-y-3">
                     {(Array.isArray(doctor.experience) ? doctor.experience : [doctor.experience]).map((exp, i) => (
                       <li key={i} className="flex items-start gap-3 text-slate-600">
@@ -139,7 +153,7 @@ export default function DoctorDetailPage({ params }: DoctorPageProps) {
               )}
 
               <div className="mt-10 rounded-card border border-slate-100 bg-slate-50 p-6">
-                <h3 className="text-xl font-medium text-slate-900">Запись на прием</h3>
+                <h2 className="text-xl font-medium text-slate-900">Запись на прием</h2>
                 <p className="mt-3 text-slate-600">
                   Для записи к специалисту свяжитесь с клиникой по телефону {CONTACTS.phone} или оставьте заявку через форму обратной связи.
                 </p>

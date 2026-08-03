@@ -26,7 +26,7 @@ export function Footer() {
 
           {/* Nav */}
           <div>
-            <h3 className="mb-6 font-semibold text-slate-800">Навигация</h3>
+            <h2 className="mb-6 font-semibold text-slate-800">Навигация</h2>
             <ul className="space-y-4 text-sm">
               <li><Link href="/prices" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Услуги и цены</Link></li>
               <li><Link href="/before-after" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">До и после</Link></li>
@@ -39,7 +39,7 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="mb-6 font-semibold text-slate-800">Информация</h3>
+            <h2 className="mb-6 font-semibold text-slate-800">Информация</h2>
             <ul className="space-y-4 text-sm">
               <li><Link href="/documents/Политика по обработке персональных данных.pdf" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Политика конфиденциальности</Link></li>
               <li><Link href="/legal" className="transition-all duration-300 hover:text-primary focus-visible:text-primary focus-visible:underline">Правовая информация</Link></li>
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Contacts */}
           <div className="space-y-4 text-sm">
-            <h3 className="mb-6 font-semibold text-slate-800">Контакты</h3>
+            <h2 className="mb-6 font-semibold text-slate-800">Контакты</h2>
             <p>{CONTACTS.address}</p>
             <p className="font-semibold text-slate-800">{CONTACTS.phone}</p>
             <p className="pt-4 text-xs text-slate-500">

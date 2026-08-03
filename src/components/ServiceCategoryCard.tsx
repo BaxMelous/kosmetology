@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useId, useState } from "react";
+import { motion } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useConsultationModal } from "@/components/ConsultationModal";
@@ -22,6 +22,7 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [catDescExpanded, setCatDescExpanded] = useState(false);
   const { openModal } = useConsultationModal();
+  const contentId = useId();
 
   return (
     <motion.div
@@ -33,6 +34,8 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
       onClick={() => setIsOpen(!isOpen)}
       role="button"
       tabIndex={0}
+      aria-expanded={isOpen}
+      aria-controls={contentId}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -118,73 +121,83 @@ export function ServiceCategoryCard({ category }: ServiceCategoryCardProps) {
         </motion.div>
       </motion.div>
 
-      {/* === Раскрывающийся список услуг === */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden"
-          >
-            <div
-              className="border-t border-slate-100 px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="space-y-2 sm:space-y-3">
-                {category.services.map((service) => (
-                  <motion.article
-                    key={service.id}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="flex flex-col gap-3 rounded-2xl border border-slate-100 bg-slate-50/70 px-5 py-4 transition-colors hover:bg-white hover:shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4"
-                  >
-                    {/* Название + описание */}
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-sm font-medium text-slate-800 sm:text-base">
-                          {service.name}
-                        </h3>
-                        {service.isPopular && (
-                          <span className="rounded-full px-2.5 py-0.5 text-[11px] font-normal uppercase tracking-wide" style={{ backgroundColor: "#A3B90320", color: "#A3B903" }}>
-                            Популярно
-                          </span>
-                        )}
-                      </div>
-                      {service.description && (
-                        <p className="mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
-                          {service.description}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Цена + кнопка */}
-                    <div className="flex items-center justify-between gap-4 sm:shrink-0">
-                      <span className="text-base font-bold tabular-nums sm:text-lg" style={{ color: "#F97316" }}>
-                        {service.price}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openModal(service.name);
-                        }}
-                        className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-primary-hover active:scale-[0.97] sm:h-10 sm:px-5"
-                      >
-                        Записаться
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+      {/*
+        === Список услуг ===
+        ВАЖНО ДЛЯ SEO: блок всегда смонтирован и всегда присутствует в HTML.
+        Свёрнутое состояние — это CSS-схлопывание, а НЕ размонтирование.
+        Раньше здесь стояло `{isOpen && …}`, из-за чего в собранном HTML не было
+        ни одного названия услуги и ни одной цены — робот видел только заголовки
+        категорий. Не заменяйте это обратно на условный рендер.
+        `inert` в свёрнутом виде убирает скрытые кнопки из таб-порядка.
+      */}
+      <div
+        id={contentId}
+        className={cn(
+          // Схлопывание на чистом CSS (grid-rows 0fr↔1fr), без JS-анимации:
+          // раскрытие не зависит от того, успел ли отработать animation frame,
+          // и работает даже если анимации подавлены системой.
+          "grid transition-[grid-template-rows,opacity] duration-[350ms] ease-out motion-reduce:transition-none",
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         )}
-      </AnimatePresence>
+        inert={!isOpen}
+      >
+        {/* Сам grid-элемент — без padding и с min-h-0, иначе в свёрнутом виде
+            останется полоса высотой в отступы (padding не сжимается). Все
+            отступы и рамка — на вложенном слое. */}
+        <div className="min-h-0 overflow-hidden">
+          <div
+            className="border-t border-slate-100 px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-2 sm:space-y-3">
+            {category.services.map((service) => (
+              <article
+                key={service.id}
+                id={service.id}
+                className="flex flex-col gap-3 rounded-2xl border border-slate-100 bg-slate-50/70 px-5 py-4 transition-colors hover:bg-white hover:shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4"
+              >
+                {/* Название + описание */}
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-medium text-slate-800 sm:text-base">
+                      {service.name}
+                    </h3>
+                    {service.isPopular && (
+                      <span className="rounded-full px-2.5 py-0.5 text-[11px] font-normal uppercase tracking-wide" style={{ backgroundColor: "#A3B90320", color: "#A3B903" }}>
+                        Популярно
+                      </span>
+                    )}
+                  </div>
+                  {service.description && (
+                    <p className="mt-1 text-xs leading-[1.6] text-muted-foreground sm:text-sm">
+                      {service.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Цена + кнопка */}
+                <div className="flex items-center justify-between gap-4 sm:shrink-0">
+                  <span className="text-base font-bold tabular-nums sm:text-lg" style={{ color: "#F97316" }}>
+                    {service.price}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openModal(service.name);
+                    }}
+                    className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-all duration-300 hover:bg-primary-hover active:scale-[0.97] sm:h-10 sm:px-5"
+                  >
+                    Записаться
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </article>
+            ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }

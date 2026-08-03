@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { CONTACTS } from "@/lib/data";
+import { PHONE_E164 } from "@/lib/seo";
 import { MapPin, Phone, Bus, Send, Car, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/ui/button";
@@ -93,14 +94,17 @@ export default function ContactsPage() {
                     <MapPin className="h-4 w-4" />
                   </div>
                   <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Адрес</p>
-                  <a
-                    href="https://yandex.com/maps/-/CPx-V073"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-light leading-relaxed text-[#1a1a2e] transition-colors hover:text-[#F97316] md:text-base"
-                  >
-                    {CONTACTS.address}
-                  </a>
+                  {/* <address> — семантическая разметка контактов организации. */}
+                  <address className="not-italic">
+                    <a
+                      href="https://yandex.com/maps/-/CPx-V073"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-light leading-relaxed text-[#1a1a2e] transition-colors hover:text-[#F97316] md:text-base"
+                    >
+                      {CONTACTS.address}
+                    </a>
+                  </address>
                 </div>
 
                 <div className="rounded-card-sm border border-white/60 bg-white/50 p-5 backdrop-blur-lg md:p-6">
@@ -108,17 +112,32 @@ export default function ContactsPage() {
                     <Phone className="h-4 w-4" />
                   </div>
                   <p className="mb-1 text-[10px] font-light uppercase tracking-[0.15em] text-[#F97316]">Телефон</p>
-                  <p className="text-sm font-light text-[#1a1a2e] md:text-base">{CONTACTS.phone}</p>
-                  <p className="mt-1.5 text-xs font-light text-muted-light">Ежедневно: 08:00–20:00</p>
+                  <address className="not-italic">
+                    <a
+                      href={`tel:${PHONE_E164}`}
+                      className="text-sm font-light text-[#1a1a2e] transition-colors hover:text-[#F97316] md:text-base"
+                    >
+                      {CONTACTS.phone}
+                    </a>
+                  </address>
+                  {/* Часы — из CONTACTS: раньше здесь было «Ежедневно: 08:00–20:00»,
+                      что противоречило и остальному сайту, и разметке (Вс — выходной). */}
+                  <p className="mt-1.5 text-xs font-light text-muted-light">
+                    {CONTACTS.workingHours.weekdays}
+                  </p>
+                  <p className="text-xs font-light text-muted-light">
+                    {CONTACTS.workingHours.saturday}
+                  </p>
                 </div>
               </div>
 
               {/* Contact Form */}
               <div className="overflow-hidden rounded-card border border-slate-100 bg-white p-7 md:p-10">
                 <div className="mb-8 space-y-1.5">
-                  <h3 className="text-xl font-light tracking-[0.04em] text-[#1a1a2e] md:text-2xl">
+                  {/* h2: блок идёт сразу за h1 страницы — h3 давал пропуск уровня. */}
+                  <h2 className="text-xl font-light tracking-[0.04em] text-[#1a1a2e] md:text-2xl">
                     Остались вопросы? Напишите нам
-                  </h3>
+                  </h2>
                   <p className="text-sm font-light text-muted-light">
                     Мы свяжемся с вами в течение 15 минут.
                   </p>

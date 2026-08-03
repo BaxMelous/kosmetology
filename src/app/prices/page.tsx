@@ -3,11 +3,13 @@ import { getCosmetologyServices } from "@/lib/api/services";
 import { PricesPageClient } from "@/components/PricesPageClient";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PageHero } from "@/components/PageHero";
+import { buildOfferCatalogJsonLd, canonicalPath, jsonLdScriptProps } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Цены на косметологию — прайс-лист",
+  title: "Цены на косметологию в Йошкар-Оле — прайс-лист",
   description: "Актуальные цены на косметологические услуги в Йошкар-Оле: ботулинотерапия от 160 ₽/ед, биоревитализация от 7500 ₽, SMAS-лифтинг от 7000 ₽, чистка лица, контурная пластика, пилинги.",
+  alternates: { canonical: canonicalPath("/prices") },
 };
 
 function PricesPageFallback() {
@@ -30,7 +32,13 @@ function PricesPageFallback() {
 async function PricesPageContent() {
   const categories = await getCosmetologyServices();
 
-  return <PricesPageClient categories={categories} />;
+  return (
+    <>
+      {/* Прайс в машиночитаемом виде — цены явно, а не только текстом на странице. */}
+      <script {...jsonLdScriptProps(buildOfferCatalogJsonLd(categories))} />
+      <PricesPageClient categories={categories} />
+    </>
+  );
 }
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -40,8 +48,8 @@ export default function PricesPage() {
     <div className="bg-slate-50 pb-10 md:pb-20">
       <BreadcrumbJsonLd items={[{ name: "Главная", url: "/" }, { name: "Услуги и цены", url: "/prices/" }]} />
       <PageHero
-        title="Услуги и цены"
-        subtitle="Ознакомьтесь с полным перечнем процедур нашей клиники. Мы используем только сертифицированные препараты и передовое оборудование."
+        title="Услуги и цены на косметологию в Йошкар-Оле"
+        subtitle="Полный перечень процедур клиники «СитиМед Эстетика» в Йошкар-Оле: инъекционная и аппаратная косметология, нитевой лифтинг, пилинги и уход. Только сертифицированные препараты и оборудование."
         videoSrc="/video/hero-prices.mp4"
         posterSrc="/video/hero-prices-poster.webp"
       />
